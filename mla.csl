@@ -33,8 +33,7 @@
     <link href="http://owl.english.purdue.edu/owl/section/2/11/" rel="documentation"/>
     <updated>2011-05-28T18:16:02+00:00</updated>
     <summary>This style adheres to the MLA 7th edition handbook and contains modifications to these types of sources: e-mail, forum posts, interviews, manuscripts, maps, presentations, TV broadcasts, and web pages.</summary>
-    <rights>This work is licensed under a Creative Commons Attribution-Share Alike 3.0 License:
-    http://creativecommons.org/licenses/by-sa/3.0/</rights>
+    <rights>This work is licensed under a Creative Commons Attribution-Share Alike 3.0 License: http://creativecommons.org/licenses/by-sa/3.0/</rights>
   </info>
   <locale xml:lang="en">
     <terms>
@@ -154,23 +153,23 @@
   <macro name="title">
     <choose>
       <if type="bill book graphic legal_case manuscript motion_picture report song" match="any">
-        <text variable="title" font-style="italic"/>
+        <text variable="title" font-style="italic" text-case="title"/>
       </if>
       <else-if type="interview personal_communication" match="any">
-        <text variable="title" quotes="false"/>
+        <text variable="title" text-case="title" quotes="false"/>
       </else-if>
       <else>
-        <text variable="title" quotes="true"/>
+        <text variable="title" text-case="title" quotes="true"/>
       </else>
     </choose>
   </macro>
   <macro name="title-short">
     <choose>
       <if type="bill book graphic legal_case manuscript motion_picture report song" match="any">
-        <text variable="title" form="short" font-style="italic"/>
+        <text variable="title" text-case="title" form="short" font-style="italic"/>
       </if>
       <else>
-        <text variable="title" form="short" quotes="true"/>
+        <text variable="title" text-case="title" form="short" quotes="true"/>
       </else>
     </choose>
   </macro>
@@ -227,7 +226,7 @@
     </choose>
   </macro>
   <macro name="collection-title">
-    <text variable="collection-title" prefix=" "/>
+    <text variable="collection-title" text-case="title" prefix=" "/>
   </macro>
   <macro name="collection-number">
     <text variable="collection-number" prefix=" " suffix="."/>
@@ -283,7 +282,7 @@
         </if>
         <else-if type="chapter paper-conference" match="any">
           <group>
-            <text variable="container-title" font-style="italic" prefix=" " suffix="."/>
+            <text variable="container-title" text-case="title" font-style="italic" prefix=" " suffix="."/>
             <text macro="edition" prefix=" " suffix="."/>
             <text macro="editor-translator" prefix=" " suffix="."/>
             <text macro="volume" prefix=" " suffix="."/>
