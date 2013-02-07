@@ -24,7 +24,7 @@
     <category citation-format="note"/>
     <category field="generic-base"/>
     <summary>Chicago format with full notes and bibliography</summary>
-    <updated>2012-10-25T21:15:26+00:00</updated>
+    <updated>2012-10-26T01:15:26+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -34,8 +34,8 @@
         <multiple>trans. and ed.</multiple>
       </term>
       <term name="editortranslator" form="verb">
-        <single> Translated and edited by</single>
-        <multiple> Translated and edited by</multiple>
+        <single>Translated and edited by</single>
+        <multiple>Translated and edited by</multiple>
       </term>
       <term name="editor" form="verb-short">ed.</term>
       <term name="translator" form="verb-short">trans.</term>
@@ -109,7 +109,6 @@
                   </names>
                 </if>
               </choose>
-              <!--This includes page numers after the container author, e.g. for Introductions -->
               <choose>
                 <if variable="container-author author" match="all">
                   <group delimiter=". ">
@@ -217,6 +216,7 @@
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
+        <text macro="title"/>
       </substitute>
     </names>
   </macro>
@@ -239,10 +239,12 @@
       </if>
       <else-if type="bill book graphic  legislation motion_picture report song" match="any">
         <text variable="title" text-case="title" font-style="italic"/>
-        <text variable="version" prefix=" , version " suffix=""/>
-        <!--This isn't localized because we don't have a version term. While not ideal, it should work for many languages and is better than not including a term.-->
+        <group delimiter=" " prefix=", ">
+          <text term="version"/>
+          <text variable="version"/>
+        </group>
       </else-if>
-      <else-if type="legal_case">
+      <else-if type="legal_case interview" match="any">
         <text variable="title"/>
       </else-if>
       <else>
@@ -261,9 +263,12 @@
       </if>
       <else-if type="bill book graphic legislation motion_picture report song" match="any">
         <text variable="title" text-case="title" font-style="italic"/>
-        <text variable="version" prefix=" (version " suffix=")"/>
+        <group prefix=" (" suffix=")" delimiter=" ">
+          <text term="version"/>
+          <text variable="version"/>
+        </group>
       </else-if>
-      <else-if type="legal_case">
+      <else-if type="legal_case interview" match="any">
         <text variable="title"/>
       </else-if>
       <else>
@@ -276,7 +281,7 @@
       <if variable="title" match="none">
         <choose>
           <if type="interview">
-            <text term="interview" text-case="lowercase"/>
+            <text term="interview"/>
           </if>
           <else-if type="manuscript speech" match="any">
             <text variable="genre" form="short"/>
@@ -289,12 +294,19 @@
       <else-if type="bill book graphic legislation motion_picture report song" match="any">
         <text variable="title" text-case="title" form="short" font-style="italic"/>
       </else-if>
-      <else-if type="legal_case">
+      <else-if type="legal_case interview" match="any">
         <text variable="title"/>
       </else-if>
       <else>
         <text variable="title" text-case="title" form="short" quotes="true"/>
       </else>
+    </choose>
+  </macro>
+  <macro name="date-disambiguate">
+    <choose>
+      <if disambiguate="true">
+        <text macro="issued"/>
+      </if>
     </choose>
   </macro>
   <macro name="description-note">
@@ -554,11 +566,7 @@
       <if variable="issued">
         <choose>
           <if type="graphic report" match="any">
-            <date variable="issued">
-              <date-part name="month" suffix=" "/>
-              <date-part name="day" suffix=", "/>
-              <date-part name="year"/>
-            </date>
+            <date variable="issued" form="text"/>
           </if>
           <else-if type="legal_case">
             <group delimiter=" ">
@@ -574,16 +582,11 @@
             </date>
           </else-if>
           <else>
-            <date variable="issued">
-              <date-part name="month" suffix=" "/>
-              <date-part name="day" suffix=", "/>
-              <date-part name="year"/>
-            </date>
+            <date variable="issued" form="text"/>
           </else>
         </choose>
       </if>
-      <else-if variable="accessed URL" match="all">
-      </else-if>
+      <else-if variable="accessed URL" match="all"/>
       <else>
         <text term="no date" form="short"/>
       </else>
@@ -738,7 +741,11 @@
   <macro name="issue-note-join-with-space">
     <choose>
       <if type="article-journal legal_case" variable="publisher-place publisher" match="any">
-        <text macro="issue-note"/>
+        <choose>
+          <if type="article-newspaper" match="none">
+            <text macro="issue-note"/>
+          </if>
+        </choose>
       </if>
     </choose>
   </macro>
@@ -747,6 +754,9 @@
       <if type="article-journal legal_case" variable="publisher-place publisher" match="none">
         <text macro="issue-note"/>
       </if>
+      <else-if type="article-newspaper">
+        <text macro="issue-note"/>
+      </else-if>
     </choose>
   </macro>
   <macro name="issue-note">
@@ -754,6 +764,9 @@
       <if type="article-journal legal_case" match="any">
         <text macro="issued" prefix="(" suffix=")"/>
       </if>
+      <else-if type="article-newspaper">
+        <text macro="issued"/>
+      </else-if>
       <else-if variable="publisher-place publisher" match="any">
         <group prefix="(" suffix=")" delimiter=", ">
           <group delimiter=" ">
@@ -823,6 +836,9 @@
           <text macro="issued"/>
         </group>
       </else-if>
+      <else-if type="article-newspaper">
+        <text macro="issued"/>
+      </else-if>
       <else-if variable="publisher-place publisher" match="any">
         <group delimiter=", ">
           <choose>
@@ -853,11 +869,7 @@
         <if variable="issued" match="none">
           <group delimiter=" ">
             <text term="accessed"/>
-            <date variable="accessed">
-              <date-part name="month" suffix=" "/>
-              <date-part name="day" suffix=", "/>
-              <date-part name="year"/>
-            </date>
+            <date variable="accessed" form="text"/>
           </group>
         </if>
       </choose>
@@ -889,11 +901,7 @@
         <if variable="issued" match="none">
           <group delimiter=" ">
             <text term="accessed" text-case="capitalize-first"/>
-            <date variable="accessed">
-              <date-part name="month" suffix=" "/>
-              <date-part name="day" suffix=", "/>
-              <date-part name="year"/>
-            </date>
+            <date variable="accessed" form="text"/>
           </group>
         </if>
       </choose>
@@ -943,6 +951,7 @@
             <group delimiter=" ">
               <group delimiter=", ">
                 <text macro="title-short"/>
+                <text macro="date-disambiguate"/>
                 <text macro="case-locator-subsequent"/>
               </group>
               <text macro="case-issue-subsequent"/>
@@ -958,13 +967,11 @@
                   <group delimiter=", ">
                     <group delimiter=" ">
                       <group delimiter=", ">
-                        <group delimiter=" ">
-                          <group delimiter=", ">
-                            <text macro="contributors-note"/>
-                            <text macro="title-note"/>
-                          </group>
-                          <text macro="description-note"/>
+                        <group delimiter=", ">
+                          <text macro="contributors-note"/>
+                          <text macro="title-note"/>
                         </group>
+                        <text macro="description-note"/>
                         <text macro="secondary-contributors-note"/>
                         <text macro="container-title-note"/>
                         <text macro="container-contributors-note"/>
@@ -1004,13 +1011,11 @@
                 <group delimiter=" ">
                   <group delimiter=", ">
                     <group delimiter=". ">
-                      <group delimiter=" ">
-                        <group delimiter=". ">
-                          <text macro="contributors"/>
-                          <text macro="title"/>
-                        </group>
-                        <text macro="description"/>
+                      <group delimiter=". ">
+                        <text macro="contributors"/>
+                        <text macro="title"/>
                       </group>
+                      <text macro="description"/>
                       <text macro="secondary-contributors"/>
                       <group delimiter=", ">
                         <text macro="container-title"/>
