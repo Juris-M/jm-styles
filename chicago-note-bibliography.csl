@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="never">
   <info>
-    <title>Chicago Manual of Style (note)</title>
+    <title>Chicago Manual of Style 16th edition (note)</title>
     <id>http://www.zotero.org/styles/chicago-note-bibliography</id>
     <link href="http://www.zotero.org/styles/chicago-note-bibliography" rel="self"/>
     <link href="http://www.chicagomanualofstyle.org/tools_citationguide.html" rel="documentation"/>
@@ -29,16 +29,16 @@
   </info>
   <locale xml:lang="en">
     <terms>
-      <term name="editortranslator" form="verb-short">
-        <single>trans. and ed.</single>
-        <multiple>trans. and ed.</multiple>
-      </term>
-      <term name="editortranslator" form="verb">
-        <single>Translated and edited by</single>
-        <multiple>Translated and edited by</multiple>
-      </term>
       <term name="editor" form="verb-short">ed.</term>
       <term name="translator" form="verb-short">trans.</term>
+      <term name="editortranslator" form="verb-short">
+        <single>ed. and trans.</single>
+        <multiple>ed. and trans.</multiple>
+      </term>
+      <term name="editortranslator" form="verb">
+        <single>Edited and translated by</single>
+        <multiple>Edited and translated by</multiple>
+      </term>
       <term name="translator" form="short">trans.</term>
     </terms>
   </locale>
