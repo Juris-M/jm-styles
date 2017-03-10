@@ -11,7 +11,7 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2010-04-24T04:49:00+09:00</updated>
+    <updated>2016-10-08T08:07:23.106844</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -1242,10 +1242,12 @@
       <choose>
         <if type="broadcast"/>
         <else-if match="all" type="video" variable="publisher"/>
+        <else-if type="post post-weblog webpage">
+          <text form="short" variable="container-title"/>
+        </else-if>
         <else>
           <text font-variant="small-caps" form="short" variable="container-title"/>
         </else>
-
       </choose>
     </group>
   </macro>
