@@ -165,7 +165,7 @@
           </if>
           <else>
             <choose>
-              <if type="webpage">
+              <if type="post post-weblog webpage" match="any">
                 <group delimiter=" ">
                   <text term="retrieved" text-case="capitalize-first" suffix=" "/>
                   <group>
@@ -300,7 +300,7 @@
             </if>
           </choose>
           <choose>
-            <if type="article-journal article-magazine" match="none">
+            <if type="article-journal article-magazine article-newspaper" match="none">
               <group delimiter=": ">
                 <choose>
                   <if variable="publisher-place">
