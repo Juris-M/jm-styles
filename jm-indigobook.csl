@@ -1914,6 +1914,7 @@
             <conditions match="all">
               <condition match="any" type="legal_case legislation bill hearing gazette report regulation"/>
               <condition match="all" variable="jurisdiction"/>
+			  <condition match="nand" position="subsequent" type="hearing"/>
             </conditions>
             <text macro="jurism"/>
           </if>
@@ -1933,7 +1934,7 @@
             <text macro="babyblue-secondary-first"/>
           </else>
         </choose>
-        <text macro="babyblue-hereinafter"/>
+        <!-- text macro="babyblue-hereinafter"/ -->
       </group>
     </layout>
   </citation>

@@ -1406,8 +1406,15 @@
       <group delimiter=", ">
         <group delimiter=" ">
           <group delimiter=", ">
-            <text macro="babyblue-author"/>
-            <text macro="babyblue-title"/>
+			<choose>
+			  <if type="hearing" position="subsequent" variable="author" match="all">
+				<text macro="juris-pretitle-short"/>
+			  </if>
+			  <else-if>
+				<text macro="babyblue-author"/>
+				<text macro="babyblue-title"/>
+			  </else-if>
+			</choose>
             <text font-style="italic" value="supra"/>
           </group>
           <group delimiter=" ">
@@ -1672,7 +1679,7 @@
       <if>
         <conditions match="all">
           <condition position="first" context="citation" match="all"/>
-          <condition disambiguate="check-ambiguity-and-backreference" variable="hereinafter" match="any"/>
+          <condition variable="hereinafter" match="any"/>
         </conditions>
         <group delimiter=" " prefix="[" suffix="]">
           <text value="hereinafter"/>
@@ -1919,12 +1926,21 @@
         <choose>
           <if>
             <conditions match="all">
+              <condition match="any" type="hearing"/>
+			  <condition match="all" position="subsequent"/>
+			  <condition match="none" position="ibid ibid-with-locator"/>
+            </conditions>
+            <text macro="babyblue-secondary-subsequent"/>
+          </if>
+          <else-if>
+            <conditions match="all">
               <condition match="any" type="legal_case legislation bill hearing gazette report regulation"/>
               <condition match="all" variable="jurisdiction"/>
+			  <condition match="none" position="ibid"/>
             </conditions>
             <text macro="jurism"/>
-          </if>
-          <else-if match="any" type="treaty" variable="jurisdiction">
+          </else-if>
+          <else-if match="any" type="treaty">
             <text macro="jurisdiction-filter"/>
           </else-if>
           <else-if position="ibid-with-locator">
@@ -1940,7 +1956,7 @@
             <text macro="babyblue-secondary-first"/>
           </else>
         </choose>
-        <text macro="babyblue-hereinafter"/>
+        <!-- text macro="babyblue-hereinafter"/ -->
       </group>
     </layout>
   </citation>
