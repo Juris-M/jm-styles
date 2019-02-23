@@ -521,7 +521,7 @@
   </macro>
   
   <macro name="layout-bibliography-en">
-    <group delimiter=", ">
+    <group delimiter="X, ">
       <text macro="contributors"/>
       <text macro="date"/>
       <text macro="title"/>
