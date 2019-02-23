@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="ja-JP">
   <info>
     <title>日本社会学会 (author-date, Japanese)</title>
@@ -521,7 +521,7 @@
   </macro>
   
   <macro name="layout-bibliography-en">
-    <group delimiter="X, ">
+    <group delimiter=", ">
       <text macro="contributors"/>
       <text macro="date"/>
       <text macro="title"/>
