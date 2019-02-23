@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="ja-JP">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="ja-JP">
   <info>
     <title>日本社会学会 (author-date, Japanese)</title>
-    <id>http://www.zotero.org/styles/JapanSociologicalSociety</id>
+    <id>http://juris-m.github.io/jm-styles/japan-sociological-society</id>
+    <link href="http://juris-m.github.io/jm-styles/japan-sociological-society" rel="self"/>
+    <link href="http://www.gakkai.ne.jp/jss/bulletin/guide.php" rel="documentation"/>
     <author>
       <name>Jonathan Lewis (Hitotsubashi University)</name>
       <email>jonathan_lewis@mac.com</email>
@@ -10,8 +12,8 @@
     <category citation-format="author-date"/>
     <category field="sociology"/>
     <summary>A　style for citations when writing in Japanese following the Japan Sociological Society's style guide. It is similar to Chicago Author-Date style, and this CSL is based on the Chicago Author-Date CSL.</summary>
-    <link href="http://www.gakkai.ne.jp/jss/bulletin/guide3.php" rel="documentation"/>
-	<updated>2018-12-22T00:00:00+00:00</updated>
+    <updated>2014-04-30T13:19:38+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <macro name="secondary-contributors">
     <choose>
@@ -63,36 +65,40 @@
       </if>
     </choose>
     <names variable="recipient" delimiter=", ">
-      <label form="verb" prefix=" " text-case="lowercase" suffix=" "/>
+      <label form="verb" text-case="lowercase" suffix=" "/>
       <name and="text" delimiter=", "/>
     </names>
   </macro>
   <macro name="contributors">
     <group delimiter=". ">
-      <names variable="author">
-        <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-        <label form="short" plural="contextual" prefix=" "/>
-        <substitute>
-          <names variable="editor"/>
-          <names variable="translator"/>
-          <text macro="title"/>
-        </substitute>
-      </names>
-      <text macro="recipient"/>
+      <group delimiter=" ">
+        <names variable="author">
+          <name and="text" name-as-sort-order="first" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
+          <label form="short" plural="contextual" prefix=" "/>
+          <substitute>
+            <names variable="editor"/>
+            <names variable="translator"/>
+            <text macro="title"/>
+          </substitute>
+        </names>
+        <text macro="recipient"/>
+      </group>
     </group>
   </macro>
   <macro name="contributors-ja">
     <group delimiter=". ">
-      <names variable="author">
-        <name sort-separator=", " delimiter="・" delimiter-precedes-last="always"/>
-        <label form="short" plural="never"/>
-        <substitute>
-          <names variable="editor"/>
-          <names variable="translator"/>
-          <text macro="title"/>
-        </substitute>
-      </names>
-      <text macro="recipient"/>
+      <group delimiter=" ">
+        <names variable="author">
+          <name sort-separator=", " delimiter="・" delimiter-precedes-last="always"/>
+          <label form="short" plural="never"/>
+          <substitute>
+            <names variable="editor"/>
+            <names variable="translator"/>
+            <text macro="title"/>
+          </substitute>
+        </names>
+        <text macro="recipient"/>
+      </group>
     </group>
   </macro>
   <macro name="contributors-short">
