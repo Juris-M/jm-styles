@@ -37,7 +37,7 @@
       <term name="translator" form="short">訳</term>
     </terms>
   </locale>
-  <macro name="contributors">
+  <macro name="contributors-半角">
     <group delimiter=". ">
       <group delimiter=" ">
         <choose>
@@ -68,7 +68,7 @@
       </group>
     </group>
   </macro>
-  <macro name="contributors-ja">
+  <macro name="contributors-全角">
     <group delimiter=". ">
       <group delimiter=" ">
         <choose>
@@ -79,7 +79,7 @@
               <substitute>
                 <names variable="editor"/>
                 <names variable="translator"/>
-                <text macro="title-ja"/>
+                <text macro="title-全角"/>
               </substitute>
             </names>
           </if>
@@ -90,7 +90,7 @@
               <substitute>
                 <names variable="translator"/>
                 <names variable="editor"/>
-                <text macro="title-ja"/>
+                <text macro="title-全角"/>
               </substitute>
             </names>
             <text macro="recipient"/>
@@ -100,7 +100,7 @@
       </group>
     </group>
   </macro>
-  <macro name="secondary-contributors-en">
+  <macro name="secondary-contributors-半角">
     <choose>
       <if type="chapter paper-conference" match="none">
         <names variable="editor translator">
@@ -110,7 +110,7 @@
       </if>
     </choose>
   </macro>
-  <macro name="container-contributors-en">
+  <macro name="container-contributors-半角">
     <choose>
       <if type="chapter paper-conference" match="any">
         <names variable="container-author editor" delimiter=", ">
@@ -162,14 +162,14 @@
     </names>
   </macro>
   
-  <macro name="contributors-short-ja">
+  <macro name="contributors-short-全角">
     <names variable="author">
       <name form="short" delimiter="・" initialize-with=". "/>
       <label form="short" plural="never"/>
 	  <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
-        <text macro="title-ja"/>
+        <text macro="title-全角"/>
       </substitute>
     </names>
   </macro>
@@ -226,7 +226,7 @@
       </choose>
     </group>
   </macro>
-  <macro name="title-en">
+  <macro name="title-半角">
     <choose>
       <if variable="title" match="none">
         <choose>
@@ -256,7 +256,7 @@
       </else>
     </choose>
   </macro>
-  <macro name="title-ja">
+  <macro name="title-全角">
     <choose>
       <if variable="title" match="none">
         <choose>
@@ -276,7 +276,7 @@
       </else>
     </choose>
   </macro>
-  <macro name="edition-en">
+  <macro name="edition-半角">
     <choose>
       <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
         <choose>
@@ -314,7 +314,7 @@
       </if>
     </choose>
   </macro>
-  <macro name="volume-en">
+  <macro name="volume-半角">
     <choose>
       <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
         <group delimiter=". ">
@@ -340,7 +340,7 @@
       </else-if>
     </choose>
   </macro>
-  <macro name="location-of-chapter-en">
+  <macro name="location-of-chapter-半角">
     <choose>
       <if type="chapter paper-conference" match="any">
         <choose>
@@ -354,7 +354,7 @@
       </if>
     </choose>
   </macro>
-  <macro name="locators-comma-en">
+  <macro name="locators-comma-半角">
     <choose>
       <if type="article-newspaper">
         <group delimiter=", ">
@@ -422,20 +422,20 @@
   <macro name="container-prefix">
     <text term="in" text-case="capitalize-first"/>
   </macro>
-  <macro name="container-title-en">
+  <macro name="container-title-半角">
     <choose>
       <if type="legal_case" match="none">
         <text variable="container-title" text-case="title" font-style="italic"/>
       </if>
     </choose>
   </macro>
-  <macro name="publisher-en">
+  <macro name="publisher-半角">
     <group delimiter=": " subgroup-delimiter=". ">
       <text variable="publisher-place"/>
       <text variable="publisher"/>
     </group>
   </macro>
-  <macro name="publisher-ja">
+  <macro name="publisher-全角">
     <text variable="publisher"/>
   </macro>
   <macro name="year">
@@ -460,7 +460,7 @@
       <date-part name="day" prefix=" "/>
     </date>
   </macro>
-  <macro name="collection-title-en">
+  <macro name="collection-title-半角">
     <group delimiter=" ">
       <text variable="collection-title" text-case="title"/>
       <number variable="collection-number"/>
@@ -472,7 +472,7 @@
       <text variable="event"/>
     </group>
   </macro>
-  <macro name="description-en">
+  <macro name="description-半角">
     <group delimiter=" ">
       <group delimiter=", ">
         <choose>
@@ -547,7 +547,7 @@
       </else>
     </choose>
   </macro>
-  <macro name="issue-space-ja">
+  <macro name="issue-space-全角">
     <choose>
       <if type="article-journal">
         <text macro="day-month" prefix="(" suffix=")"/>
@@ -561,7 +561,7 @@
       </else-if>
     </choose>
   </macro>
-  <macro name="issue-period-ja">
+  <macro name="issue-period-全角">
     <choose>
       <if type="legal_case">
         <names variable="authority">
@@ -571,7 +571,7 @@
       </if>
     </choose>
   </macro>
-  <macro name="issue-comma-ja">
+  <macro name="issue-comma-全角">
     <choose>
       <if type="article-newspaper article-magazine personal_communication" match="any">
         <text macro="day-month" prefix=", "/>
@@ -583,23 +583,23 @@
               <text variable="genre" text-case="capitalize-first"/>
             </if>
           </choose>
-          <text macro="publisher-ja"/>
+          <text macro="publisher-全角"/>
         </group>
       </else>
     </choose>
   </macro>
   
-  <macro name="layout-citation-ja">
+  <macro name="layout-citation-全角">
     <group delimiter=": ">
       <group delimiter=" ">
-        <text macro="contributors-short-ja"/>
+        <text macro="contributors-short-全角"/>
         <text macro="year"/>
       </group>
       <text macro="point-locators"/>
     </group>
   </macro>
   
-  <macro name="layout-citation-en">
+  <macro name="layout-citation-半角">
     <group delimiter=": ">
       <group delimiter=" ">
         <text macro="contributors-short"/>
@@ -609,31 +609,31 @@
     </group>
   </macro>
 
-  <macro name="layout-bibliography-ja">
+  <macro name="layout-bibliography-全角">
     <group delimiter="，">
-      <text macro="contributors-ja"/>
+      <text macro="contributors-全角"/>
       <text macro="year"/>
-      <text macro="title-ja"/>
+      <text macro="title-全角"/>
     </group>
-    <text macro="description-en"/>
-    <text macro="secondary-contributors-en" prefix="．"/>
-    <text macro="container-contributors-en"/>
-    <text macro="container-title-en" prefix="．"/>
-    <text macro="publisher-ja"/>
-    <text macro="edition-en"/>
+    <text macro="description-半角"/>
+    <text macro="secondary-contributors-半角" prefix="．"/>
+    <text macro="container-contributors-半角"/>
+    <text macro="container-title-半角" prefix="．"/>
+    <text macro="publisher-全角"/>
+    <text macro="edition-半角"/>
     <text macro="locators"/>
-    <text macro="collection-title-en" prefix="．"/>
-    <text macro="issue-ja"/>
-    <text macro="locators-comma-en"/>
-    <text macro="location-of-chapter-en"/>
+    <text macro="collection-title-半角" prefix="．"/>
+    <text macro="issue-全角"/>
+    <text macro="locators-comma-半角"/>
+    <text macro="location-of-chapter-半角"/>
   </macro>
   
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" givenname-disambiguation-rule="primary-name">
     <layout prefix="（" suffix="）"  delimiter="; " locale="ja">
-      <text macro="layout-citation-ja"/>
+      <text macro="layout-citation-全角"/>
     </layout>
     <layout prefix="（" suffix="）" delimiter="; ">
-      <text macro="layout-citation-en"/>
+      <text macro="layout-citation-半角"/>
     </layout>
   </citation>
   
@@ -645,7 +645,7 @@
     <layout locale="ja">
       <group>
         <group suffix="．">
-          <text macro="layout-bibliography-ja"/>
+          <text macro="layout-bibliography-全角"/>
         </group>
         <alternative>
           <alternative-text/>
@@ -655,18 +655,18 @@
     <layout>
       <group delimiter=" ">
         <group delimiter=", " suffix=".">
-          <text macro="contributors-en"/>
+          <text macro="contributors-半角"/>
           <text macro="year"/>
-          <text macro="title-en"/>
-          <text macro="description-en"/>
-          <text macro="secondary-contributors-en"/>
-          <text macro="container-contributors-en"/>
-          <text macro="container-title-en"/>
-          <text macro="edition-en"/><!-- guide has no examples showing edition -->
-          <text macro="collection-title-en"/>
-          <text macro="publisher-en"/>
-          <text macro="location-of-chapter-en"/>
-          <text macro="locators-comma-en"/>
+          <text macro="title-半角"/>
+          <text macro="description-半角"/>
+          <text macro="secondary-contributors-半角"/>
+          <text macro="container-contributors-半角"/>
+          <text macro="container-title-半角"/>
+          <text macro="edition-半角"/><!-- guide has no examples showing edition -->
+          <text macro="collection-title-半角"/>
+          <text macro="publisher-半角"/>
+          <text macro="location-of-chapter-半角"/>
+          <text macro="locators-comma-半角"/>
         </group>
         <choose>
           <if variable="alt-translator">
