@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US" page-range-format="chicago">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US-x-sort-en" page-range-format="chicago">
   <info>
     <title>日本社会学会 (author-date, Japanese)</title>
     <id>http://juris-m.github.io/jm-styles/japan-sociological-society</id>
@@ -229,9 +229,7 @@
             </date>
           </else-if>
         </choose>
-        <choose>
-          <text variable="URL"/>
-        </choose>
+        <text variable="URL"/>
       </group>
     </group>
   </macro>
@@ -282,9 +280,7 @@
           </date>
         </else-if>
       </choose>
-      <choose>
-        <text variable="URL"/>
-      </choose>
+      <text variable="URL"/>
     </group>
   </macro>
   <macro name="title-半角">
@@ -623,8 +619,8 @@
             <conditions match="all">
               <condition variable="original-date"/>
               <condition variable="alt-issued" match="none"/>
-              <date variable="issued" form="text" date-parts="year"/>
             </conditions>
+            <date variable="issued" form="text" date-parts="year"/>
           </if>
           <else>
             <date variable="alt-issued" form="text" date-parts="year"/>
