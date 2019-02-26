@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US-x-sort-en" page-range-format="chicago">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US" page-range-format="chicago">
   <info>
     <title>日本社会学会 (author-date, Japanese)</title>
     <id>http://juris-m.github.io/jm-styles/japan-sociological-society</id>
@@ -721,7 +721,7 @@
   <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0" name-delimiter=", ">
     <sort>
       <key macro="contributors-半角"/>
-      <key variable="year-sort"/>
+      <key macro="year-sort"/>
     </sort>
     <layout locale="ja">
       <group>
