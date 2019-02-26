@@ -144,18 +144,6 @@
       </if>
     </choose>
   </macro>
-  <macro name="editor">
-    <names variable="editor">
-      <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix=", "/>
-    </names>
-  </macro>
-  <macro name="translator">
-    <names variable="translator">
-      <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" prefix=", " plural="never"/>
-    </names>
-  </macro>
   <macro name="recipient">
     <choose>
       <if type="personal_communication">
@@ -174,21 +162,21 @@
       <name and="text" delimiter=", "/>
     </names>
   </macro>
-  <macro name="contributors-short">
+  <macro name="contributors-short-半角">
     <names variable="author">
-      <name form="short" and="symbol" delimiter=", " initialize-with=". " name-as-sort-order="first"/>
+      <name form="short" and="symbol" delimiter=", " initialize-with=". "/>
       <label form="short" prefix=" "/>
 	  <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
-        <text macro="title"/>
+        <text macro="title-半角"/>
       </substitute>
     </names>
   </macro>
   
   <macro name="contributors-short-全角">
     <names variable="author">
-      <name form="short" delimiter="・" initialize-with=". "/>
+      <name form="short" delimiter="・"/>
       <label form="short" plural="never"/>
 	  <substitute>
         <names variable="editor"/>
@@ -432,40 +420,6 @@
       </else-if>
     </choose>
   </macro>
-  <macro name="locators-space">
-    <choose>
-      <if type="article-journal">
-        <number variable="volume"/>
-        <number variable="issue" prefix="(" suffix=")"/>
-      </if>
-    </choose>
-  </macro>
-  <macro name="volume-半角">
-    <choose>
-      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-        <group delimiter=". ">
-          <group delimiter=" ">
-            <text term="volume" form="short" text-case="capitalize-first"/>
-            <number variable="volume" form="numeric"/>
-          </group>
-          <group delimiter=" ">
-            <number variable="number-of-volumes" form="numeric"/>
-            <text term="volume" form="short" plural="true"/>
-          </group>
-        </group>
-      </if>
-      <else-if type="chapter paper-conference" match="any">
-        <choose>
-          <if variable="page" match="none">
-            <group delimiter=" ">
-              <text term="volume" form="short" text-case="capitalize-first"/>
-              <number variable="volume" form="numeric"/>
-            </group>
-          </if>
-        </choose>
-      </else-if>
-    </choose>
-  </macro>
   <macro name="location-of-chapter-半角">
     <choose>
       <if type="chapter paper-conference" match="any">
@@ -504,49 +458,6 @@
         </group>
       </else-if>
     </choose>
-  </macro>
-  <macro name="point-locators">
-    <choose>
-      <if variable="locator">
-        <choose>
-          <if locator="page" match="none">
-            <group delimiter=" ">
-              <choose>
-                <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-                  <choose>
-                    <if variable="volume">
-                      <group delimiter=", ">
-                        <group delimiter=" ">
-                          <text term="volume" form="short"/>
-                          <number variable="volume" form="numeric"/>
-                        </group>
-                        <label variable="locator" form="short"/>
-                      </group>
-                    </if>
-                    <else>
-                      <label variable="locator" form="short"/>
-                    </else>
-                  </choose>
-                </if>
-                <else>
-                  <label variable="locator" form="short"/>
-                </else>
-              </choose>
-              <text variable="locator"/>
-            </group>
-          </if>
-          <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-            <group delimiter=":">
-              <number variable="volume" form="numeric"/>
-              <text variable="locator"/>
-            </group>
-          </else-if>
-        </choose>
-      </if>
-    </choose>
-  </macro>
-  <macro name="container-prefix">
-    <text term="in" text-case="capitalize-first"/>
   </macro>
   <macro name="container-title-半角">
     <choose>
@@ -598,22 +509,25 @@
       </group>
     </group>
   </macro>
-  <macro name="day-month">
-    <date variable="issued">
-      <date-part name="month"/>
-      <date-part name="day" prefix=" "/>
-    </date>
+  <macro name="year-sort">
+    <group delimiter=" ">
+      <group>
+        <choose>
+          <if variable="issued">
+            <date variable="issued" form="numeric" date-parts="year"/>
+          </if>
+          <else>
+            <date variable="accessed" form="numeric" date-parts="year"/>
+          </else>
+        </choose>
+        <text variable="year-suffix"/>
+      </group>
+    </group>
   </macro>
   <macro name="collection-title-半角">
     <group delimiter=" ">
       <text variable="collection-title" text-case="title"/>
       <number variable="collection-number"/>
-    </group>
-  </macro>
-  <macro name="event">
-    <group delimiter=" ">
-      <text term="presented at"/>
-      <text variable="event"/>
     </group>
   </macro>
   <macro name="description-半角">
@@ -682,110 +596,63 @@
       </group>
     </group>
   </macro>
-  
-  <macro name="issue-space">
-    <choose>
-      <if type="article-journal">
-        <text macro="day-month" prefix="(" suffix=")"/>
-      </if>
-    </choose>
+  <macro name="layout-citation-year-page">
+    <group delimiter="=">
+      <group delimiter=":">
+        <choose>
+          <if>
+            <conditions match="all">
+              <condition variable="original-date" match="all"/>
+              <condition variable="alt-issued" match="none"/>
+            </conditions>
+            <date variable="original-date" form="text" date-parts="year"/>
+          </if>
+          <else>
+            <date variable="issued" form="text" date-parts="year"/>
+          </else>
+        </choose>
+        <choose>
+          <if variable="locator-extra">
+            <number variable="locator"/>
+          </if>
+        </choose>
+      </group>
+      <group delimiter=":">
+        <choose>
+          <if>
+            <conditions match="all">
+              <condition variable="original-date"/>
+              <condition variable="alt-issued" match="none"/>
+              <date variable="issued" form="text" date-parts="year"/>
+            </conditions>
+          </if>
+          <else>
+            <date variable="alt-issued" form="text" date-parts="year"/>
+          </else>
+        </choose>
+        <choose>
+          <if variable="locator-extra">
+            <number variable="locator-extra"/>
+          </if>
+          <else>
+            <number variable="locator"/>
+          </else>
+        </choose>
+      </group>
+    </group>
   </macro>
-  <macro name="issue-period">
-    <choose>
-      <if type="legal_case">
-        <names variable="authority">
-          <name/>
-          <institution/>
-        </names>
-      </if>
-    </choose>
-  </macro>
-  <macro name="issue-comma">
-    <choose>
-      <if type="speech">
-        <group delimiter=", ">
-          <text macro="event"/>
-          <text macro="day-month"/>
-          <text variable="event-place"/>
-        </group>
-      </if>
-      <else-if type="article-newspaper article-magazine personal_communication" match="any">
-        <text macro="day-month" prefix=", "/>
-      </else-if>
-      <else>
-        <group prefix=", " delimiter=", ">
-          <choose>
-            <if type="thesis">
-              <text variable="genre" text-case="capitalize-first"/>
-            </if>
-          </choose>
-          <text macro="publisher"/>
-        </group>
-      </else>
-    </choose>
-  </macro>
-  <macro name="issue-space-全角">
-    <choose>
-      <if type="article-journal">
-        <text macro="day-month" prefix="(" suffix=")"/>
-      </if>
-      <else-if type="speech">
-        <group delimiter=", ">
-          <text macro="event"/>
-          <text macro="day-month"/>
-          <text variable="event-place"/>
-        </group>
-      </else-if>
-    </choose>
-  </macro>
-  <macro name="issue-period-全角">
-    <choose>
-      <if type="legal_case">
-        <names variable="authority">
-          <name/>
-          <institution/>
-        </names>
-      </if>
-    </choose>
-  </macro>
-  <macro name="issue-comma-全角">
-    <choose>
-      <if type="article-newspaper article-magazine personal_communication" match="any">
-        <text macro="day-month" prefix=", "/>
-      </if>
-      <else>
-        <group delimiter=", ">
-          <choose>
-            <if type="thesis">
-              <text variable="genre" text-case="capitalize-first"/>
-            </if>
-          </choose>
-          <text macro="publisher-全角"/>
-        </group>
-      </else>
-    </choose>
-  </macro>
-  
   <macro name="layout-citation-全角">
-    <group delimiter=": ">
-      <group delimiter=" ">
-        <text macro="contributors-short-全角"/>
-        <text macro="year"/>
-      </group>
-      <text macro="point-locators"/>
+    <group delimiter=" ">
+      <text macro="contributors-short-全角"/>
+      <text macro="layout-citation-year-page"/>
     </group>
   </macro>
-  
   <macro name="layout-citation-半角">
-    <group delimiter=": ">
-      <group delimiter=" ">
-        <text macro="contributors-short"/>
-        <text macro="year"/>
-      </group>
-      <text macro="point-locators"/>
+    <group delimiter=" ">
+      <text macro="contributors-short-半角"/>
+      <text macro="layout-citation-year-page"/>
     </group>
   </macro>
-
   <macro name="precise-date-半角">
     <choose>
       <if type="article-newspaper post">
@@ -793,7 +660,6 @@
       </if>
     </choose>
   </macro>
-  
   <macro name="precise-date-全角">
     <choose>
       <if type="article-newspaper post">
@@ -837,7 +703,6 @@
               <text macro="collection-title-半角"/>
               <group delimiter="，">
                 <text macro="precise-date-全角"/>
-                <text macro="issue-全角"/>
                 <text macro="location-of-chapter-半角"/>
                 <text macro="locators-comma-半角"/>
               </group>
@@ -860,7 +725,7 @@
   <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0" name-delimiter=", ">
     <sort>
       <key macro="contributors-半角"/>
-      <key variable="issued"/>
+      <key variable="year-sort"/>
     </sort>
     <layout locale="ja">
       <group>
