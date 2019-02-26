@@ -9,6 +9,10 @@
       <name>Jonathan Lewis (Hitotsubashi University)</name>
       <email>jonathan_lewis@mac.com</email>
     </author>
+    <contributor>
+      <name>Frank Bennett</name>
+      <email>biercenator@gmail.com</email>
+    </contributor>
     <category citation-format="author-date"/>
     <category field="sociology"/>
     <summary>A　style for citations when writing in Japanese following the Japan Sociological Society's style guide. It is similar to Chicago Author-Date style, and this CSL is based on the Chicago Author-Date CSL.</summary>
