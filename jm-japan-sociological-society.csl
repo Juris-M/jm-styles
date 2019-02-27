@@ -380,6 +380,11 @@
       </else-if>
       <else>
         <text variable="title" text-case="title" quotes="true"/>
+        <choose>
+          <if type="paper-conference">
+            <text variable="event"/>
+          </if>
+        </choose>
       </else>
     </choose>
   </macro>
@@ -491,7 +496,18 @@
     </group>
   </macro>
   <macro name="publisher-全角">
-    <text variable="publisher"/>
+    <group>
+      <text variable="publisher"/>
+      <choose>
+        <if type="thesis">
+          <group>
+            <date variable="event-date" form="numeric" date-parts="year"/>
+            <text value="年度"/>
+          </group>
+          <text variable="genre"/>
+        </if>
+      </choose>
+    </group>
   </macro>
   <macro name="year">
     <group delimiter=" ">
@@ -501,6 +517,9 @@
           <if variable="issued">
             <date variable="issued" form="numeric" date-parts="year"/>
           </if>
+          <else-if type="paper-conference" variable="event-date" match="all">
+            <date variable="event-date" form="numeric" date-parts="year"/>
+          </else-if>
           <else>
             <date variable="accessed" form="numeric" date-parts="year"/>
           </else>
