@@ -627,7 +627,14 @@
             <date variable="original-date" form="text" date-parts="year"/>
           </if>
           <else>
-            <date variable="issued" form="text" date-parts="year"/>
+            <choose>
+              <if variable="issued" match="none">
+                <date variable="event-date" form="text" date-parts="year"/>
+              </if>
+              <else>
+                <date variable="issued" form="text" date-parts="year"/>
+              </else>
+            </choose>
           </else>
         </choose>
         <choose>
@@ -643,7 +650,14 @@
               <condition variable="original-date"/>
               <condition variable="alt-issued" match="none"/>
             </conditions>
-            <date variable="issued" form="text" date-parts="year"/>
+            <choose>
+              <if variable="issued" match="none">
+                <date variable="event-date" form="text" date-parts="year"/>
+              </if>
+              <else>
+                <date variable="issued" form="text" date-parts="year"/>
+              </else>
+            </choose>
           </if>
           <else>
             <date variable="alt-issued" form="text" date-parts="year"/>
