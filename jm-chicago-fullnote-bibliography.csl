@@ -1856,6 +1856,17 @@
             </group>
           </group>
         </else-if>
+          <else-if type="classic">
+            <group delimiter=", ">
+              <names variable="author">
+                <name/>
+                <substitute>
+                  <names variable="editor"/>
+                </substitute>
+              </names>
+              <text variable="title"/>
+            </group>
+          </else-if>
         <else>
           <group delimiter=", ">
             <group delimiter=": ">
@@ -1912,17 +1923,6 @@
           </if>
           <else-if type="patent">
             <text macro="patent"/>
-          </else-if>
-          <else-if type="classic">
-            <group delimiter=", ">
-              <names variable="author">
-                <name/>
-                <substitute>
-                  <names variable="editor"/>
-                </substitute>
-              </names>
-              <text variable="title"/>
-            </group>
           </else-if>
           <else>
             <group delimiter=". ">
