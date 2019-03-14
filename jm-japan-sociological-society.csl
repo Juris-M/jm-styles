@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US-x-sort-en" page-range-format="chicago">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="in-text" default-locale="en-US" page-range-format="chicago">
   <info>
     <title>日本社会学会 (author-date, Japanese)</title>
     <id>http://juris-m.github.io/jm-styles/japan-sociological-society</id>
@@ -213,26 +213,31 @@
           <text macro="archive"/>
         </else-if>
       </choose>
-      <text variable="DOI" prefix="doi:"/>
       <group delimiter=", " prefix="(" suffix=")">
-        <choose>
-          <if variable="DOI" match="none">
-            <choose>
-              <if variable="URL accessed" match="all">
-                <group delimiter=" ">
-                  <text term="accessed" text-case="capitalize-first"/>
-                  <date variable="accessed" form="text" date-parts="year-month-day"/>
-                </group>
-              </if>
-            </choose>
+		<choose>
+          <if type="webpage">
+			<choose>
+			  <if variable="issued">
+				<date variable="issued" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </if>
+			  <else>
+				<date variable="accessed" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </else>
+			</choose>
           </if>
-          <else-if type="webpage">
-            <date variable="issued" delimiter=" ">
-              <date-part name="month"/>
-              <date-part name="day"/>
-            </date>
-          </else-if>
-        </choose>
+		  <else>
+			<group delimiter=" ">
+              <text term="accessed" text-case="capitalize-first"/>
+              <date variable="accessed" form="text" date-parts="year-month-day"/>
+			</group>
+		  </else>
+		</choose>
         <text variable="URL"/>
       </group>
     </group>
@@ -247,7 +252,6 @@
           <text macro="archive"/>
         </else-if>
       </choose>
-      <text variable="DOI" prefix="doi:"/>
       <choose>
         <if>
           <conditions match="all">
@@ -262,28 +266,15 @@
           </group>
         </else>
       </choose>
+	  
     </group>
   </macro>
   <macro name="access-url-全角">
-    <group delimiter="，">
-      <choose>
-        <if variable="DOI" match="none">
-          <choose>
-            <if variable="URL accessed" match="all">
-              <group delimiter="">
-                <date variable="accessed" form="text" date-parts="year-month-day"/>
-                <text term="accessed"/>
-              </group>
-            </if>
-          </choose>
-        </if>
-        <else-if type="webpage">
-          <date variable="issued" delimiter=" ">
-            <date-part name="month"/>
-            <date-part name="day"/>
-          </date>
-        </else-if>
-      </choose>
+	<group delimiter="，">
+	  <group delimiter="">
+        <date variable="accessed" form="text" date-parts="year-month-day"/>
+        <text term="accessed"/>
+	  </group>
       <text variable="URL"/>
     </group>
   </macro>
@@ -618,25 +609,32 @@
   <macro name="layout-citation-year-page">
     <group delimiter="=">
       <group delimiter=":">
-        <choose>
-          <if>
-            <conditions match="all">
-              <condition variable="original-date" match="all"/>
-              <condition variable="alt-issued" match="none"/>
-            </conditions>
-            <date variable="original-date" form="numeric" date-parts="year"/>
-          </if>
-          <else>
-            <choose>
-              <if variable="issued" match="none">
-                <date variable="event-date" form="numeric" date-parts="year"/>
-              </if>
-              <else>
-                <date variable="issued" form="numeric" date-parts="year"/>
-              </else>
-            </choose>
-          </else>
-        </choose>
+        <group>
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition variable="original-date" match="all"/>
+                <condition variable="alt-issued" match="none"/>
+              </conditions>
+              <date variable="original-date" form="numeric" date-parts="year"/>
+            </if>
+            <else>
+              <choose>
+                <if variable="issued event-date" match="any">
+                  <choose>
+                    <if variable="issued" match="none">
+                      <date variable="event-date" form="numeric" date-parts="year"/>
+                    </if>
+                    <else>
+                      <date variable="issued" form="numeric" date-parts="year"/>
+                    </else>
+                  </choose>
+                  <text variable="year-suffix"/>
+                </if>
+              </choose>
+            </else>
+          </choose>
+        </group>
         <choose>
           <if variable="locator-extra">
             <number variable="locator"/>
@@ -644,25 +642,32 @@
         </choose>
       </group>
       <group delimiter=":">
-        <choose>
-          <if>
-            <conditions match="all">
-              <condition variable="original-date"/>
-              <condition variable="alt-issued" match="none"/>
-            </conditions>
-            <choose>
-              <if variable="issued" match="none">
-                <date variable="event-date" form="numeric" date-parts="year"/>
-              </if>
-              <else>
-                <date variable="issued" form="numeric" date-parts="year"/>
-              </else>
-            </choose>
-          </if>
-          <else>
-            <date variable="alt-issued" form="numeric" date-parts="year"/>
-          </else>
-        </choose>
+        <group>
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition variable="original-date"/>
+                <condition variable="alt-issued" match="none"/>
+              </conditions>
+              <choose>
+                <if variable="issued event-date" match="any">
+                  <choose>
+                    <if variable="issued" match="none">
+                      <date variable="event-date" form="numeric" date-parts="year"/>
+                    </if>
+                    <else>
+                      <date variable="issued" form="numeric" date-parts="year"/>
+                    </else>
+                  </choose>
+                  <text variable="year-suffix"/>
+                </if>
+              </choose>
+            </if>
+            <else>
+              <date variable="alt-issued" form="numeric" date-parts="year"/>
+            </else>
+          </choose>
+        </group>
         <choose>
           <if variable="locator-extra">
             <number variable="locator-extra"/>
