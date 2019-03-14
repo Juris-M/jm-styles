@@ -1856,6 +1856,17 @@
             </group>
           </group>
         </else-if>
+          <else-if type="classic">
+            <group delimiter=", ">
+              <names variable="author">
+                <name/>
+                <substitute>
+                  <names variable="editor"/>
+                </substitute>
+              </names>
+              <text variable="title"/>
+            </group>
+          </else-if>
         <else>
           <group delimiter=", ">
             <group delimiter=": ">
@@ -1892,7 +1903,7 @@
       </choose>
     </layout>
   </citation>
-  <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0">
+  <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0" exclude-types="classic">
     <sort>
       <key macro="category"/>
       <key macro="contributors-sort"/>
@@ -1912,17 +1923,6 @@
           </if>
           <else-if type="patent">
             <text macro="patent"/>
-          </else-if>
-          <else-if type="classic">
-            <group delimiter=", ">
-              <names variable="author">
-                <name/>
-                <substitute>
-                  <names variable="editor"/>
-                </substitute>
-              </names>
-              <text variable="title"/>
-            </group>
           </else-if>
           <else>
             <group delimiter=". ">
