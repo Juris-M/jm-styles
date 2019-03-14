@@ -16,7 +16,7 @@
     <category citation-format="author-date"/>
     <category field="sociology"/>
     <summary>A　style for citations when writing in Japanese following the Japan Sociological Society's style guide. It is similar to Chicago Author-Date style, and this CSL is based on the Chicago Author-Date CSL.</summary>
-    <updated>2014-04-30T13:19:38+00:00</updated>
+    <updated>2019-03-13T13:19:38+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en-US">
@@ -213,26 +213,31 @@
           <text macro="archive"/>
         </else-if>
       </choose>
-      <text variable="DOI" prefix="doi:"/>
       <group delimiter=", " prefix="(" suffix=")">
-        <choose>
-          <if variable="DOI" match="none">
-            <choose>
-              <if variable="URL accessed" match="all">
-                <group delimiter=" ">
-                  <text term="accessed" text-case="capitalize-first"/>
-                  <date variable="accessed" form="text" date-parts="year-month-day"/>
-                </group>
-              </if>
-            </choose>
+		<choose>
+          <if type="webpage">
+			<choose>
+			  <if variable="issued">
+				<date variable="issued" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </if>
+			  <else>
+				<date variable="accessed" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </else>
+			</choose>
           </if>
-          <else-if type="webpage">
-            <date variable="issued" delimiter=" ">
-              <date-part name="month"/>
-              <date-part name="day"/>
-            </date>
-          </else-if>
-        </choose>
+		  <else>
+			<group delimiter=" ">
+              <text term="accessed" text-case="capitalize-first"/>
+              <date variable="accessed" form="text" date-parts="year-month-day"/>
+			</group>
+		  </else>
+		</choose>
         <text variable="URL"/>
       </group>
     </group>
@@ -247,7 +252,6 @@
           <text macro="archive"/>
         </else-if>
       </choose>
-      <text variable="DOI" prefix="doi:"/>
       <choose>
         <if>
           <conditions match="all">
@@ -262,30 +266,37 @@
           </group>
         </else>
       </choose>
+	  
     </group>
   </macro>
   <macro name="access-url-全角">
-    <group delimiter="，">
-      <choose>
-        <if variable="DOI" match="none">
-          <choose>
-            <if variable="URL accessed" match="all">
-              <group delimiter="">
-                <date variable="accessed" form="text" date-parts="year-month-day"/>
-                <text term="accessed"/>
-              </group>
-            </if>
-          </choose>
-        </if>
-        <else-if type="webpage">
-          <date variable="issued" delimiter=" ">
-            <date-part name="month"/>
-            <date-part name="day"/>
-          </date>
-        </else-if>
-      </choose>
-      <text variable="URL"/>
-    </group>
+	  <group delimiter="，">
+		<choose>
+          <if type="webpage">
+			<choose>
+			  <if variable="issued">
+				<date variable="issued" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </if>
+			  <else>
+				<date variable="accessed" delimiter=" ">
+				  <date-part name="month"/>
+				  <date-part name="day"/>
+				</date>
+			  </else>
+			</choose>
+          </if>
+		  <else>
+			<group delimiter=" ">
+              <date variable="accessed" form="text" date-parts="year-month-day"/>
+              <text term="accessed"/>
+			</group>
+		  </else>
+		</choose>
+        <text variable="URL"/>
+      </group>
   </macro>
   <macro name="title-半角">
     <choose>
