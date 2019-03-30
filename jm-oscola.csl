@@ -523,7 +523,7 @@
       <else-if variable="locator-extra locator-date" match="any">
         <group delimiter=", ">
           <group delimiter=" ">
-            <text variable="locator-extra"/>
+            <number variable="locator-extra"/>
             <choose>
               <if is-numeric="locator-extra" match="none">
                 <date date-parts="year-month-day" form="text" variable="locator-date"/>
@@ -712,7 +712,7 @@
       <if match="any" type="book chapter broadcast video" variable="locator-extra locator-date">
         <group delimiter=", ">
           <choose>
-            <if match="any" type="broadcast video" variable="locator-extra locator-date editor">
+            <if match="any" type="book broadcast video" variable="locator-extra locator-date editor">
               <group delimiter=" ">
                 <choose>
                   <if is-numeric="volume">
@@ -741,7 +741,7 @@
   </macro>
   <macro name="common-volume">
     <choose>
-      <if match="none" type="article-magazine paper-conference article-journal classic legal_case motion_picture video" variable="locator-extra locator-date editor">
+      <if match="none" type="book article-magazine paper-conference article-journal classic legal_case motion_picture video" variable="locator-extra locator-date editor">
         <group delimiter=" ">
           <label form="short" variable="volume"/>
           <number variable="volume"/>
@@ -929,7 +929,7 @@
             <text macro="title-to-container-title-context"/>
             <text macro="book-parts"/>
           </group>
-          <text macro="issue-context"/>
+          <text macro="issue-context"/>  <!-- articles, web pages -->
           <text macro="collection-title-podcast"/>
           <group delimiter=", ">
             <text macro="article-core"/>
