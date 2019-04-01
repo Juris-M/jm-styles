@@ -1337,7 +1337,12 @@
         </else-if>
       </choose>
       <choose>
-        <if match="none" type="treaty book chapter article-journal report"/>
+        <if type="webpage">
+          <group>
+            <text value="(website, see bibliography for URL)"/>
+          </group>
+        </if>
+        <else-if match="none" type="treaty book chapter article-journal report"/>
         <else-if>
           <conditions match="all">
             <condition match="any" type="article-journal"/>
@@ -1903,7 +1908,7 @@
       </choose>
     </layout>
   </citation>
-  <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0" exclude-types="classic">
+  <bibliography exclude-types="classic" hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0">
     <sort>
       <key macro="category"/>
       <key macro="contributors-sort"/>
