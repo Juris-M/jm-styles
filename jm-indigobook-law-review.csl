@@ -46,6 +46,14 @@
         <single>n.</single>
         <multiple>nn.</multiple>
       </term>
+      <term name="number">
+        <single>number</single>
+        <multiple>numbers</multiple>
+      </term>
+      <term name="number" form="short">
+        <single>no.</single>
+        <multiple>nos.</multiple>
+      </term>
       <term form="short" name="opus">op.</term>
       <term form="short" name="page">
         <single>p.</single>
