@@ -21,6 +21,8 @@
         name-as-sort-order="ko zh ja hu my km vi"
         name-never-short="my ko zh ja hu km vi" />
     <terms>
+      <term name="number" form="long">number</term>
+      <term name="number" form="short">n°</term>
       <term name="and" form="symbol">&amp;</term>
       <term name="article">article</term>
       <term name="director">director</term>
@@ -1045,7 +1047,7 @@
             </choose>
             <choose>
               <if variable="locator-extra">
-                <text variable="locator-extra"/>
+                <number variable="locator-extra"/>
                 <text macro="us-issued-date"/>
               </if>
             </choose>
@@ -1410,10 +1412,10 @@
 			  <if type="hearing" position="subsequent" variable="author" match="all">
 				<text macro="juris-pretitle-short"/>
 			  </if>
-			  <else-if>
+			  <else>
 				<text macro="babyblue-author"/>
 				<text macro="babyblue-title"/>
-			  </else-if>
+			  </else>
 			</choose>
             <text font-style="italic" value="supra"/>
           </group>
@@ -1928,7 +1930,8 @@
             <conditions match="all">
               <condition match="any" type="hearing"/>
 			  <condition match="all" position="subsequent"/>
-			  <condition match="none" position="ibid ibid-with-locator"/>
+			  <condition match="none" position="ibid-with-locator"/>
+			  <condition match="none" position="ibid"/>
             </conditions>
             <text macro="babyblue-secondary-subsequent"/>
           </if>
