@@ -1089,7 +1089,14 @@
                   <text variable="hereinafter" font-style="italic" strip-periods="true"/>
                 </if>
                 <else>
-                  <text macro="juris-title-short" font-style="italic" strip-periods="true"/>
+                  <choose>
+                    <if variable="title">
+                      <text macro="juris-title-short" font-style="italic" strip-periods="true"/>
+                    </if>
+                    <else>
+                      <text macro="juris-main-short"/>
+                    </else>
+                  </choose>
                 </else>
               </choose>
             </if>
