@@ -32,7 +32,10 @@
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
-    <style-options name-as-sort-order="ko zh ja hu my km vi" name-never-short="my ko zh ja hu km vi"/>
+    <style-options
+        name-as-sort-order="ko zh ja hu my km vi"
+        name-never-short="my ko zh ja hu km vi"
+        jurisdiction-preference="englished"/>
     <terms>
       <term name="paragraph" form="static">[%s]</term>
     </terms>
@@ -1427,7 +1430,6 @@
   <macro name="jurism">
    <choose>
       <if position="ibid-with-locator">
-
         <group delimiter=" ">
           <text term="ibid" font-style="italic"/>
           <group delimiter=" ">
