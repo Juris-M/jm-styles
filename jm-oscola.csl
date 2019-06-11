@@ -569,48 +569,31 @@
   <macro name="point-locators-subsequent">
     <group delimiter=" ">
       <choose>
-        <if type="bill gazette legislation">
-          <text macro="oscola-legal-locator"/>
-        </if>
-        <else-if type="legal_case">
+        <if locator="page" match="none">
           <choose>
-            <if jurisdiction="us">
-              <text macro="std-locator-non-page-label"/>
-            </if>
-            <else>
-              <text macro="oscola-legal-locator"/>
-            </else>
-          </choose>
-        </else-if>
-        <else>
-          <choose>
-            <if locator="page" match="none">
+            <if type="book">
               <choose>
-                <if type="book">
-                  <choose>
-                    <if variable="volume">
-                      <group delimiter=". ">
-                        <label form="short" text-case="lowercase" variable="volume"/>
-                        <group delimiter=", ">
-                          <number form="numeric" variable="volume"/>
-                          <label form="short" variable="locator"/> 
-                        </group>
-                      </group>
-                    </if>
-                    <else>
-                      <label form="short" variable="locator"/>
-                    </else>
-                  </choose>
+                <if variable="volume">
+                  <group delimiter=". ">
+                    <label form="short" text-case="lowercase" variable="volume"/>
+                    <group delimiter=", ">
+                      <number form="numeric" variable="volume"/>
+                      <label form="short" variable="locator"/> 
+                    </group>
+                  </group>
                 </if>
                 <else>
                   <label form="short" variable="locator"/>
                 </else>
               </choose>
             </if>
+            <else>
+              <label form="short" variable="locator"/>
+            </else>
           </choose>
-          <number label-form="short" variable="locator"/>
-        </else>
+        </if>
       </choose>
+      <number label-form="short" variable="locator"/>
     </group>
   </macro>
   <macro name="oscola-legal-locator">
@@ -888,24 +871,6 @@
       <number label-form="short" variable="locator"/>
     </group>
   </macro>
-  <macro name="std-patent-detail">
-    <group delimiter=", ">
-      <text variable="title"/>
-      <group delimiter=" ">
-        <text form="short" variable="jurisdiction"/>
-        <choose>
-          <if variable="genre">
-            <text variable="genre"/>
-            <text value="no."/>
-          </if>
-          <else>
-            <text value="Patent No."/>
-          </else>
-        </choose>
-        <number variable="number"/>
-      </group>
-    </group>
-  </macro>
   <macro name="us-code-detail">
     <group delimiter=" ">
       <number variable="volume"/>
@@ -967,14 +932,7 @@
       <if variable="locator">
         <group delimiter=" "> 
           <text term="ibid" text-case="lowercase"/>
-          <choose>
-            <if type="patent">
-              <text macro="std-locator-paragraph-bracket"/>
-            </if>
-            <else>
-              <text macro="point-locators-subsequent"/>
-            </else>
-          </choose>
+          <text macro="point-locators-subsequent"/>
         </group>
       </if>
       <else>
@@ -991,51 +949,15 @@
   <macro name="oscola-secondary-subsequent">
     <group delimiter=" ">
       <choose>
-        <if jurisdiction="us" match="all" type="gazette">
-          <choose>
-            <if variable="title">
-              <group delimiter=" ">
-                <text variable="title"/>
-                <text macro="us-code-detail"/>
-              </group>
-            </if>
-            <else>
-              <text macro="us-code-detail"/>
-            </else>
-          </choose>
-        </if>
-        <else-if jurisdiction="us" match="all" type="legislation">
-          <choose>
-            <if variable="title">
-              <group delimiter=" ">
-                <text variable="title"/>
-                <text macro="us-code-detail"/>
-              </group>
-            </if>
-            <else>
-              <text macro="us-code-detail"/>
-            </else>
-          </choose>
-        </else-if>
-        <else-if type="patent">
-          <text macro="std-patent-detail"/>
-        </else-if>
-        <else-if match="all" type="article-newspaper" variable="jurisdiction title">
+        <if match="all" type="article-newspaper" variable="jurisdiction title">
           <text font-style="italic" variable="title"/>
-        </else-if>
+        </if>
         <else>
           <text macro="oscola-secondary-subsequent-default"/>
         </else>
       </choose>
       <text prefix="(n " suffix=")" variable="first-reference-note-number"/>
-      <choose>
-        <if type="patent">
-          <text macro="std-locator-paragraph-bracket"/>
-        </if>
-        <else>
-          <text macro="point-locators-subsequent"/>
-        </else>
-      </choose>
+      <text macro="point-locators-subsequent"/>
     </group>
   </macro>
 
@@ -1287,7 +1209,7 @@
       <choose>
         <if>
           <conditions match="all">
-            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
+            <condition match="any" type="legal_case legislation bill hearing report regulation patent"/>
             <condition match="all" variable="jurisdiction"/>
           </conditions>
           <text macro="jurism" strip-periods="true"/>
@@ -1324,7 +1246,7 @@
       <choose>
         <if>
           <conditions match="all">
-            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
+            <condition match="any" type="legal_case legislation bill hearing report regulation patent"/>
             <condition match="all" variable="jurisdiction"/>
           </conditions>
           <text macro="jurism" strip-periods="true"/>
