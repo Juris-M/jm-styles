@@ -1340,12 +1340,7 @@
         </else-if>
       </choose>
       <choose>
-        <if type="webpage">
-          <group>
-            <text value="(website, see bibliography for URL)"/>
-          </group>
-        </if>
-        <else-if match="none" type="treaty book chapter article-journal report"/>
+        <if match="none" type="treaty book chapter article-journal report"/>
         <else-if>
           <conditions match="all">
             <condition match="any" type="article-journal"/>
