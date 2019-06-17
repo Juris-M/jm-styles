@@ -1340,10 +1340,10 @@
         </else-if>
       </choose>
       <choose>
-        <if match="none" type="treaty book chapter article-journal report"/>
+        <if match="none" type="treaty book chapter article-journal report webpage"/>
         <else-if>
           <conditions match="all">
-            <condition match="any" type="article-journal"/>
+            <condition match="any" type="article-journal webpage"/>
             <condition match="none" variable="page"/>
           </conditions>
           <group delimiter=" ">
