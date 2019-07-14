@@ -592,30 +592,10 @@
       <institution form="short"/>
     </names>
   </macro>
-  <macro name="std-authority-full">
-    <group delimiter=" ">
-      <choose>
-        <if subjurisdictions="2">
-          <text macro="std-authority-child"/>
-          <text form="short" variable="jurisdiction"/>
-        </if>
-        <else>
-          <text form="short" variable="jurisdiction"/>
-          <text macro="std-authority-child"/>
-        </else>
-      </choose>
-    </group>
-  </macro>
   <macro name="std-authority-parent">
     <names variable="authority">
       <name/>
       <institution institution-parts="short" use-last="1"/>
-    </names>
-  </macro>
-  <macro name="std-authority-child">
-    <names variable="authority">
-      <name/>
-      <institution institution-parts="short" use-first="1"/>
     </names>
   </macro>
   <macro name="std-inventor-label">

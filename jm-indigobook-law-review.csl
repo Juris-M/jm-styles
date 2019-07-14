@@ -103,25 +103,6 @@
       <date-part name="year"/>
     </date>
   </locale>
-  <macro name="std-authority-full">
-    <group delimiter=" ">
-      <choose>
-        <if subjurisdictions="2">
-          <text form="short" variable="jurisdiction"/>
-        </if>
-        <else>
-          <text form="short" variable="jurisdiction"/>
-          <text macro="std-authority-child"/>
-        </else>
-      </choose>
-    </group>
-  </macro>
-  <macro name="std-authority-child">
-    <names variable="authority">
-      <name/>
-      <institution institution-parts="short" use-first="1"/>
-    </names>
-  </macro>
   <macro name="std-locator-label">
     <group delimiter=" ">
       <label form="short" variable="locator"/>
@@ -1573,7 +1554,8 @@
     <choose>
       <if variable="jurisdiction">
         <group delimiter=" " prefix="(" suffix=")">
-          <text macro="std-authority-full"/>
+          <text variable="country" form="short"/>
+          <text variable="jurisdiction" form="short"/>
           <date date-parts="year-month-day" form="text" variable="original-date"/>
         </group>
       </if>
