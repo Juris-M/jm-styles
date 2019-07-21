@@ -1340,10 +1340,9 @@
         </else-if>
       </choose>
       <choose>
-        <if match="none" type="treaty book chapter article-journal report webpage"/>
-        <else-if>
+        <if>
           <conditions match="all">
-            <condition match="any" type="article-journal webpage"/>
+            <condition match="any" type="article-journal article-newspaper report webpage post-weblog"/>
             <condition match="none" variable="page"/>
           </conditions>
           <group delimiter=" ">
@@ -1355,9 +1354,9 @@
                 </group>
               </if>
             </choose>
-            <text variable="URL" prefix=""/>
+            <text variable="URL" form="short"/>
           </group>
-        </else-if>
+        </if>
       </choose>
     </group>
   </macro>
@@ -1372,24 +1371,23 @@
         </else-if>
       </choose>
       <choose>
-        <if variable="issued" match="none">
-          <group delimiter=" ">
-            <text term="accessed" text-case="capitalize-first"/>
-            <date variable="accessed" form="text"/>
-          </group>
-        </if>
-      </choose>
-      <choose>
-        <if match="none" type="treaty book chapter article-journal report">
-          <text variable="URL"/>
-        </if>
-        <else-if>
+        <if>
           <conditions match="all">
-            <condition match="any" type="article-journal"/>
+            <condition match="any" type="article-journal article-newspaper report webpage post-weblog"/>
             <condition match="none" variable="page"/>
           </conditions>
-          <text variable="URL" prefix=""/>
-        </else-if>
+          <group delimiter=" ">
+            <choose>
+              <if variable="issued" match="none">
+                <group delimiter=" ">
+                  <text term="accessed"/>
+                  <date variable="accessed" form="text"/>
+                </group>
+              </if>
+            </choose>
+            <text variable="URL"/>
+          </group>
+        </if>
       </choose>
     </group>
   </macro>
@@ -1560,7 +1558,7 @@
                         <condition match="all" type="report"/>
                         <condition match="none" variable="title committee"/>
                       </conditions>
-                      <text macro="juris-main"/>
+                        <text macro="juris-main"/>
                     </if>
                     <else-if>
                       <conditions match="all">
