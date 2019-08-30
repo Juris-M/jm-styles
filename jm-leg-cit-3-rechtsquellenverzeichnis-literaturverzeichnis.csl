@@ -324,16 +324,28 @@
         <group delimiter=" ">
           <choose>
             <if variable="page">
-              <text macro="author-short"/>
-              <text term="in"/>
               <choose>
-                <if variable="container-title-short">
-                  <text variable="container-title-short"/>
+                <if>
+                  <conditions match="all">
+                    <condition variable="title-short"/>
+                    <condition variable="container-title-short" match="none"/>
+                  </conditions>
+                  <group delimiter=", ">
+                    <text macro="author-short"/>
+                    <text macro="title-short-volume-edition"/>
+                  </group>
                 </if>
-                <else-if variable="editor collection-editor container-author" match="any">
-                  <text macro="editor-short"/>
-                </else-if>
                 <else>
+                  <text macro="author-short"/>
+                  <text term="in"/>
+                  <choose>
+                    <if variable="container-title-short">
+                      <text variable="container-title-short"/>
+                    </if>
+                    <else>
+                      <text macro="editor-short"/>
+                    </else>
+                  </choose>
                 </else>
               </choose>
               <text macro="locator"/>
@@ -508,9 +520,16 @@
             </group>
             <text macro="URL"/>
             <choose>
-              <if variable="title-short">
-                <text macro="title-short" prefix="[" suffix="]"/>
+              <if type="chapter" match="none">
+                <text variable="title-short" prefix="[" suffix="]"/>
               </if>
+              <else-if>
+                <conditions match="all">
+                  <condition variable="container-title-short editor collection-editor container-author" match="none"/>
+                  <condition variable="page" match="any"/>
+                </conditions>
+                <text variable="title-short" prefix="[" suffix="]"/>
+              </else-if>
             </choose>
           </else>
         </choose>
