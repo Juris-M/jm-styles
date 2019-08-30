@@ -348,12 +348,19 @@
                   </choose>
                 </else>
               </choose>
-              <text macro="locator"/>
             </if>
             <else>
               <!-- Code for legal commentaries -->
+              <text macro="author-short"/>
+              <text term="in"/>
+              <group delimiter=", ">
+                <text macro="editor-short"/>
+                <text macro="container-title"/>
+              </group>
+              <text macro="title-short"/>
             </else>
           </choose>
+          <text macro="locator"/>
         </group>
       </if>
       <else>
@@ -451,7 +458,7 @@
     </choose>
   </macro>
 
-  <citation et-al-min="2" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1">
+  <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1">
     <layout prefix="" suffix="." delimiter="; ">
       <choose>
         <if>
@@ -504,6 +511,22 @@
                 </group>
               </group>
             </group>
+          </else-if>
+          <else-if>
+            <conditions match="all">
+              <condition type="chapter"/>
+              <condition variable="page" match="none"/>
+            </conditions>
+            <group delimiter=" ">
+            <group delimiter=", ">
+              <text macro="editor-suffix"/>
+              <text macro="container-title"/>
+            </group>
+            <group delimiter=" " prefix="(" suffix=")">
+              <number variable="collection-number"/>
+              <text macro="year-date"/>
+            </group>
+              </group>
           </else-if>
           <else>
             <group delimiter=", ">
