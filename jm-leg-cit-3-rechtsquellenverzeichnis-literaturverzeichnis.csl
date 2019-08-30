@@ -191,17 +191,19 @@
     </date>
   </macro>
   <macro name="locator">
-    <choose>
-      <if locator="note">
-        <text variable="locator" form="long" prefix="Fn "/>
-      </if>
-      <else-if locator="chapter">
-        <text variable="locator" form="long" prefix="Rz "/>
-      </else-if>
-      <else>
-        <text variable="locator" form="long"/>
-      </else>
-    </choose>
+    <group delimiter=" ">
+      <choose>
+        <if locator="page">
+        </if>
+        <else-if locator="section">
+          <label variable="locator" form="symbol"/>
+        </else-if>
+        <else>
+          <label variable="locator" form="short"/>
+        </else>
+      </choose>
+      <number variable="locator"/>
+    </group>
   </macro>
   <macro name="container-date-locator">
     <choose>
