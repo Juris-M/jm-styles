@@ -413,10 +413,10 @@
           </else-if>
           <else-if type="bill">
             <group delimiter=" ">
-              <text macro="juris-locator"/>
+              <number variable="locator-extra"/>
               <text macro="juris-title"/>
               <text macro="juris-main-short"/>
-              <number variable="locator-extra"/>
+              <text macro="juris-locator"/>
             </group>
           </else-if>
         </choose>
