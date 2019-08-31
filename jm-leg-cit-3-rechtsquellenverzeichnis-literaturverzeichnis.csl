@@ -284,10 +284,21 @@
         <group delimiter=", ">
           <text macro="author-short"/>
           <choose>
-            <if type="article-journal">
+            <if type="article article-journal article-newspaper article-magazine">
               <group delimiter=" ">
-                <text macro="container-title"/>
-                <text macro="year-date"/>
+                <text variable="container-title"/>
+                <choose>
+                  <if variable="volume">
+                    <number variable="volume"/>
+                    <text macro="year-date" prefix="(" suffix=")"/>
+                  </if>
+                  <else>
+                    <group delimiter="/">
+                      <number variable="issue"/>
+                      <text macro="year-date"/>
+                    </group>
+                  </else>
+                </choose>
               </group>
             </if>
             <else>
@@ -363,6 +374,22 @@
           <text macro="locator"/>
         </group>
       </if>
+      <else-if>
+        <conditions>
+          <condition type="article article-journal"/>
+          <condition variable="volume" match="none"/>
+        </conditions>
+        <group delimiter=", ">
+          <text macro="author-title"/>
+          <text macro="locator"/>
+        </group>
+      </else-if>
+      <else-if type="article-newspaper article-magazine">
+        <group delimiter=", ">
+          <text macro="author-title"/>
+          <text macro="locator"/>
+        </group>
+      </else-if>
       <else>
         <group delimiter=" ">
           <text macro="author-title"/>
@@ -468,12 +495,6 @@
           </conditions>
           <text macro="jurism"/>
         </if>
-        <else-if type="article-journal">
-          <group delimiter=", ">
-            <text macro="author-title"/>
-            <text macro="locator"/>
-          </group>
-        </else-if>
         <else>
           <text macro="short-cite"/>
         </else>
