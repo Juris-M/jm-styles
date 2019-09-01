@@ -453,6 +453,13 @@
               <text macro="juris-locator"/>
             </group>
           </else-if>
+          <else-if type="regulation">
+            <group delimiter=" ">
+              <text macro="juris-locator"/>
+              <text macro="juris-title-short"/>
+              <text macro="juris-tail-short"/>
+            </group>
+          </else-if>
         </choose>
       </if>
       <else>
@@ -473,6 +480,17 @@
           </else-if>
           <else-if type="legislation">
             <group delimiter=" ">
+              <text macro="juris-pretitle"/>
+              <group delimiter=", ">
+                <text macro="juris-title"/>
+                <text macro="juris-main"/>
+              </group>
+              <text macro="juris-tail"/>
+            </group>
+          </else-if>
+          <else-if type="regulation">
+            <group delimiter=" ">
+              <text macro="juris-pretitle"/>
               <group delimiter=", ">
                 <text macro="juris-title"/>
                 <text macro="juris-main"/>
