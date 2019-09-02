@@ -442,6 +442,7 @@
             <group delimiter=" ">
               <text macro="juris-locator"/>
               <text macro="juris-title-short"/>
+              <text macro="juris-main-short"/>
               <text macro="juris-tail-short"/>
             </group>
           </else-if>
