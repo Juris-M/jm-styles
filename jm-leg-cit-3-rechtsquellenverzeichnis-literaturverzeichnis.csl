@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 3 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2019-07-09T14:40:14+00:00</updated>
+    <updated>2019-09-13T15:21:16+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -437,7 +437,7 @@
           <if type="legal_case">
             <group delimiter=" ">
               <text macro="juris-main-short"/>
-              <text macro="juris-title"/>
+              <text macro="juris-title-short"/>
             </group>
           </if>
           <else-if type="legislation">
