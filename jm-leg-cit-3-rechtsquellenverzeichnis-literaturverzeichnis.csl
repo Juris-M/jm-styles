@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 3 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2019-09-13T15:21:16+02:00</updated>
+    <updated>2019-10-03T21:13:22+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -50,7 +50,10 @@
     </choose>
   </macro>
   <macro name="title">
-    <text variable="title"/>
+    <group delimiter=" &#x2013; ">
+      <text variable="title-main"/>
+      <text variable="title-sub"/>
+    </group>
   </macro>
   <macro name="title-short">
     <text variable="title" form="short"/>
@@ -226,7 +229,7 @@
       <choose>
         <if type="speech">
           <group delimiter=" – ">
-            <text variable="title"/>
+            <text macro="title"/>
             <group delimiter=", ">
               <text variable="event"/>
               <text variable="event-place"/>
@@ -237,7 +240,7 @@
         <else>
           <group>
             <group delimiter=" ">
-              <text variable="title"/>
+              <text macro="title"/>
               <number variable="volume"/>
             </group>
             <text macro="edition"/>
