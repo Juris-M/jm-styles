@@ -88,26 +88,11 @@
       </substitute>
     </names>
   </macro>
-  <macro name="publisher">
-    <text variable="publisher"/>
-  </macro>
   <macro name="publisher-place">
     <text variable="publisher-place"/>
   </macro>
-  <macro name="number-of-volumes">
-    <number variable="number-of-volumes"/>
-  </macro>
-  <macro name="issue">
-    <number variable="issue"/>
-  </macro>
   <macro name="URL">
     <text variable="URL" prefix="&lt;" suffix="&gt;"/>
-  </macro>
-  <macro name="DOI">
-    <text variable="DOI"/>
-  </macro>
-  <macro name="extra">
-    <text variable="note"/>
   </macro>
   <macro name="authority">
     <names variable="authority">
@@ -119,15 +104,6 @@
   </macro>
   <macro name="edition">
     <number variable="edition" vertical-align="sup"/>
-  </macro>
-  <macro name="collection-title">
-    <text variable="collection-title"/>
-  </macro>
-  <macro name="volume">
-    <number variable="volume"/>
-  </macro>
-  <macro name="page">
-    <number variable="page"/>
   </macro>
   <macro name="container-title">
     <group>
@@ -238,7 +214,7 @@
             <group delimiter=" ">
               <text macro="container-title"/>
               <text macro="extras-and-date"/>
-              <text macro="page"/>
+              <number variable="page"/>
             </group>
           </group>
         </group>
