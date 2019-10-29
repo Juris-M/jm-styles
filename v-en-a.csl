@@ -655,11 +655,23 @@
   <macro name="complete-reference">
     <!--Bibliography reference -->
     <choose>
-      <if type="bill legislation regulation" match="any">
+      <if type="bill" match="any">
         <group delimiter=", ">
           <text macro="legislation-or-bill"/>
         </group>
       </if>
+      <else-if type="legislation regulation" match="all">
+                <group delimiter=" ">
+      	 <number variable="locator" prefix="Art. "/>
+      	   <group delimiter=", ">
+                <text macro="title"/>
+                  <text variable="container-title" font-style="italic"/>
+      	</group>
+                  <text macro="date"/>
+                  <text variable="URL" prefix="("/>
+                  <text macro="date-accessed" suffix=")"/>
+              </group>
+         </else-if>
       <else-if type="treaty">
 		<text macro="treaty-full"/>
 	</else-if>
