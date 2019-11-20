@@ -13,7 +13,7 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2019-06-14T11:38:02+02:00</updated>
+    <updated>2019-11-20T15:28:02+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="nl">
@@ -101,6 +101,14 @@
         <name-part name="family" text-case="uppercase"/>
       </name>
       <label form="short" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+  <macro name="commenter">
+    <text value=", noot "/>
+    <names variable="commenter">
+      <name sort-separator=", " initialize-with="." delimiter=", " and="text" delimiter-precedes-last="never">
+        <name-part name="given" text-case="uppercase"/>
+      </name>
     </names>
   </macro>
   <macro name="collection-editor-note">
@@ -529,8 +537,10 @@
 	</group>
             <text macro="date"/>
             <text variable="title-short" prefix="(hierna: " suffix=")"/>
-            <text variable="URL" prefix="("/>
-            <text macro="date-accessed" suffix=")"/>
+            <group delimiter=" " prefix="(" suffix=")">
+                <text variable="URL"/>
+                <text macro="date-accessed"/>
+            </group>
         </group>
       </if>
     </choose>
@@ -643,12 +653,7 @@
       </choose>
 	<choose>
         <if variable="commenter">
-          <text value=", noot. "/>
-          <names variable="commenter">
-            <name sort-separator=", " initialize-with="." delimiter=", " and="text" delimiter-precedes-last="never">
-              <name-part name="family" text-case="uppercase"/>
-            </name>
-          </names>
+          <text macro="commenter"/>
         </if>
       </choose>
   </macro>
@@ -668,8 +673,10 @@
                   <text variable="container-title" font-style="italic"/>
       	</group>
                   <text macro="date"/>
-                  <text variable="URL" prefix="("/>
-                  <text macro="date-accessed" suffix=")"/>
+                  <group delimiter=" " prefix="(" suffix=")">
+                      <text variable="URL"/>
+                      <text macro="date-accessed"/>
+                  </group>
               </group>
          </else-if>
       <else-if type="treaty">
