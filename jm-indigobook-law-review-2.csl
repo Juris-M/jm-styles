@@ -677,6 +677,35 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
       </else>
     </choose>
   </macro>
+  <macro name="bibsort">
+    <choose>
+      <if type="legislation">
+        <text value="1"/>
+      </if>
+      <else-if type="regulation">
+        <text value="2"/>
+      </else-if>
+      <else-if>
+        <conditions match="all">
+          <condition match="all" type="legal_case"/>
+          <condition match="none" variable="admin-flag"/>
+        </conditions>
+        <text value="3"/>
+      </else-if>
+      <else-if match="all" type="legal_case" variable="admin-flag">
+        <text value="4"/>
+      </else-if>
+      <else-if type="book">
+        <text value="5"/>
+      </else-if>
+      <else-if type="article-journal">
+        <text value="5"/>
+      </else-if>
+      <else>
+        <text value="6"/>
+      </else>
+    </choose>
+  </macro>
   <citation disambiguate-add-givenname="true" givenname-disambiguation-rule="by-cite" et-al-min="3" et-al-use-first="1" near-note-distance="5">
     <layout delimiter=", ">
       <text macro="citation"/>
@@ -684,12 +713,14 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   </citation>
   <bibliography et-al-min="3" et-al-use-first="1">
     <sort>
+      <key macro="bibsort"/>
       <key variable="author"/>
-      <key variable="title"/>
       <key variable="issued"/>
     </sort>
-    <layout suffix=".">
-      <text macro="citation"/>
+    <layout>
+      <group delimiter=" ">
+        <text macro="citation"/>
+      </group>
     </layout>
   </bibliography>
 </style>
