@@ -144,16 +144,16 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   </macro>
   <macro name="jurism">
    <choose>
-     <if condition-id="z0001" position="ibid-with-locator">
+     <if position="ibid-with-locator">
         <group delimiter=" ">
           <text term="ibid" font-style="italic"/>
           <text macro="juris-locator" label-form="symbol"/>
         </group>
       </if>
-      <else-if condition-id="z0002" position="ibid">
+      <else-if position="ibid">
         <text term="ibid" font-style="italic"/>
       </else-if>
-      <else-if condition-id="z0003" position="near-note">
+      <else-if position="near-note">
         <!-- short form -->
         <group delimiter=" ">
           <group delimiter=", ">
@@ -208,49 +208,49 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
           </choose>
         </group>
       </else-if>
-      <else condition-id="z0014">
+      <else>
         <!-- full form -->
         <group delimiter=", ">
           <group delimiter=" ">
             <group delimiter=", ">
               <choose>
-                <if condition-id="z0015" type="hearing report legal_case">
+                <if type="hearing report legal_case">
                   <text macro="juris-pretitle"/>
                 </if>
               </choose>
               <choose>
-                <if condition-id="z0016" type="hearing report legal_case" match="any">
+                <if type="hearing report legal_case" match="any">
                   <choose>
-                    <if condition-id="z0017" variable="admin-flag" type="patent report" match="any">
+                    <if variable="admin-flag" type="patent report" match="any">
                       <text macro="juris-title"/>
                     </if>
-                    <else condition-id="z0018">
+                    <else>
                       <text macro="juris-title" font-style="italic"/>
                     </else>
                   </choose>
                 </if>
-                <else condition-id="z0019">
+                <else>
                   <text macro="juris-title"/>
                 </else>
               </choose>
               <group delimiter=" ">
                 <group delimiter=", ">
                   <choose>
-                    <if condition-id="z0020">
+                    <if>
                       <conditions match="all">
                         <condition match="all" type="report"/>
                         <condition match="none" variable="title committee"/>
                       </conditions>
                         <text macro="juris-main" label-form="symbol"/>
                     </if>
-                    <else-if condition-id="z0021">
+                    <else-if>
                       <conditions match="all">
                         <condition match="all" type="hearing"/>
                         <condition match="none" variable="committee"/>
                       </conditions>
                       <text macro="juris-main" label-form="symbol"/>
                     </else-if>
-                    <else condition-id="z0022">
+                    <else>
                       <text macro="juris-main" label-form="symbol"/>
                     </else>
                   </choose>
@@ -259,8 +259,8 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                     <text macro="juris-locator" label-form="symbol"/>
                   </group>
                   <choose>
-                    <if condition-id="z0023" type="legislation regulation" match="any"/>
-                    <else condition-id="z0024">
+                    <if type="legislation regulation" match="any"/>
+                    <else>
                       <group require="comma-safe">
                         <text macro="juris-locator" label-form="symbol"/>
                       </group>
@@ -270,29 +270,29 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
               </group>
             </group>
             <choose>
-              <if condition-id="z0025" type="legislation regulation" match="any">
+              <if type="legislation regulation" match="any">
                 <text macro="juris-locator" label-form="symbol"/>
               </if>
-              <else condition-id="z0026">
+              <else>
                 <group reject="comma-safe">
                   <text macro="juris-locator" label-form="symbol"/>
                 </group>
               </else>
             </choose>
             <!-- choose>
-              <if condition-id="z0027" type="legislation" variable="container-title page volume gazette-flag" match="all"/>
-              <else condition-id="z0028" -->
+              <if type="legislation" variable="container-title page volume gazette-flag" match="all"/>
+              <else -->
                 <text macro="juris-tail"/>
               <!-- /else>
             </choose -->
           </group>
           <!-- choose>
-            <if condition-id="z0029" type="legislation" variable="container-title page volume gazette-flag" match="all">
+            <if type="legislation" variable="container-title page volume gazette-flag" match="all">
               <text macro="juris-tail"/>
             </if>
           </choose -->
           <choose>
-            <if condition-id="z0030">
+            <if>
               <conditions match="all">
                 <condition type="legal_case" match="any"/>
                 <condition match="none" variable="document-name archive container-title"/>
@@ -308,12 +308,12 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   <macro name="ib-page">
     <group delimiter=" ">
       <choose>
-        <if condition-id="z0031">
+        <if>
           <conditions match="all">
             <condition match="all" page="page"/>
           </conditions>
         </if>
-        <else condition-id="z0032">
+        <else>
           <label variable="page" form="symbol"/>
         </else>
       </choose>
@@ -324,13 +324,13 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   <macro name="ib-at-page">
     <group delimiter=" ">
       <choose>
-        <if condition-id="z0033">
+        <if>
           <conditions match="all">
             <condition match="all" page="page"/>
           </conditions>
           <text value="at"/>
         </if>
-        <else condition-id="z0034">
+        <else>
           <label variable="page" form="symbol"/>
         </else>
       </choose>
@@ -341,14 +341,14 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   <macro name="ib-locator">
     <group delimiter=" ">
       <choose>
-        <if condition-id="z0035">
+        <if>
           <conditions match="all">
             <condition match="none" variable="page"/>
             <condition match="all" locator="page"/>
           </conditions>
         </if>
-        <else-if condition-id="z0036" match="all" variable="page" page="page"/>
-        <else condition-id="z0037">
+        <else-if match="all" variable="page" page="page"/>
+        <else>
           <label variable="locator" form="symbol"/>
         </else>
       </choose>
@@ -359,22 +359,22 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   <macro name="ib-at-locator">
     <group delimiter=" ">
       <choose>
-        <if condition-id="z0038">
+        <if>
           <conditions match="all">
             <condition match="none" variable="page"/>
             <condition match="all" locator="page"/>
           </conditions>
           <text value="at"/>
         </if>
-        <else-if condition-id="z0039" match="all" variable="page" page="page">
+        <else-if match="all" variable="page" page="page">
           <choose>
-            <if condition-id="z0040" position="first"/>
-            <else condition-id="z0041">
+            <if position="first"/>
+            <else>
               <text value="at"/>
             </else>
           </choose>
         </else-if>
-        <else condition-id="z0042">
+        <else>
           <label variable="locator" form="symbol"/>
         </else>
       </choose>
@@ -412,7 +412,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
 
   <macro name="title-full">
     <choose>
-      <if condition-id="z0043">
+      <if>
         <conditions match="all">
           <condition match="all" type="post"/>
           <condition match="all" variable="title-sub"/>
@@ -422,10 +422,10 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
           <text variable="title-sub" font-style="italic" text-case="title"/>
         </group>
       </if>
-      <else-if condition-id="z0044" type="webpage">
+      <else-if type="webpage">
         <text variable="title" text-case="title" font-style="italic"/>
       </else-if>
-      <else condition-id="z0045">
+      <else>
         <text variable="title" font-style="italic" text-case="title"/>
       </else>
     </choose>
@@ -433,7 +433,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   
   <macro name="title-short">
     <choose>
-      <if condition-id="z0046">
+      <if>
         <conditions match="all">
           <condition match="all" type="post"/>
           <condition match="all" variable="title-sub"/>
@@ -442,10 +442,10 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
           <text variable="title" form="short"/>
         </group>
       </if>
-      <else-if condition-id="z0047" type="webpage">
+      <else-if type="webpage">
         <text variable="title-short" text-case="title" font-style="italic"/>
       </else-if>
-      <else condition-id="z0048">
+      <else>
         <text variable="title-short" font-style="italic" text-case="title"/>
       </else>
     </choose>
@@ -455,7 +455,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
     <group delimiter=", ">
       <group delimiter=" ">
         <choose>
-          <if condition-id="z0055" match="all" type="book">
+          <if match="all" type="book">
             <number variable="volume"/>
           </if>
         </choose>
@@ -480,10 +480,10 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                 <condition match="none" variable="author"/>
               </conditions>
               <choose>
-                <if condition-id="z0056" type="entry-dictionary entry-encyclopedia" match="any"/>
-                <else condition-id="z0057">
+                <if type="entry-dictionary entry-encyclopedia" match="any"/>
+                <else>
                   <choose>
-                    <if condition-id="z0058" match="any" type="article-journal webpage">
+                    <if match="any" type="article-journal webpage">
                       <text variable="genre"/>
                     </if>
                   </choose>
@@ -501,37 +501,37 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
               </conditions>
               <group delimiter=" ">
                 <choose>
-                  <if condition-id="z0059" match="any" type="article-journal article-magazine treaty">
+                  <if match="any" type="article-journal article-magazine treaty">
                     <choose>
-                      <if condition-id="z0060" variable="collection-number">
+                      <if variable="collection-number">
                         <number variable="collection-number"/>
                       </if>
-                      <else condition-id="z0061">
+                      <else>
                         <number variable="volume"/>
                       </else>
                     </choose>
                   </if>
                 </choose>
                 <choose>
-                  <if condition-id="z0062" type="entry-dictionary entry-encyclopedia" match="any">
+                  <if type="entry-dictionary entry-encyclopedia" match="any">
                     <group delimiter=": ">
                       <text variable="container-title"/>
                       <text variable="title"/>
                     </group>
                   </if>
-                  <else-if condition-id="z0063" type="chapter">
+                  <else-if type="chapter">
                     <group delimiter=" ">
                       <text value="in" font-style="italic"/>
                       <text variable="container-title" font-style="italic"/>
                     </group>
                   </else-if>
-                  <else-if condition-id="z0064" match="all" type="article-magazine article-newspaper" variable="page">
+                  <else-if match="all" type="article-magazine article-newspaper" variable="page">
                     <group delimiter=", ">
                       <text variable="container-title"/>
                       <date variable="issued" form="text" date-parts="year-month-day"/>
                     </group>
                   </else-if>
-                  <else condition-id="z0065">
+                  <else>
                     <text variable="container-title"/>
                     <group delimiter=" ">
                       <label variable="number" form="short" text-case="capitalize-first"/>
@@ -550,10 +550,10 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                 <condition match="none" position="near-note"/>
               </conditions>
               <choose>
-                <if condition-id="z0066" type="article-magazine article-newspaper">
+                <if type="article-magazine article-newspaper">
                   <text macro="ib-at-page-and-locator"/>
                 </if>
-                <else condition-id="z0067">
+                <else>
                   <group require="comma-safe">
                     <text macro="ib-page-and-locator" label-form="symbol"/>
                   </group>
@@ -569,7 +569,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
               <condition match="none" position="near-note"/>
             </conditions>
             <choose>
-              <if condition-id="z0068" match="none" type="article-magazine article-newspaper">
+              <if match="none" type="article-magazine article-newspaper">
                 <group reject="comma-safe">
                   <text macro="ib-page-and-locator" label-form="symbol"/>
                 </group>
@@ -596,15 +596,15 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                   <text term="edition" form="short"/>
                 </group>
                 <choose>
-                  <if condition-id="z0069" match="all" type="article-newspaper article-magazine" variable="page"/>
-                  <else-if condition-id="z0070" type="webpage"/>
-                  <else-if condition-id="z0071" type="post post-weblog article-magazine" match="any">
+                  <if match="all" type="article-newspaper article-magazine" variable="page"/>
+                  <else-if type="webpage"/>
+                  <else-if type="post post-weblog article-magazine" match="any">
                     <group delimiter=", ">
                       <date variable="issued" form="text" date-parts="year-month-day"/>
                       <date variable="event-date" form="text" date-parts="year"/>
                     </group>
                   </else-if>
-                  <else condition-id="z0072">
+                  <else>
                     <date variable="issued" form="text" date-parts="year-month"/>
                   </else>
                 </choose>
@@ -612,7 +612,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
             </group>
             
             <choose>
-              <if condition-id="z0073" type="book" variable="original-date">
+              <if type="book" variable="original-date">
                 <date variable="original-date" form="text" date-parts="year" prefix="(" suffix=")"/>
               </if>
             </choose>
@@ -623,11 +623,11 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
       <choose>
         <if match="none" position="near-note">
           <choose>
-            <if condition-id="z0074" type="post post-weblog article-magazine webpage">
+            <if type="post post-weblog article-magazine webpage">
               <group delimiter=" ">
                 <text variable="URL"/>
                 <choose>
-                  <if condition-id="z0075" type="webpage">
+                  <if type="webpage">
                     <text variable="references" prefix="(" suffix=")"/>
                     <group delimiter=" " prefix="(" suffix=")">
                       <text value="last visited"/>
@@ -637,7 +637,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                 </choose>
               </group>
             </if>
-            <else-if condition-id="z0076">
+            <else-if>
               <conditions match="all">
                 <condition type="article-journal"/>
                 <condition match="none" variable="accessed"/>
@@ -653,23 +653,23 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
   
   <macro name="citation">
     <choose>
-      <if condition-id="z0049">
+      <if>
         <conditions match="all">
           <condition match="any" type="legal_case legislation bill hearing report regulation patent"/>
           <condition match="all" variable="jurisdiction"/>
         </conditions>
         <text macro="jurism"/>
       </if>
-      <else-if condition-id="z0050" position="ibid-with-locator">
+      <else-if position="ibid-with-locator">
         <group delimiter=" ">
           <text term="ibid" font-style="italic"/>
           <text macro="ib-at-locator"/>
         </group>
       </else-if>
-      <else-if condition-id="z0051" position="ibid">
+      <else-if position="ibid">
         <text term="ibid" font-style="italic"/>
       </else-if>
-      <else-if condition-id="z0052" position="subsequent">
+      <else-if position="subsequent">
         <group delimiter=", ">
           <text macro="local-full-cite"/>
           <choose>
@@ -684,36 +684,36 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
           </choose>
         </group>
       </else-if>
-      <else condition-id="z0054">
+      <else>
         <text macro="local-full-cite"/>
       </else>
     </choose>
   </macro>
   <macro name="bibsort">
     <choose>
-      <if condition-id="z0077" type="legislation">
+      <if type="legislation">
         <text value="1"/>
       </if>
-      <else-if condition-id="z0078" type="regulation">
+      <else-if type="regulation">
         <text value="2"/>
       </else-if>
-      <else-if condition-id="z0079">
+      <else-if>
         <conditions match="all">
           <condition match="all" type="legal_case"/>
           <condition match="none" variable="admin-flag"/>
         </conditions>
         <text value="3"/>
       </else-if>
-      <else-if condition-id="z0080" match="all" type="legal_case" variable="admin-flag">
+      <else-if match="all" type="legal_case" variable="admin-flag">
         <text value="4"/>
       </else-if>
-      <else-if condition-id="z0081" type="book">
+      <else-if type="book">
         <text value="5"/>
       </else-if>
-      <else-if condition-id="z0082" type="article-journal">
+      <else-if type="article-journal">
         <text value="5"/>
       </else-if>
-      <else condition-id="z0083">
+      <else>
         <text value="6"/>
       </else>
     </choose>
