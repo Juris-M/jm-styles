@@ -157,8 +157,13 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
         <!-- short form -->
         <group delimiter=" ">
           <group delimiter=", ">
+            <text macro="juris-pretitle"/>
             <choose>
-              <if variable="title">
+              <if>
+                <conditions match="any">
+                  <condition variable="title"/>
+                  <condition match="all" type="hearing" variable="number"/>
+                </conditions>
                 <choose>
                   <if>
                     <conditions match="any">
@@ -178,34 +183,41 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                 <conditions match="any">
                   <condition type="legal_case"/>
                   <condition match="none" variable="title"/>
+                  <condition match="all" type="regulation" variable="title gazette-flag"/>
                 </conditions>
                 <text macro="juris-main-short"/>
               </if>
             </choose>
             <choose>
-              <if type="report">
+              <if>
+                <conditions match="any">
+                  <condition match="all" type="report" variable="title"/>
+                  <condition match="all" type="hearing" variable="title"/>
+                  <condition match="all" type="hearing" variable="section number"/>
+                </conditions>
                 <text value="supra" font-style="italic"/>
-                <text macro="ib-at-locator"/>
+                <text macro="ib-at-locator" label-form="symbol"/>
               </if>
             </choose>
             <choose>
-              <if match="none" type="regulation">
+              <if match="none" type="regulation legislation">
                 <group require="comma-safe">
-                  <text macro="ib-at-locator"/>
+                  <text macro="juris-locator" label-form="symbol"/>
                 </group>
               </if>
             </choose>
           </group>
           <choose>
-            <if type="regulation">
-              <text macro="ib-at-locator"/>
+            <if type="regulation legislation">
+              <text macro="juris-locator" label-form="symbol"/>
             </if>
             <else>
               <group reject="comma-safe">
-                <text macro="ib-at-locator"/>
+                <text macro="ib-at-locator" label-form="symbol"/>
               </group>
             </else>
           </choose>
+          <text macro="juris-tail-short"/>
         </group>
       </else-if>
       <else>
@@ -431,22 +443,24 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
     </choose>
   </macro>
   
+  <macro name="title-full">
+    <choose>
+      <if type="post">
+        <text variable="title"/>
+      </if>
+      <else>
+        <text variable="title" font-style="italic" text-case="title"/>
+      </else>
+    </choose>
+  </macro>
+
   <macro name="title-short">
     <choose>
-      <if>
-        <conditions match="all">
-          <condition match="all" type="post"/>
-          <condition match="all" variable="title-sub"/>
-        </conditions>
-        <group delimiter=" ">
-          <text variable="title" form="short"/>
-        </group>
+      <if type="post">
+        <text variable="title" form="short"/>
       </if>
-      <else-if type="webpage">
-        <text variable="title-short" text-case="title" font-style="italic"/>
-      </else-if>
       <else>
-        <text variable="title-short" font-style="italic" text-case="title"/>
+        <text variable="title" font-style="italic" text-case="title" form="short"/>
       </else>
     </choose>
   </macro>
@@ -456,7 +470,15 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
       <group delimiter=" ">
         <choose>
           <if match="all" type="book">
-            <number variable="volume"/>
+            <choose>
+              <if>
+                <conditions match="any">
+                  <condition match="none" position="near-note"/>
+                  <condition disambiguate="true"/>
+                </conditions>
+                <number variable="volume"/>
+              </if>
+            </choose>
           </if>
         </choose>
         <group delimiter=", ">
@@ -478,6 +500,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
               <conditions match="any">
                 <condition match="none" position="near-note"/>
                 <condition match="none" variable="author"/>
+                <condition disambiguate="true"/>
               </conditions>
               <choose>
                 <if type="entry-dictionary entry-encyclopedia" match="any"/>
@@ -487,7 +510,14 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-2" rel="self"/>
                       <text variable="genre"/>
                     </if>
                   </choose>
-                  <text macro="title-full"/>
+                  <choose>
+                    <if position="near-note">
+                      <text macro="title-short"/>
+                    </if>
+                    <else>
+                      <text macro="title-full"/>
+                    </else>
+                  </choose>
                 </else>
               </choose>
             </if>
