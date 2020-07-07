@@ -2,9 +2,9 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" page-range-format="chicago" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number">
   <info>
     <title>JM Indigo Book (Law Reviews)</title>
-    <id>http://juris-m.github.io/styles/jm-indigobook-law-review-3</id>
+    <id>http://juris-m.github.io/styles/jm-indigobook-law-review</id>
     <link
-href="http://juris-m.github.io/styles/jm-indigobook-law-review-3" rel="self"/>
+href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
     <link href="https://law.resource.org/pub/us/code/blue/IndigoBook.html" rel="documentation"/>
     <author>
       <name>Frank Bennett</name>
