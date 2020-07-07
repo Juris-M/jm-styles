@@ -484,7 +484,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
           <choose>
             <if type="book">
               <choose>
-                <if position="near-note">
+                <if position="subsequent">
                   <names variable="author">
                     <name and="symbol" form="short" font-variant="small-caps"/>
                   </names>
@@ -498,7 +498,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
             </if>
             <else>
               <choose>
-                <if position="near-note">
+                <if position="subsequent">
                   <names variable="author">
                     <name and="symbol" form="short"/>
                   </names>
@@ -515,7 +515,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
           <choose>
             <if>
               <conditions match="any">
-                <condition match="none" position="near-note"/>
+                <condition match="none" position="subsequent"/>
                 <condition match="none" variable="author"/>
                 <condition disambiguate="true"/>
               </conditions>
@@ -528,7 +528,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                     </if>
                   </choose>
                   <choose>
-                    <if position="near-note">
+                    <if position="subsequent">
                       <text macro="title-short"/>
                     </if>
                     <else>
@@ -543,7 +543,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
           <choose>
             <if>
               <conditions match="any">
-                <condition match="none" position="near-note"/>
+                <condition match="none" position="subsequent"/>
                 <condition match="none" variable="author title"/>
                 <condition match="all" type="entry-dictionary entry-encyclopedia"/>
               </conditions>
@@ -564,7 +564,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                   <if type="entry-dictionary entry-encyclopedia" match="any">
                     <group delimiter=": ">
                       <choose>
-                        <if match="none" position="near-note">
+                        <if match="none" position="subsequent">
                           <text variable="container-title"/>
                         </if>
                       </choose>
@@ -606,7 +606,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
             <if>
               <conditions match="any">
                 <condition type="treaty"/>
-                <condition match="none" position="near-note"/>
+                <condition match="none" position="subsequent"/>
               </conditions>
               <choose>
                 <if type="article-magazine article-newspaper">
@@ -625,7 +625,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
           <if>
             <conditions match="any">
               <condition type="treaty"/>
-              <condition match="none" position="near-note"/>
+              <condition match="none" position="subsequent"/>
             </conditions>
             <choose>
               <if match="none" type="article-magazine article-newspaper">
@@ -638,7 +638,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
         </choose>
 
         <choose>
-          <if match="none" position="near-note">
+          <if match="none" position="subsequent">
             <group delimiter=", " prefix="(" suffix=")">
               <names variable="editor">
                 <name and="symbol"/>
@@ -680,7 +680,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
       </group>
 
       <choose>
-        <if match="none" position="near-note">
+        <if match="none" position="subsequent">
           <choose>
             <if type="post post-weblog article-magazine webpage">
               <group delimiter=" ">
