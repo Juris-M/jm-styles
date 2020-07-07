@@ -784,7 +784,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
     </choose>
   </macro>
   <citation disambiguate-add-givenname="true" givenname-disambiguation-rule="by-cite" et-al-min="3" et-al-use-first="1" near-note-distance="5">
-    <layout delimiter=", ">
+    <layout delimiter=", " suffix=".">
       <text macro="citation"/>
     </layout>
   </citation>
@@ -794,7 +794,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
       <key variable="author"/>
       <key variable="issued"/>
     </sort>
-    <layout>
+    <layout suffix=".">
       <group delimiter=" ">
         <text macro="citation"/>
       </group>
