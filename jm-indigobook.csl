@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="note" page-range-format="chicago" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" page-range-format="chicago" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number">
   <info>
     <title>JM Indigo Book</title>
     <id>http://juris-m.github.io/styles/jm-indigobook</id>
