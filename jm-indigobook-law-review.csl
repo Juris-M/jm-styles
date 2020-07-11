@@ -565,7 +565,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-3" rel="self"/>
                     <group delimiter=": ">
                       <choose>
                         <if match="none" position="near-note">
-                          <text variable="container-title"/>
+                          <text variable="container-title" form="short"/>
                         </if>
                       </choose>
                       <text variable="title"/>
@@ -574,22 +574,22 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review-3" rel="self"/>
                   <else-if type="chapter">
                     <group delimiter=" ">
                       <text value="in" font-style="italic"/>
-                      <text variable="container-title" font-variant="small-caps"/>
+                      <text variable="container-title" font-variant="small-caps" form="short"/>
                     </group>
                   </else-if>
                   <else-if match="all" type="article-magazine article-newspaper" variable="page">
                     <group delimiter=", ">
-                      <text variable="container-title"/>
+                      <text variable="container-title" form="short"/>
                       <date variable="issued" form="text" date-parts="year-month-day"/>
                     </group>
                   </else-if>
                   <else>
                     <choose>
                       <if type="article-journal book">
-                        <text variable="container-title" font-variant="small-caps"/>
+                        <text variable="container-title" font-variant="small-caps" form="short"/>
                       </if>
                       <else>
-                        <text variable="container-title"/>
+                        <text variable="container-title" form="short"/>
                       </else>
                     </choose>
                     <group delimiter=" ">
