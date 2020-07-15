@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always">
   <info>
-    <title>JM leg cit 3 mit Rechtsquellenverzeichnis und Literaturverzeichnis</title>
-    <title-short>JM leg cit 3 Fn mit RSV und LV</title-short>
-    <id>https://juris-m.github.io/styles/jm-leg-cit-3-rechtsquellenverzeichnis-literaturverzeichnis</id>
+    <title>JM leg cit 4 mit Rechtsquellenverzeichnis und Literaturverzeichnis</title>
+    <title-short>JM leg cit 4 Fn mit RSV und LV</title-short>
+    <id>5e686d50-e96b-40b1-987c-83035259e3e8</id>
     <link href="https://juris-m.github.io/styles/jm-leg-cit-3-rechtsquellenverzeichnis-literaturverzeichnis" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <author>
@@ -15,8 +15,8 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>leg cit 3 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2019-10-03T21:13:22+02:00</updated>
+    <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
+    <updated>2020-07-15T09:45:17+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -491,6 +491,85 @@
     </choose>
   </macro>
 
+  <!-- sort macros -->
+  <macro name="type-sort">
+    <choose>
+      <if type="legal_case regulation" match="any">
+        <text value="1"/>
+      </if>
+      <else-if type="legislation bill" match="any">
+        <text value="2"/>
+      </else-if>
+      <else-if type="webpage post-weblog post">
+        <text value="4"/>
+      </else-if>
+      <else>
+        <text value="3"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="jurisdiction-sort">
+    <choose>
+      <if type="legal_case regulation legislation bill">
+        <choose>
+          <if jurisdiction="eu.int">
+            <text value="1"/>
+          </if>
+          <else-if jurisdiction="at">
+            <text value="2"/>
+          </else-if>
+          <else>
+            <text value="jurisdiction"/>
+          </else>
+        </choose>
+      </if>
+    </choose>
+  </macro>
+  <macro name="type-sort-legal">
+    <choose>
+      <if type="legal_case">
+        <text value="1"/>
+        <choose>
+          <if jurisdiction="at">
+            <choose>
+              <if court-class="o1">
+                <text value="1"/>
+              </if>
+              <else-if court-class="o2">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="o3">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="o4">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="v0">
+                <text value="3"/>
+              </else-if>
+              <else-if court-class="v1">
+                <text value="4"/>
+              </else-if>
+              <else-if court-class="v2">
+                <text value="5"/>
+              </else-if>
+              <else>
+                <text value="6"/>
+              </else>
+            </choose>
+          </if>
+        </choose>
+        <text variable="jurisdiction"/>
+      </if>
+      <else-if type="legislation">
+        <text value="1"/>
+      </else-if>
+      <else-if type="regulation bill" match="any">
+        <text value="2"/>
+      </else-if>
+    </choose>
+  </macro>
+ 
   <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
       <choose>
@@ -509,6 +588,9 @@
   </citation>
   <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true">
     <sort>
+      <key macro="type-sort"/>
+      <key macro="jurisdiction-sort"/>
+      <key macro="type-sort-legal"/>
       <key macro="author-short"/>
       <key variable="issued" sort="descending"/>
     </sort>
