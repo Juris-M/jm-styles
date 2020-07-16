@@ -794,7 +794,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
       <key variable="author"/>
       <key variable="issued"/>
     </sort>
-    <layout delimiter=", " suffix=".">
+    <layout suffix=".">
       <group delimiter=" ">
         <text macro="citation"/>
       </group>
