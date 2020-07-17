@@ -155,7 +155,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
       </else-if>
       <else-if position="near-note">
         <!-- short form -->
-        <group delimiter=" ">
+        <group delimiter=" " parallel-delimiter-override=", ">
           <group delimiter=", ">
             <text macro="juris-pretitle"/>
             <choose>
@@ -223,7 +223,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
       </else-if>
       <else>
         <!-- full form -->
-        <group delimiter=", ">
+        <group delimiter=", " parallel-delimiter-override=", ">
           <group delimiter=" ">
             <group delimiter=", ">
               <choose>
