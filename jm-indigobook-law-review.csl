@@ -579,7 +579,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                   </else-if>
                   <else-if match="all" type="article-magazine article-newspaper" variable="page">
                     <group delimiter=", ">
-                      <text variable="container-title" form="short"/>
+                      <text variable="container-title" form="short" font-variant="small-caps"/>
                       <date variable="issued" form="text" date-parts="year-month-day"/>
                     </group>
                   </else-if>
@@ -701,6 +701,9 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                 <condition type="article-journal"/>
                 <condition match="none" variable="accessed"/>
               </conditions>
+              <text variable="URL"/>
+            </else-if>
+            <else-if type="article-newspaper">
               <text variable="URL"/>
             </else-if>
           </choose>
