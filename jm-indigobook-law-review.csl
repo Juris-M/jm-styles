@@ -585,7 +585,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                   </else-if>
                   <else>
                     <choose>
-                      <if type="article-journal book">
+                      <if type="article-journal book webpage post-weblog post">
                         <text variable="container-title" font-variant="small-caps" form="short"/>
                       </if>
                       <else>
