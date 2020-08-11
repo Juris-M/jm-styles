@@ -1424,7 +1424,7 @@
    <choose>
       <if position="ibid-with-locator">
         <group delimiter=" ">
-          <text term="ibid" font-style="italic"/>
+          <text term="ibid"/>
           <group delimiter=" ">
             <text value="at"/>
             <group require="empty-label">
