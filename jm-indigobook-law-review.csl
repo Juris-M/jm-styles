@@ -577,7 +577,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                       <text variable="container-title" font-variant="small-caps" form="short"/>
                     </group>
                   </else-if>
-                  <else-if match="all" type="article-magazine article-newspaper" variable="page">
+                  <else-if match="all" type="article-magazine article-newspaper">
                     <group delimiter=", ">
                       <text variable="container-title" form="short" font-variant="small-caps"/>
                       <date variable="issued" form="text" date-parts="year-month-day"/>
@@ -655,7 +655,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                   <text term="edition" form="short"/>
                 </group>
                 <choose>
-                  <if match="all" type="article-newspaper article-magazine" variable="page"/>
+                  <if match="all" type="article-newspaper article-magazine"/>
                   <else-if type="webpage"/>
                   <else-if type="post post-weblog article-magazine" match="any">
                     <group delimiter=", ">
