@@ -232,15 +232,8 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                 </if>
               </choose>
               <choose>
-                <if type="hearing report legal_case" match="any">
-                  <choose>
-                    <if variable="admin-flag" type="patent report" match="any">
-                      <text macro="juris-title"/>
-                    </if>
-                    <else>
-                      <text macro="juris-title" font-style="italic"/>
-                    </else>
-                  </choose>
+                <if type="hearing report" match="any">
+                  <text macro="juris-title" font-style="italic"/>
                 </if>
                 <else>
                   <text macro="juris-title"/>
@@ -578,10 +571,23 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                     </group>
                   </else-if>
                   <else-if match="all" type="article-magazine article-newspaper">
-                    <group delimiter=", ">
-                      <text variable="container-title" form="short" font-variant="small-caps"/>
-                      <date variable="issued" form="text" date-parts="year-month-day"/>
-                    </group>
+                    <choose>
+                      <if variable="page">
+                        <group delimiter=",">
+                          <text variable="container-title" form="short" font-variant="small-caps"/>
+                          <date variable="issued" form="text" date-parts="year-month-day"/>
+                        </group>
+                      </if>
+                      <else>
+                        <group delimiter=" ">
+                          <text variable="container-title" form="short" font-variant="small-caps"/>
+                          <group delimiter=", " prefix="(" suffix=")">
+                            <date variable="issued" form="text" date-parts="year-month-day"/>
+                            <date variable="event-date" form="text" date-parts="year-month-day"/>
+                          </group>
+                        </group>                        
+                      </else>
+                    </choose>
                   </else-if>
                   <else>
                     <choose>
