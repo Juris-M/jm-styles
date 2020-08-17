@@ -232,7 +232,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                 </if>
               </choose>
               <choose>
-                <if type="hearing report" match="any">
+                <if type="hearing" match="any">
                   <text macro="juris-title" font-style="italic"/>
                 </if>
                 <else>
@@ -573,7 +573,7 @@ href="http://juris-m.github.io/styles/jm-indigobook-law-review" rel="self"/>
                   <else-if match="all" type="article-magazine article-newspaper">
                     <choose>
                       <if variable="page">
-                        <group delimiter=",">
+                        <group delimiter=", ">
                           <text variable="container-title" form="short" font-variant="small-caps"/>
                           <date variable="issued" form="text" date-parts="year-month-day"/>
                         </group>
