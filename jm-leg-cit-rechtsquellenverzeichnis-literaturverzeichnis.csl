@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always">
   <info>
-    <title>JM leg cit 4 mit Rechtsquellenverzeichnis und Literaturverzeichnis</title>
-    <title-short>JM leg cit 4 Fn mit RSV und LV</title-short>
-    <id>5e686d50-e96b-40b1-987c-83035259e3e8</id>
-    <link href="https://juris-m.github.io/styles/jm-leg-cit-3-rechtsquellenverzeichnis-literaturverzeichnis" rel="self"/>
+    <title>JM leg cit mit Rechtsquellenverzeichnis und Literaturverzeichnis</title>
+    <title-short>JM leg cit Fn mit RSV und LV</title-short>
+    <id>https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis</id>
+    <link href="https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <author>
       <name>Laurenz Liedermann</name>
@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-07-15T09:45:17+02:00</updated>
+    <updated>2020-08-18T14:40:39+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -422,7 +422,11 @@
           <if type="legal_case">
             <group delimiter=" ">
               <text macro="juris-main-short"/>
-              <text macro="juris-title-short"/>
+              <choose>
+                <if jurisdiction="at" match="none">
+                  <text macro="juris-title-short"/>
+                </if>
+              </choose>
             </group>
           </if>
           <else-if type="legislation">
