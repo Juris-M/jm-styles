@@ -152,7 +152,6 @@
   <macro name="jurism">
     <choose>
       <if position="ibid-with-locator">
-        <!-- Capitalize Ibid if first in note -->
         <group delimiter=" ">
           <text term="ibid" text-case="capitalize-first" font-style="italic"/>
           <group delimiter=" ">
@@ -167,7 +166,6 @@
         </group>
       </if>
       <else-if position="ibid">
-      <!-- Capitalize Ibid if first in note -->
         <text term="ibid" text-case="capitalize-first" font-style="italic"/>
       </else-if>
       <else-if position="subsequent" match="any">
