@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-08-18T14:40:39+02:00</updated>
+    <updated>2020-08-19T14:26:02+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -457,9 +457,11 @@
       <else>
         <choose>
           <if type="legal_case">
-            <group delimiter=" ">
-              <text macro="juris-main"/>
-              <text macro="juris-title"/>
+            <group delimiter=" = ">
+              <group delimiter=" ">
+                <text macro="juris-main"/>
+                <text macro="juris-title"/>
+              </group>
               <text macro="juris-tail"/>
             </group>
           </if>
