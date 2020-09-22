@@ -16,11 +16,11 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-09-15T23:40:30+02:00</updated>
+    <updated>2020-09-22T14:28:48+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
-    <style-options jurisdiction-preference="LegCit de"/>
+    <style-options jurisdiction-preference="LegCit deAT de"/>
     <terms>
       <term name="et-al">ea</term>
       <term name="editor" form="short">Hg</term>
@@ -418,6 +418,11 @@
   <macro name="jurism">
    <choose>
       <if context="citation">
+        <choose>
+          <if position="subsequent">
+            <text value=""/>
+          </if>
+        </choose>
         <!-- short form -->
         <group delimiter=" " parallel-delimiter-override=", ">
           <choose>
@@ -459,14 +464,28 @@
               </if>
             </choose>
             <choose>
-              <if match="none" type="regulation legislation">
+              <!--<if match="none" type="regulation legislation legal_case bill">-->
+              <if>
+                <conditions match="all">
+                  <condition match="none" type="bill"/>
+                  <condition variable="locator"/>
+                </conditions>
                 <group require="comma-safe">
-                  <text macro="juris-locator" label-form="symbol"/>
+                  <text macro="juris-locator"/>
                 </group>
               </if>
             </choose>
           </group>
-          <text macro="juris-locator"/>
+          <choose>
+            <if type="bill">
+              <text macro="juris-locator"/>
+            </if>
+          <else>
+              <group reject="comma-safe">
+                <text macro="juris-locator"/>
+              </group>
+            </else>
+          </choose>
           <text macro="juris-tail-short"/>
         </group>
       </if>
@@ -509,6 +528,7 @@
                       <text macro="juris-main" label-form="symbol"/>
                     </else>
                   </choose>
+                  <!--
                   <group delimiter=" " require="empty-label">
                     <text value="at"/>
                     <text macro="juris-locator" label-form="symbol"/>
@@ -521,9 +541,11 @@
                       </group>
                     </else>
                   </choose>
+                  -->
                 </group>
               </group>
             </group>
+            <!--
             <choose>
               <if type="legislation regulation" match="any">
                 <text macro="juris-locator" label-form="symbol"/>
@@ -534,6 +556,8 @@
                 </group>
               </else>
             </choose>
+            -->
+            <text macro="juris-locator" label-form="symbol"/>
             <!-- choose>
               <if type="legislation" variable="container-title page volume gazette-flag" match="all"/>
               <else -->
