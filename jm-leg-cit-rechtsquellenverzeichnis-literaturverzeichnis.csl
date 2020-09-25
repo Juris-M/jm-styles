@@ -276,10 +276,17 @@
               <group delimiter=" ">
                 <text variable="container-title"/>
                 <choose>
-                  <if variable="volume">
+                  <if variable="author title" match="none">
+                    <!-- article newspaper -->
+                    <group delimiter=", ">
+                      <text macro="full-date"/>
+                      <number variable="page"/>
+                    </group>
+                  </if>
+                  <else-if variable="volume">
                     <number variable="volume"/>
                     <text macro="year-date" prefix="(" suffix=")"/>
-                  </if>
+                  </else-if>
                   <else>
                     <group delimiter="/">
                       <number variable="issue"/>
@@ -359,7 +366,19 @@
               <text macro="title-short"/>
             </else>
           </choose>
-          <text macro="locator"/>
+          <choose>
+            <if locator="page">
+              <group require="comma-safe" prefix="(" suffix=")">
+                <text macro="locator"/>
+              </group>
+              <group reject="comma-safe">
+                <text macro="locator"/>
+              </group>
+            </if>
+            <else>
+              <text macro="locator"/>
+            </else>
+          </choose>
         </group>
       </if>
       <else-if>
@@ -373,9 +392,32 @@
         </group>
       </else-if>
       <else-if type="article-newspaper article-magazine">
-        <group delimiter=", ">
-          <text macro="author-title"/>
-          <text macro="locator"/>
+        <group delimiter=" ">
+          <group delimiter=", ">
+            <text macro="author-title"/>
+            <choose>
+              <if>
+                <conditions>
+                  <condition variable="author"/>
+                  <condition locator="page"/>
+                </conditions>
+                <text macro="locator"/>
+              </if>
+            </choose>
+          </group>
+          <choose>
+            <if>
+              <conditions>
+                <condition variable="author" match="none"/>
+                <condition variable="page"/>
+                <condition locator="page"/>
+              </conditions>
+              <text macro="locator" prefix="(" suffix=")"/>
+            </if>
+            <else-if locator="page" match="none">
+              <text macro="locator"/>
+            </else-if>
+          </choose>
         </group>
       </else-if>
       <else>
