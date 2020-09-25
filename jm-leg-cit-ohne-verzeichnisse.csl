@@ -195,25 +195,13 @@
   <macro name="locator">
     <group delimiter=" ">
       <choose>
-        <if>
-          <conditions>
-            <condition locator="page"/>
-            <condition variable="page"/>
-            <condition position="first"/>
-          </conditions>
-          <number variable="locator" prefix="(" suffix=")"/>
+        <if locator="page">
         </if>
+        <else-if locator="section">
+          <label variable="locator" form="symbol"/>
+        </else-if>
         <else>
-          <choose>
-            <if locator="page">
-            </if>
-            <else-if locator="section">
-              <label variable="locator" form="symbol"/>
-            </else-if>
-            <else>
-              <label variable="locator" form="short"/>
-            </else>
-          </choose>
+          <label variable="locator" form="short"/>
         </else>
       </choose>
       <number variable="locator"/>
@@ -390,6 +378,19 @@
                   </choose>
                 </else>
               </choose>
+              <choose>
+                <if locator="page">
+                  <group require="comma-safe" prefix="(" suffix=")">
+                    <text macro="locator"/>
+                  </group>
+                  <group reject="comma-safe">
+                    <text macro="locator"/>
+                  </group>
+                </if>
+                <else>
+                  <text macro="locator"/>
+                </else>
+              </choose>
             </if>
             <else-if variable="commenter">
               <!-- Code for legal commentaries -->
@@ -448,7 +449,6 @@
               </choose>
             </else>
           </choose>
-          <text macro="locator"/>
         </group>
       </if>
       <else-if>
@@ -462,9 +462,32 @@
         </group>
       </else-if>
       <else-if type="article-newspaper article-magazine">
-        <group delimiter=", ">
-          <text macro="author-title"/>
-          <text macro="locator"/>
+        <group delimiter=" ">
+          <group delimiter=", ">
+            <text macro="author-title"/>
+            <choose>
+              <if>
+                <conditions>
+                  <condition variable="author"/>
+                  <condition locator="page"/>
+                </conditions>
+                <text macro="locator"/>
+              </if>
+            </choose>
+          </group>
+          <choose>
+            <if>
+              <conditions>
+                <condition variable="author" match="none"/>
+                <condition variable="page"/>
+                <condition locator="page"/>
+              </conditions>
+              <text macro="locator" prefix="(" suffix=")"/>
+            </if>
+            <else-if locator="page" match="none">
+              <text macro="locator"/>
+            </else-if>
+          </choose>
         </group>
       </else-if>
       <else>
@@ -552,7 +575,8 @@
               <if>
                 <conditions match="all">
                   <condition match="none" type="bill"/>
-                  <condition variable="locator"/>
+                  <condition locator="page"/>
+                  <condition variable="page" match="none"/>
                 </conditions>
                 <group require="comma-safe">
                   <text macro="juris-locator"/>
@@ -564,11 +588,33 @@
             <if type="bill">
               <text macro="juris-locator"/>
             </if>
-            <else>
+            <else-if>
+              <conditions>
+                <condition locator="page"/>
+                <condition variable="page" match="none"/>
+              </conditions>
               <group reject="comma-safe">
                 <text macro="juris-locator"/>
               </group>
-            </else>
+            </else-if>
+            <else-if locator="page" variable="page">
+              <group require="comma-safe" prefix="(" suffix=")">
+                <text macro="juris-locator"/>
+              </group>
+              <group reject="comma-safe">
+                <text macro="juris-locator"/>
+              </group>
+            </else-if>
+            <else-if variable="locator">
+              <choose>
+                <if locator="section">
+                  <text macro="juris-locator" label-form="symbol"/>
+                </if>
+                <else>
+                  <text macro="juris-locator" label-form="short"/>
+                </else>
+              </choose>
+            </else-if>
           </choose>
           <text macro="juris-tail-short"/>
         </group>
@@ -609,13 +655,59 @@
                       <text macro="juris-main" label-form="symbol"/>
                     </else-if>
                     <else>
-                      <text macro="juris-main" label-form="symbol"/>
+                      <text macro="juris-main"/>
                     </else>
                   </choose>
                 </group>
               </group>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="none" type="bill"/>
+                    <condition locator="page"/>
+                    <condition variable="page" match="none"/>
+                  </conditions>
+                  <group require="comma-safe">
+                    <text macro="juris-locator"/>
+                  </group>
+                </if>
+              </choose>
             </group>
-            <text macro="juris-locator"/>
+            <choose>
+              <if type="bill">
+                <text macro="juris-locator"/>
+              </if>
+              <else-if>
+                <conditions>
+                  <condition locator="page"/>
+                  <condition variable="page" match="none"/>
+                </conditions>
+                <group reject="comma-safe">
+                  <text macro="juris-locator"/>
+                </group>
+              </else-if>
+              <else-if locator="page" variable="page">
+                <group require="comma-safe" prefix="(" suffix=")">
+                  <text macro="juris-locator"/>
+                </group>
+                <group reject="comma-safe">
+                  <text macro="juris-locator"/>
+                </group>
+              </else-if>
+              <else-if variable="locator">
+                <choose>
+                  <if locator="section">
+                    <text macro="juris-locator" label-form="symbol"/>
+                  </if>
+                  <else>
+                    <text macro="juris-locator" label-form="short"/>
+                  </else>
+                </choose>
+              </else-if>
+              <else>
+                <text macro="juris-locator"/>
+              </else>
+            </choose>
             <text macro="juris-tail"/>
           </group>
           <choose>
@@ -702,13 +794,15 @@
                 <text macro="title-volume-date"/>
               </else>
             </choose>
-            <group require="comma-safe">
+          </group>
+          <choose>
+            <if locator="page" variable="page">
+              <text macro="locator" prefix="(" suffix=")"/>
+            </if>
+            <else>
               <text macro="locator"/>
-            </group>
-          </group>
-          <group reject="comma-safe">
-            <text macro="locator"/>
-          </group>
+            </else>
+          </choose>
           <text macro="URL"/>
           <choose>
             <if type="chapter" match="none">
