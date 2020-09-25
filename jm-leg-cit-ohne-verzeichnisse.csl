@@ -621,7 +621,7 @@
       </if>
       <else>
         <!-- full form -->
-        <group delimiter=", " parallel-delimiter-override=", ">
+        <group delimiter=", ">
           <group delimiter=" ">
             <group delimiter=", ">
               <choose>
