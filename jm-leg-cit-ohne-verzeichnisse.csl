@@ -302,10 +302,17 @@
               <group delimiter=" ">
                 <text variable="container-title"/>
                 <choose>
-                  <if variable="volume">
+                  <if variable="author title" match="none">
+                    <!-- article newspaper -->
+                    <group delimiter=", ">
+                      <text macro="full-date"/>
+                      <number variable="page"/>
+                    </group>
+                  </if>
+                  <else-if variable="volume">
                     <number variable="volume"/>
                     <text macro="year-date" prefix="(" suffix=")"/>
-                  </if>
+                  </else-if>
                   <else>
                     <group delimiter="/">
                       <number variable="issue"/>
