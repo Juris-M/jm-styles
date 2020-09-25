@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-09-22T14:28:48+02:00</updated>
+    <updated>2020-09-25T10:03:28+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -708,7 +708,7 @@
       </choose>
     </layout>
   </citation>
-  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true">
+  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-chapter-items="true">
     <sort>
       <key macro="type-sort"/>
       <key macro="jurisdiction-sort"/>
