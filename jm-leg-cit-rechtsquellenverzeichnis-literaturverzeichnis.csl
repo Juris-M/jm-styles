@@ -510,7 +510,8 @@
               <if>
                 <conditions match="all">
                   <condition match="none" type="bill"/>
-                  <condition variable="locator"/>
+                  <condition locator="page"/>
+                  <condition variable="page" match="none"/>
                 </conditions>
                 <group require="comma-safe">
                   <text macro="juris-locator"/>
@@ -522,11 +523,33 @@
             <if type="bill">
               <text macro="juris-locator"/>
             </if>
-          <else>
+            <else-if>
+              <conditions>
+                <condition locator="page"/>
+                <condition variable="page" match="none"/>
+              </conditions>
               <group reject="comma-safe">
                 <text macro="juris-locator"/>
               </group>
-            </else>
+            </else-if>
+            <else-if locator="page" variable="page">
+              <group require="comma-safe" prefix="(" suffix=")">
+                <text macro="juris-locator"/>
+              </group>
+              <group reject="comma-safe">
+                <text macro="juris-locator"/>
+              </group>
+            </else-if>
+            <else-if variable="locator">
+              <choose>
+                <if locator="section">
+                  <text macro="juris-locator" label-form="symbol"/>
+                </if>
+                <else>
+                  <text macro="juris-locator" label-form="short"/>
+                </else>
+              </choose>
+            </else-if>
           </choose>
           <text macro="juris-tail-short"/>
         </group>
