@@ -467,7 +467,7 @@
           </if>
         </choose>
         <!-- short form -->
-        <group delimiter=" " parallel-delimiter-override=", ">
+        <group delimiter=" ">
           <choose>
             <if type="bill">
               <number variable="locator-extra"/>
@@ -534,7 +534,7 @@
       </if>
       <else>
         <!-- full form -->
-        <group delimiter=", " parallel-delimiter-override=", ">
+        <group delimiter=", ">
           <group delimiter=" ">
             <group delimiter=", ">
               <choose>
