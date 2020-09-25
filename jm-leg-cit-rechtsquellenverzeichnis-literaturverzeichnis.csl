@@ -507,7 +507,6 @@
               </if>
             </choose>
             <choose>
-              <!--<if match="none" type="regulation legislation legal_case bill">-->
               <if>
                 <conditions match="all">
                   <condition match="none" type="bill"/>
@@ -571,48 +570,12 @@
                       <text macro="juris-main" label-form="symbol"/>
                     </else>
                   </choose>
-                  <!--
-                  <group delimiter=" " require="empty-label">
-                    <text value="at"/>
-                    <text macro="juris-locator" label-form="symbol"/>
-                  </group>
-                  <choose>
-                    <if type="legislation regulation" match="any"/>
-                    <else>
-                      <group require="comma-safe">
-                        <text macro="juris-locator" label-form="symbol"/>
-                      </group>
-                    </else>
-                  </choose>
-                  -->
                 </group>
               </group>
             </group>
-            <!--
-            <choose>
-              <if type="legislation regulation" match="any">
-                <text macro="juris-locator" label-form="symbol"/>
-              </if>
-              <else>
-                <group reject="comma-safe">
-                  <text macro="juris-locator" label-form="symbol"/>
-                </group>
-              </else>
-            </choose>
-            -->
             <text macro="juris-locator" label-form="symbol"/>
-            <!-- choose>
-              <if type="legislation" variable="container-title page volume gazette-flag" match="all"/>
-              <else -->
-                <text macro="juris-tail"/>
-              <!-- /else>
-            </choose -->
+            <text macro="juris-tail"/>
           </group>
-          <!-- choose>
-            <if type="legislation" variable="container-title page volume gazette-flag" match="all">
-              <text macro="juris-tail"/>
-            </if>
-          </choose -->
           <choose>
             <if>
               <conditions match="all">
