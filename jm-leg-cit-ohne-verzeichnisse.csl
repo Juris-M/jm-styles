@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-09-25T17:33:46+02:00</updated>
+    <updated>2020-09-26T00:29:23+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -630,12 +630,16 @@
                 </if>
               </choose>
               <choose>
-                <if type="hearing" match="any">
-                  <text macro="juris-title" font-style="italic"/>
+                <if type="hearing report legal_case" match="any">
+                  <choose>
+                    <if variable="admin-flag" type="patent report" match="any">
+                      <text macro="juris-title"/>
+                    </if>
+                    <else>
+                      <text macro="juris-title" font-style="italic"/>
+                    </else>
+                  </choose>
                 </if>
-                <else>
-                  <text macro="juris-title"/>
-                </else>
               </choose>
               <group delimiter=" ">
                 <group delimiter=", ">
