@@ -727,14 +727,7 @@
   <macro name="long-citation">
     <group delimiter=" ">
       <choose>
-        <if>
-          <conditions match="all">
-            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
-            <condition match="all" variable="jurisdiction"/>
-          </conditions>
-          <text macro="jurism"/>
-        </if>
-        <else-if type="legislation bill" match="any">
+        <if type="legislation bill" match="any">
           <group delimiter=", ">
             <text variable="title"/>
             <group delimiter=" ">
@@ -823,20 +816,16 @@
   <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
       <choose>
-        <if position="subsequent">
-          <choose>
-            <if>
-              <conditions match="all">
-                <condition match="any" type="legal_case legislation bill hearing report regulation"/>
-                <condition match="all" variable="jurisdiction"/>
-              </conditions>
-              <text macro="jurism"/>
-            </if>
-            <else>
-              <text macro="short-cite"/>
-            </else>
-          </choose>
+        <if>
+          <conditions match="all">
+            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
+            <condition match="all" variable="jurisdiction"/>
+          </conditions>
+          <text macro="jurism"/>
         </if>
+        <else-if position="subsequent" match="any">
+          <text macro="short-cite"/>
+        </else-if>
         <else>
           <text macro="long-citation"/>
         </else>
