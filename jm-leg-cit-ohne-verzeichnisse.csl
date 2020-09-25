@@ -20,7 +20,7 @@
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
-    <style-options jurisdiction-preference="LegCit deAT de"/>
+    <style-options jurisdiction-preference="de deAT LegCit"/>
     <terms>
       <term name="et-al">ea</term>
       <term name="editor" form="short">Hg</term>
