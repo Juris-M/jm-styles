@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" track-container-items="chapter legal_commentary">
   <info>
     <title>JM leg cit ohne Verzeichnisse</title>
     <title-short>JM leg cit ohne Verzeichnisse</title-short>
@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-09-26T00:29:23+02:00</updated>
+    <updated>2020-09-27T23:04:46+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -321,7 +321,7 @@
       </else>
     </choose>
   </macro>
-  <macro name="short-cite">
+  <macro name="short-citation">
     <group delimiter=" ">
       <choose>
         <if type="legal_commentary">
@@ -659,6 +659,68 @@
     </choose>
   </macro>
 
+  <macro name="container-subsequent-citation">
+    <group delimiter=" ">
+      <choose>
+        <if type="legal_commentary">
+          <group delimiter=", ">
+            <group delimiter=" ">
+              <text macro="author-short"/>
+              <text term="in"/>
+              <group delimiter=", ">
+                <text macro="editor-short"/>
+                <text macro="container-title"/>
+              </group>
+              <text macro="title"/>
+              <choose>
+                <if locator="page" match="none">
+                  <text macro="locator"/>
+                </if>
+                <else>
+                  <group reject="comma-safe">
+                    <text macro="locator"/>
+                  </group>
+                </else>
+              </choose>
+            </group>
+            <group require="comma-safe">
+              <text macro="locator"/>
+            </group>
+          </group>
+        </if>
+        <else>
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <text macro="title"/>
+            <text term="in"/>
+          </group>
+          <choose>
+            <if variable="container-title-short">
+              <text variable="container-title-short"/>
+            </if>
+            <else>
+              <text macro="editor-short"/>
+            </else>
+          </choose>
+          <number variable="page"/>
+          <choose>
+            <if locator="page">
+              <group require="comma-safe" prefix="(" suffix=")">
+                <text macro="locator"/>
+              </group>
+              <group reject="comma-safe">
+                <text macro="locator"/>
+              </group>
+            </if>
+            <else>
+              <text macro="locator"/>
+            </else>
+          </choose>
+        </else>
+      </choose>
+    </group>
+  </macro>
+
   <macro name="long-citation">
     <group delimiter=" ">
       <choose>
@@ -748,6 +810,21 @@
       </choose>
     </group>
   </macro>
+
+  <macro name="citation">
+    <choose>
+      <if position="subsequent" match="any">
+        <text macro="short-citation"/>
+      </if>
+      <else-if position="container-subsequent">
+        <text macro="container-subsequent-citation"/>
+      </else-if>
+      <else>
+        <text macro="long-citation"/>
+      </else>
+    </choose>
+  </macro>
+
   <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
       <choose>
@@ -758,11 +835,8 @@
           </conditions>
           <text macro="jurism"/>
         </if>
-        <else-if position="subsequent" match="any">
-          <text macro="short-cite"/>
-        </else-if>
         <else>
-          <text macro="long-citation"/>
+          <text macro="citation"/>
         </else>
       </choose>
     </layout>
