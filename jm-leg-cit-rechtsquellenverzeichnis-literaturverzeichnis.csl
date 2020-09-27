@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-09-25T10:03:28+02:00</updated>
+    <updated>2020-09-27T22:54:50+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -320,7 +320,7 @@
       </else>
     </choose>
   </macro>
-  <macro name="short-cite">
+  <macro name="short-citation">
     <group delimiter=" ">
       <choose>
         <if type="legal_commentary">
@@ -421,6 +421,64 @@
       </choose>
     </group>
   </macro>
+
+  <macro name="long-citation">
+    <group delimiter=" ">
+      <choose>
+        <if type="legislation bill" match="any">
+          <group delimiter=", ">
+            <text variable="title"/>
+            <group delimiter=" ">
+              <text variable="container-title"/>
+              <number variable="volume"/>
+              <group delimiter="/">
+                <number variable="number"/>
+                <text macro="full-date"/>
+              </group>
+              <group delimiter=" ">
+                <text value="idF"/>
+                <text variable="references"/>
+              </group>
+            </group>
+          </group>
+        </if>
+        <else-if type="legal_commentary">
+          <group delimiter=" ">
+            <group delimiter=", ">
+              <text macro="editor-suffix"/>
+              <text macro="container-title"/>
+            </group>
+            <group delimiter=" " prefix="(" suffix=")">
+              <number variable="collection-number"/>
+              <text macro="year-date"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <choose>
+              <if variable="container-title">
+                <text macro="title"/>
+                <text macro="container-date-locator"/>
+              </if>
+              <else>
+                <text macro="title-volume-date"/>
+              </else>
+            </choose>
+          </group>
+          <text macro="URL"/>
+          <choose>
+            <if type="chapter" match="none">
+              <text variable="title-short" prefix="[" suffix="]"/>
+            </if>
+            <else-if variable="container-title-short editor collection-editor container-author" match="none">
+              <text variable="title-short" prefix="[" suffix="]"/>
+            </else-if>
+          </choose>
+        </else>
+      </choose>
+    </group>
   </macro>
 
   <!-- Juris-M scaffolding -->
@@ -624,6 +682,7 @@
       </else>
     </choose>
   </macro>
+
   <macro name="jurisdiction-sort">
     <choose>
       <if type="legal_case regulation legislation bill">
@@ -641,6 +700,7 @@
       </if>
     </choose>
   </macro>
+
   <macro name="type-sort-legal">
     <choose>
       <if type="legal_case">
@@ -685,24 +745,31 @@
       </else-if>
     </choose>
   </macro>
- 
+
+  <macro name="citation">
+    <choose>
+      <if>
+        <conditions match="all">
+          <condition match="any" type="legal_case legislation bill hearing report regulation"/>
+          <condition match="all" variable="jurisdiction"/>
+        </conditions>
+        <text macro="jurism"/>
+      </if>
+      <else-if context="citation">
+        <text macro="short-citation"/>
+      </else-if>
+      <else>
+        <text macro="long-citation"/>
+      </else>
+    </choose>
+  </macro>
+
   <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
-      <choose>
-        <if>
-          <conditions match="all">
-            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
-            <condition match="all" variable="jurisdiction"/>
-          </conditions>
-          <text macro="jurism"/>
-        </if>
-        <else>
-          <text macro="short-cite"/>
-        </else>
-      </choose>
+      <text macro="citation"/>
     </layout>
   </citation>
-  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-chapter-items="true">
+  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">
     <sort>
       <key macro="type-sort"/>
       <key macro="jurisdiction-sort"/>
@@ -711,77 +778,7 @@
       <key variable="issued" sort="descending"/>
     </sort>
     <layout suffix=".">
-      <group delimiter=" ">
-        <choose>
-          <if>
-            <conditions match="all">
-              <condition match="any" type="legal_case legislation bill hearing report regulation"/>
-              <condition match="all" variable="jurisdiction"/>
-            </conditions>
-            <text macro="jurism"/>
-          </if>
-          <else-if type="legislation bill" match="any">
-            <group delimiter=", ">
-              <text variable="title"/>
-              <group delimiter=" ">
-                <text variable="container-title"/>
-                <number variable="volume"/>
-                <group delimiter="/">
-                  <number variable="number"/>
-                  <text macro="full-date"/>
-                </group>
-                <group delimiter=" ">
-                  <text value="idF"/>
-                  <text variable="references"/>
-                </group>
-              </group>
-            </group>
-          </else-if>
-          <else-if>
-            <conditions match="all">
-              <condition type="chapter"/>
-              <condition variable="page" match="none"/>
-            </conditions>
-            <group delimiter=" ">
-            <group delimiter=", ">
-              <text macro="editor-suffix"/>
-              <text macro="container-title"/>
-            </group>
-            <group delimiter=" " prefix="(" suffix=")">
-              <number variable="collection-number"/>
-              <text macro="year-date"/>
-            </group>
-              </group>
-          </else-if>
-          <else>
-            <group delimiter=", ">
-              <text macro="author-short"/>
-              <choose>
-                <if variable="container-title">
-                  <text macro="title"/>
-                  <text macro="container-date-locator"/>
-                </if>
-                <else>
-                  <text macro="title-volume-date"/>
-                </else>
-              </choose>
-            </group>
-            <text macro="URL"/>
-            <choose>
-              <if type="chapter" match="none">
-                <text variable="title-short" prefix="[" suffix="]"/>
-              </if>
-              <else-if>
-                <conditions match="all">
-                  <condition variable="container-title-short editor collection-editor container-author" match="none"/>
-                  <condition variable="page" match="any"/>
-                </conditions>
-                <text variable="title-short" prefix="[" suffix="]"/>
-              </else-if>
-            </choose>
-          </else>
-        </choose>
-      </group>
+      <text macro="citation"/>
     </layout>
   </bibliography>
 </style>
