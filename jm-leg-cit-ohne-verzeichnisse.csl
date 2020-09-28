@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-09-28T22:11:01+02:00</updated>
+    <updated>2020-09-28T23:39:20+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -67,13 +67,13 @@
     <choose>
       <if variable="editor">
         <names variable="editor">
-          <name form="short"/>
+          <name delimiter="/"/>
           <label prefix=" (" suffix=")"/>
         </names>
       </if>
       <else-if variable="collection-editor">
         <names variable="collection-editor">
-          <name form="short"/>
+          <name delimiter="/"/>
           <label prefix=" (" suffix=")"/>
         </names>
       </else-if>
@@ -81,6 +81,7 @@
   </macro>
   <macro name="editor-suffix">
     <names variable="editor">
+      <name delimiter="/"/>
       <label form="short" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="collection-editor"/>
@@ -90,6 +91,7 @@
   </macro>
   <macro name="editor-short">
     <names variable="editor">
+      <name delimiter="/"/>
       <substitute>
         <names variable="collection-editor"/>
         <names variable="container-author"/>
