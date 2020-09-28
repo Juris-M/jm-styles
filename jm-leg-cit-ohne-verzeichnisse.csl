@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-09-27T23:11:15+02:00</updated>
+    <updated>2020-09-28T22:11:01+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -31,10 +31,6 @@
         <single>Art</single>
         <multiple>Art</multiple>
       </term>
-      <term name="chapter" form="short">
-        <single>Rz</single>
-        <multiple>Rz</multiple>
-      </term>
       <term name="note" form="short">
         <single>Fn</single>
         <multiple>Fn</multiple>
@@ -42,6 +38,14 @@
       <term name="paragraph" form="short">
         <single>Abs</single>
         <multiple>Abs</multiple>
+      </term>
+      <term name="randnummer">
+        <single>Randziffer</single>
+        <multiple>Randziffern</multiple>
+      </term>
+      <term name="randnummer" form="short">
+        <single>Rz</single>
+        <multiple>Rz</multiple>
       </term>
     </terms>
   </locale>
