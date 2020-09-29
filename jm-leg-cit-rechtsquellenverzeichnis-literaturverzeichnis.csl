@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-09-28T23:38:28+02:00</updated>
+    <updated>2020-09-29T15:40:30+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -67,13 +67,11 @@
     <choose>
       <if variable="editor">
         <names variable="editor">
-          <name delimiter="/"/>
           <label prefix=" (" suffix=")"/>
         </names>
       </if>
       <else-if variable="collection-editor">
         <names variable="collection-editor">
-          <name delimiter="/"/>
           <label prefix=" (" suffix=")"/>
         </names>
       </else-if>
@@ -81,7 +79,6 @@
   </macro>
   <macro name="editor-suffix">
     <names variable="editor">
-      <name delimiter="/"/>
       <label form="short" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="collection-editor"/>
@@ -91,7 +88,6 @@
   </macro>
   <macro name="editor-short">
     <names variable="editor">
-      <name delimiter="/"/>
       <substitute>
         <names variable="collection-editor"/>
         <names variable="container-author"/>
@@ -134,7 +130,6 @@
     <choose>
       <if type="legal_case">
         <names variable="author">
-          <name form="short"/>
           <substitute>
             <names variable="editor"/>
             <names variable="translator"/>
@@ -145,7 +140,6 @@
       </if>
       <else>
         <names variable="author" font-style="italic">
-          <name delimiter="/"/>
           <et-al term="et-al"/>
           <substitute>
             <text macro="editor-suffix"/>
