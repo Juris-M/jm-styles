@@ -162,7 +162,7 @@
     <date variable="issued">
       <date-part name="day" form="numeric-leading-zeros" suffix="."/>
       <date-part name="month" form="numeric-leading-zeros" suffix="."/>
-      <date-part name="year" form="long" suffix=""/>
+      <date-part name="year" form="long"/>
     </date>
   </macro>
   <macro name="locator">
