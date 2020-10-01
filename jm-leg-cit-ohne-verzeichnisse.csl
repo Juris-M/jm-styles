@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-09-29T16:15:13+02:00</updated>
+    <updated>2020-10-01T15:34:19+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -517,18 +517,11 @@
                 <text macro="year-date"/>
               </group>
               <text macro="title"/>
-              <choose>
-                <if locator="page" match="none">
-                  <text macro="locator"/>
-                </if>
-                <else>
-                  <group reject="comma-safe">
-                    <text macro="locator"/>
-                  </group>
-                </else>
-              </choose>
+              <group reject="comma-safe-numbers-only">
+                <text macro="locator"/>
+              </group>
             </group>
-            <group require="comma-safe">
+            <group require="comma-safe-numbers-only">
               <text macro="locator"/>
             </group>
           </group>
@@ -545,15 +538,13 @@
                 <text macro="title-volume-date"/>
               </else>
             </choose>
-          </group>
-          <choose>
-            <if locator="page" variable="page">
-              <text macro="locator" prefix="(" suffix=")"/>
-            </if>
-            <else>
+            <group require="comma-safe-numbers-only">
               <text macro="locator"/>
-            </else>
-          </choose>
+            </group>
+          </group>
+          <group reject="comma-safe-numbers-only">
+            <text macro="locator"/>
+          </group>
           <text macro="URL"/>
           <choose>
             <if type="chapter" match="none">
@@ -643,34 +634,31 @@
             <choose>
               <if>
                 <conditions match="all">
-                  <condition match="none" type="bill"/>
+                    <!--<condition match="none" type="bill"/>-->
                   <condition locator="page"/>
                   <condition variable="page" match="none"/>
                 </conditions>
-                <group require="comma-safe">
+                <group require="comma-safe-numbers-only">
                   <text macro="juris-locator"/>
                 </group>
               </if>
             </choose>
           </group>
           <choose>
-            <if type="bill">
-              <text macro="juris-locator"/>
-            </if>
-            <else-if>
+            <if>
               <conditions>
                 <condition locator="page"/>
                 <condition variable="page" match="none"/>
               </conditions>
-              <group reject="comma-safe">
+              <group reject="comma-safe-numbers-only">
                 <text macro="juris-locator"/>
               </group>
-            </else-if>
+            </if>
             <else-if locator="page" variable="page">
-              <group require="comma-safe" prefix="(" suffix=")">
-                <text macro="juris-locator"/>
+              <group require="comma-safe-numbers-only">
+                <text macro="juris-locator" prefix="(" suffix=")"/>
               </group>
-              <group reject="comma-safe">
+              <group reject="comma-safe-numbers-only">
                 <text macro="juris-locator"/>
               </group>
             </else-if>
@@ -736,34 +724,30 @@
               <choose>
                 <if>
                   <conditions match="all">
-                    <condition match="none" type="bill"/>
                     <condition locator="page"/>
                     <condition variable="page" match="none"/>
                   </conditions>
-                  <group require="comma-safe">
+                  <group require="comma-safe-numbers-only">
                     <text macro="juris-locator"/>
                   </group>
                 </if>
               </choose>
             </group>
             <choose>
-              <if type="bill">
-                <text macro="juris-locator"/>
-              </if>
-              <else-if>
+              <if>
                 <conditions>
                   <condition locator="page"/>
                   <condition variable="page" match="none"/>
                 </conditions>
-                <group reject="comma-safe">
+                <group reject="comma-safe-numbers-only">
                   <text macro="juris-locator"/>
                 </group>
-              </else-if>
+              </if>
               <else-if locator="page" variable="page">
-                <group require="comma-safe" prefix="(" suffix=")">
+                <group require="comma-safe-numbers-only" prefix="(" suffix=")">
                   <text macro="juris-locator"/>
                 </group>
-                <group reject="comma-safe">
+                <group reject="comma-safe-numbers-only">
                   <text macro="juris-locator"/>
                 </group>
               </else-if>
