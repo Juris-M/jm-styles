@@ -310,7 +310,6 @@
     <group delimiter=" ">
       <choose>
         <if type="legal_commentary">
-          <!-- Code for legal commentaries -->
           <text macro="author-short"/>
           <text term="in"/>
           <group delimiter=", ">

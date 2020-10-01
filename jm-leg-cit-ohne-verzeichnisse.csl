@@ -499,7 +499,6 @@
           </group>
         </if>
         <else-if type="legal_commentary">
-          <!-- Code for legal commentaries -->
           <group delimiter=", ">
             <group delimiter=" ">
               <text macro="author-short"/>
@@ -555,11 +554,7 @@
             <if type="chapter" match="none">
               <text variable="title-short" prefix="[" suffix="]"/>
             </if>
-            <else-if>
-              <conditions match="all">
-                <condition variable="container-title-short editor collection-editor container-author" match="none"/>
-                <condition variable="page" match="any"/>
-              </conditions>
+            <else-if variable="container-title-short editor collection-editor container-author" match="none">
               <text variable="title-short" prefix="[" suffix="]"/>
             </else-if>
           </choose>
