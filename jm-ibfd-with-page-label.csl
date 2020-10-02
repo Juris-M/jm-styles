@@ -89,14 +89,7 @@
           <text macro="country-code"/>
           <choose>
             <if jurisdiction="eu.int:cjeu" variable="author">
-              <group delimiter=" ">
-                <text value="Opinion of"/>
-                <names variable="authority">
-                  <name/>
-                  <institution/>
-                </names>
-                <text macro="name-macro"/>
-              </group>
+              <text macro="name-macro" prefix="Opinion of Advocate General "/>
             </if>
             <else>
               <names variable="authority">
