@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-09-30T15:03:09+02:00</updated>
+    <updated>2020-10-03T00:34:53+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -113,16 +113,30 @@
       <label form="short" prefix=" "/>
     </names>
   </macro>
+  <macro name="translation-version">
+    <group delimiter=" " prefix="[" suffix="]">
+      <choose>
+        <if variable="alt-title">
+          <alternative>
+            <alternative-text/>
+          </alternative>
+        </if>
+      </choose>
+      <text variable="version"/>
+    </group>
+  </macro>
   <macro name="title-version">
     <group delimiter=" ">
       <text variable="title"/>
-      <text variable="version" prefix="[" suffix="]"/>
+      <text macro="translation-version"/>
     </group>
   </macro>
   <macro name="title-italic-version">
     <group delimiter=" ">
       <text variable="title" font-style="italic"/>
-      <text variable="version" prefix="[" suffix="]"/>
+      <text macro="translation-version"/>
+    </group>
+  </macro>
   <macro name="series">
     <group delimiter=" ">
       <text variable="collection-title"/>
@@ -670,6 +684,9 @@
       <key macro="sort-title"/>
       <key variable="issued" sort="descending"/>
     </sort>
+    <layout locale="en">
+      <text macro="long-citation" suffix="."/>
+    </layout>
     <layout>
       <text macro="long-citation" suffix="."/>
     </layout>
