@@ -123,6 +123,10 @@
     <group delimiter=" ">
       <text variable="title" font-style="italic"/>
       <text variable="version" prefix="[" suffix="]"/>
+  <macro name="series">
+    <group delimiter=" ">
+      <text variable="collection-title"/>
+      <number variable="collection-number" prefix="No. "/>
     </group>
   </macro>
   <macro name="access">
@@ -297,6 +301,7 @@
               <number variable="edition"/>
             </else>
           </choose>
+          <text macro="series"/>
           <group delimiter=" ">
             <text variable="publisher"/>
             <text macro="date-issued"/>
