@@ -284,9 +284,16 @@
   </macro>
   <macro name="issuance">
     <choose>
-      <if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="any">
-        <text macro="date-issued"/>
+      <if type="article-journal">
+        <choose>
+          <if variable="volume">
+            <text macro="date-issued"/>
+          </if>
+        </choose>
       </if>
+      <else-if type="article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="any">
+        <text macro="date-issued"/>
+      </else-if>
       <else-if type="legal_case" match="none">
         <group delimiter=", ">
           <text macro="editor-translator"/>
@@ -340,10 +347,32 @@
           <text term="in" font-style="normal"/>
           <text variable="container-title" font-style="italic"/>
         </if>
-        <else-if type="article-journal article-newspaper" match="any">
-          <number variable="volume"/>
+        <else-if type="article-journal article-newspaper article-magazine" match="any">
+          <choose>
+            <if>
+              <conditions>
+                <condition type="article-journal"/>
+                <condition variable="volume" match="none"/>
+              </conditions>
+              <text macro="date-issued"/>
+            </if>
+            <else>
+              <number variable="volume"/>
+            </else>
+          </choose>
           <text variable="container-title" form="short"/>
-          <number variable="issue"/>
+          <choose>
+            <if>
+              <conditions>
+                <condition type="article-journal"/>
+                <condition variable="issue" match="none"/>
+              </conditions>
+              <number variable="page"/>
+            </if>
+            <else>
+              <number variable="issue"/>
+            </else>
+          </choose>
         </else-if>
         <else-if type="legal_case legislation">
           <text variable="container-title" form="short"/>
