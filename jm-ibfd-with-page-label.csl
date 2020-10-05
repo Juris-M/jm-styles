@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-10-03T00:34:53+02:00</updated>
+    <updated>2020-10-05T11:58:10+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -56,7 +56,11 @@
   </locale>
   <macro name="country-code">
     <choose>
-      <if jurisdiction="eu.int:cjeu">
+      <if>
+        <conditions match="any">
+          <condition country="eu.int arb.cls un.int icc.int"/>
+          <condition variable="jurisdiction" match="none"/>
+        </conditions>
         <text variable="genre"/>
       </if>
       <else>
@@ -88,7 +92,7 @@
         <group delimiter=": ">
           <text macro="country-code"/>
           <choose>
-            <if jurisdiction="eu.int:cjeu" variable="author">
+            <if country="eu.int" variable="author">
               <text macro="name-macro" prefix="Opinion of Advocate General "/>
             </if>
             <else>
@@ -154,7 +158,7 @@
       <if type="legislation">
         <group delimiter=" ">
           <choose>
-            <if jurisdiction="eu.int" match="none">
+            <if country="eu.int" match="none">
               <group delimiter=": ">
                 <text variable="country" text-case="uppercase"/>
                 <group delimiter=", ">
@@ -242,7 +246,7 @@
                 <text macro="date-issued"/>
                 <choose>
                   <!-- EU case law -->
-                  <if jurisdiction="eu.int:cjeu">
+                  <if country="eu.int">
                     <group delimiter=" ">
                       <text value="Case"/>
                       <number variable="number"/>
@@ -436,7 +440,7 @@
         </else-if>
         <else-if type="legislation">
           <choose>
-            <if jurisdiction="eu.int">
+            <if country="eu.int">
               <text variable="title-short"/>
               <text macro="eu-law-year-number"/>
             </if>
@@ -489,7 +493,7 @@
             <if type="legislation">
               <text variable="title-short"/>
               <choose>
-                <if jurisdiction="eu.int" match="none">
+                <if country="eu.int" match="none">
                   <text macro="year-issued"/>
                   <text macro="date-amended"/>
                 </if>
@@ -528,7 +532,7 @@
               <group delimiter=" ">
                 <choose>
                   <!-- EU case law -->
-                  <if variable="jurisdiction" jurisdiction="eu.int:cjeu">
+                  <if variable="jurisdiction" country="eu.int">
                     <choose>
                       <if variable="author">
                         <names variable="authority" suffix=" Opinion in">
@@ -583,7 +587,7 @@
       </if>
       <else-if type="legislation">
         <choose>
-          <if jurisdiction="eu.int" match="none">
+          <if country="eu.int" match="none">
             <text value="jurisdiction"/>
           </if>
           <else>

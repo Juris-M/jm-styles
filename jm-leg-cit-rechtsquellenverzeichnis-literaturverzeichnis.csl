@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-10-02T14:38:00+02:00</updated>
+    <updated>2020-10-03T10:49:25+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -660,14 +660,14 @@
     <choose>
       <if type="legal_case regulation legislation bill">
         <choose>
-          <if jurisdiction="eu.int">
+          <if country="eu.int">
             <text value="1"/>
           </if>
-          <else-if jurisdiction="at">
+          <else-if country="at">
             <text value="2"/>
           </else-if>
           <else>
-            <text value="jurisdiction"/>
+            <text variable="country"/>
           </else>
         </choose>
       </if>
@@ -679,7 +679,7 @@
       <if type="legal_case">
         <text value="1"/>
         <choose>
-          <if jurisdiction="at">
+          <if country="at">
             <choose>
               <if court-class="o1">
                 <text value="1"/>
