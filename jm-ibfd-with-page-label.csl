@@ -532,7 +532,7 @@
               <group delimiter=" ">
                 <choose>
                   <!-- EU case law -->
-                  <if variable="jurisdiction" country="eu.int">
+                  <if country="eu.int">
                     <choose>
                       <if variable="author">
                         <names variable="authority" suffix=" Opinion in">
