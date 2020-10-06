@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-10-06T13:36:44+02:00</updated>
+    <updated>2020-10-07T01:12:48+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -34,6 +34,10 @@
       <term name="note" form="short">
         <single>Fn</single>
         <multiple>Fn</multiple>
+      </term>
+      <term name="number" form="short">
+        <single>Nr</single>
+        <multiple>Nr</multiple>
       </term>
       <term name="paragraph" form="short">
         <single>Abs</single>
