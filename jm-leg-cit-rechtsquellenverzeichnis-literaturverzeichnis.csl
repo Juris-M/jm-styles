@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-10-06T23:32:00+02:00</updated>
+    <updated>2020-10-07T15:50:27+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -518,20 +518,6 @@
             <group require="comma-safe-numbers-only">
               <text macro="juris-locator"/>
             </group>
-            <!--
-            <choose>
-              <if>
-                <conditions match="all">
-                  <condition match="none" type="bill"/>
-                  <condition locator="page"/>
-                  <condition variable="page" match="none"/>
-                </conditions>
-                <group require="comma-safe">
-                  <text macro="juris-locator"/>
-                </group>
-              </if>
-            </choose>
-            -->
           </group>
           <choose>
             <if variable="locator">
@@ -549,40 +535,6 @@
               </choose>
             </if>
           </choose>
-          <!--
-          <choose>
-            <if type="bill">
-              <text macro="juris-locator"/>
-            </if>
-            <else-if>
-              <conditions>
-                <condition locator="page"/>
-                <condition variable="page" match="none"/>
-              </conditions>
-              <group reject="comma-safe">
-                <text macro="juris-locator"/>
-              </group>
-            </else-if>
-            <else-if locator="page" variable="page">
-              <group require="comma-safe" prefix="(" suffix=")">
-                <text macro="juris-locator"/>
-              </group>
-              <group reject="comma-safe">
-                <text macro="juris-locator"/>
-              </group>
-            </else-if>
-            <else-if variable="locator">
-              <choose>
-                <if locator="section">
-                  <text macro="juris-locator" label-form="symbol"/>
-                </if>
-                <else>
-                  <text macro="juris-locator" label-form="short"/>
-                </else>
-              </choose>
-            </else-if>
-          </choose>
-          -->
           <text macro="juris-tail-short"/>
         </group>
       </if>
