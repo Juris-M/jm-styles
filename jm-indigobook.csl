@@ -12,7 +12,7 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2020-10-09T00:33:40+02:00</updated>
+    <updated>2016-10-08T08:07:23.106844</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -143,8 +143,8 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
     <text value=""/>
   </macro>
   <macro name="jurism">
-    <choose>
-      <if position="ibid-with-locator">
+   <choose>
+     <if position="ibid-with-locator">
         <group delimiter=" ">
           <text term="ibid" font-style="italic"/>
           <text macro="juris-locator" label-form="symbol"/>
@@ -254,7 +254,7 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
                         <condition match="all" type="report"/>
                         <condition match="none" variable="title committee"/>
                       </conditions>
-                      <text macro="juris-main" label-form="symbol"/>
+                        <text macro="juris-main" label-form="symbol"/>
                     </if>
                     <else-if>
                       <conditions match="all">
@@ -294,29 +294,29 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
             </choose>
             <!-- choose>
               <if type="legislation" variable="container-title page volume gazette-flag" match="all"/>
-            <else -->
-              <text macro="juris-tail"/>
-                <!-- /else>
-                </choose -->
-              </group>
-              <!-- choose>
-                <if type="legislation" variable="container-title page volume gazette-flag" match="all">
+              <else -->
                 <text macro="juris-tail"/>
-                </if>
-              </choose -->
-              <choose>
-                <if>
-                  <conditions match="all">
-                    <condition type="legal_case" match="any"/>
-                    <condition match="none" variable="document-name archive container-title"/>
-                  </conditions>
-                  <text variable="URL"/>
-                </if>
-              </choose>
-            </group>
-          </else>
-        </choose>
-      </macro>
+              <!-- /else>
+            </choose -->
+          </group>
+          <!-- choose>
+            <if type="legislation" variable="container-title page volume gazette-flag" match="all">
+              <text macro="juris-tail"/>
+            </if>
+          </choose -->
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition type="legal_case" match="any"/>
+                <condition match="none" variable="document-name archive container-title"/>
+              </conditions>
+              <text variable="URL"/>
+            </if>
+          </choose>
+        </group>
+      </else>
+    </choose>
+  </macro>
 
   <macro name="ib-page">
     <group delimiter=" ">
