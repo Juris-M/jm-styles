@@ -311,7 +311,7 @@
     <choose>
       <if type="article-journal">
         <choose>
-          <if variable="volume">
+          <if variable="volume issue" match="any">
             <text macro="date-issued"/>
           </if>
         </choose>
@@ -377,7 +377,7 @@
             <if>
               <conditions>
                 <condition type="article-journal"/>
-                <condition variable="volume" match="none"/>
+                <condition variable="volume issue" match="none"/>
               </conditions>
               <text macro="date-issued"/>
             </if>
