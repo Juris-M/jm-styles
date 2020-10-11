@@ -567,7 +567,7 @@
           </group>
           <text macro="URL"/>
           <choose>
-            <if type="chapter" match="none">
+            <if type="chapter legal_commentary" match="none">
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
             </if>
             <else-if variable="container-title-short editor collection-editor container-author" match="none">
