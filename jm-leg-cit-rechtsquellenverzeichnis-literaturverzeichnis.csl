@@ -556,29 +556,25 @@
                   <text macro="juris-title"/>
                 </else>
               </choose>
-              <group delimiter=" ">
-                <group delimiter=", ">
-                  <choose>
-                    <if>
-                      <conditions match="all">
-                        <condition match="all" type="report"/>
-                        <condition match="none" variable="title committee"/>
-                      </conditions>
-                        <text macro="juris-main" label-form="symbol"/>
-                    </if>
-                    <else-if>
-                      <conditions match="all">
-                        <condition match="all" type="hearing"/>
-                        <condition match="none" variable="committee"/>
-                      </conditions>
-                      <text macro="juris-main" label-form="symbol"/>
-                    </else-if>
-                    <else>
-                      <text macro="juris-main" label-form="symbol"/>
-                    </else>
-                  </choose>
-                </group>
-              </group>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="all" type="report"/>
+                    <condition match="none" variable="title committee"/>
+                  </conditions>
+                  <text macro="juris-main" label-form="symbol"/>
+                </if>
+                <else-if>
+                  <conditions match="all">
+                    <condition match="all" type="hearing"/>
+                    <condition match="none" variable="committee"/>
+                  </conditions>
+                  <text macro="juris-main" label-form="symbol"/>
+                </else-if>
+                <else>
+                  <text macro="juris-main" label-form="symbol"/>
+                </else>
+              </choose>
               <group require="comma-safe-numbers-only">
                 <text macro="juris-locator" label-form="symbol"/>
               </group>
