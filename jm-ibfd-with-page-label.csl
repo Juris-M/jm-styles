@@ -107,7 +107,18 @@
         </group>
       </if>
       <else-if type="legislation pamphlet" match="none">
-        <text macro="name-macro"/>
+        <group delimiter=": ">
+          <choose>
+            <if>
+              <conditions>
+                <condition variable="jurisdiction"/>
+                <condition country="eu.int arb.cls un.int icc.int" match="none"/>
+              </conditions>
+              <text macro="country-code"/>
+            </if>
+          </choose>
+          <text macro="name-macro"/>
+        </group>
       </else-if>
     </choose>
   </macro>
