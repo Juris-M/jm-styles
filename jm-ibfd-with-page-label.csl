@@ -336,7 +336,15 @@
           <text macro="series"/>
           <group delimiter=" ">
             <text variable="publisher"/>
-            <text macro="date-issued"/>
+            <choose>
+              <if variable="issued publication-date" match="all">
+                <text macro="date-issued" prefix="effective "/>
+                <date variable="publication-date" form="text" date-parts="year-month-day" prefix="published on "/>
+              </if>
+              <else>
+                <text macro="date-issued"/>
+              </else>
+            </choose>
           </group>
         </group>
       </else-if>
@@ -398,6 +406,11 @@
               <number variable="issue"/>
             </else>
           </choose>
+        </else-if>
+        <else-if type="legal_case" country="eu.int" match="all">
+          <number variable="collection-number" prefix="[" suffix="]"/>
+          <text variable="container-title" form="short"/>
+          <number variable="volume"/>
         </else-if>
         <else-if type="legal_case legislation">
           <text variable="container-title" form="short"/>
