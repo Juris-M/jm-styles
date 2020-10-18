@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-10-11T00:02:40+02:00</updated>
+    <updated>2020-10-18T23:19:39+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -688,6 +688,9 @@
     </group>
   </macro>
   <citation>
+    <sort>
+      <key variable="issued" sort="descending"/>
+    </sort>
     <layout suffix="." delimiter="; ">
       <choose>
         <if position="ibid-with-locator">
@@ -713,7 +716,6 @@
             <!-- leading pinpoint locator -->
             <if type="legislation article treaty pamphlet" match="any">
               <text term="ibid" font-style="italic"/>
-                <!--<text macro="short-citation"/>-->
             </if>
             <else>
               <text term="ibid" font-style="italic"/>
