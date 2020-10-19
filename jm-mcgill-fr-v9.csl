@@ -11,7 +11,7 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2020-10-19T15:45:45.469</updated>
+    <updated>2020-10-19T15:45:45.469Z</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="fr">
@@ -110,22 +110,32 @@
         <!-- full form -->
         <group delimiter=" ">
           <group delimiter=", ">
-            <group delimiter=" ">
+            <group delimiter=" " parallel-first="issued title">
               <text macro="juris-title" font-style="italic" strip-periods="true"/>
-              <group parallel-first="issued">
-                <choose>
-                  <if>
-                    <conditions match="all">
-                      <condition match="all" type="legal_case" variable="container-title"/>
-                      <condition match="none" variable="collection-number"/>
-                    </conditions>
-                    <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
-                  </if>
-                </choose>
-              </group>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="all" type="legal_case" variable="container-title"/>
+                    <condition match="none" variable="collection-number"/>
+                  </conditions>
+                  <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
+                </if>
+              </choose>
             </group>
             <text macro="juris-main" strip-periods="true"/>
           </group>
+          <choose>
+            <if variable="locator">
+              <group delimiter=" ">
+                <group require="empty-label">
+                  <text macro="juris-locator" label-form="short" strip-periods="true"/>
+                </group>
+              </group>
+              <group delimiter=" " reject="empty-label">
+                <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              </group>
+            </if>
+          </choose>
           <choose>
             <if>
               <conditions match="all">
