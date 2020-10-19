@@ -25,8 +25,19 @@
         <single>au para</single>
         <multiple>aux paras</multiple>
       </term>
+      <term name="section" form="short">
+        <single>art</single>
+        <multiple>arts</multiple>
+      </term>
+      <term name="note" form="short">
+        <single>n</single>
+        <multiple>nn</multiple>
+      </term>
+      <term name="issue" form="short">
+        <single>nᵒ</single>
+        <multiple>nᵒ</multiple>
+      </term>
       <term name="chapter" form="short">c</term>
-      <term name="section" form="short">art</term>
       <term name="editor" form="verb-short">dir</term>
       <term name="editor" form="short">dir</term>
       <term name="editor" form="verb">dir</term>
