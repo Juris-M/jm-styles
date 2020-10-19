@@ -43,6 +43,7 @@
       <term name="editor" form="verb">dir</term>
       <term name="translator" form="verb">traduit par</term>
       <term name="in">dans</term>
+      <term name="ordinal">ᵉ</term>
     </terms>
   </locale>
   <!-- Juris-M Macros-->
@@ -121,7 +122,7 @@
         <!-- full form -->
         <group delimiter=" ">
           <group delimiter=", ">
-            <group delimiter=" " parallel-first="issued title">
+            <group delimiter=" " parallel-first="title jurisdiction authority" parallel-delimiter-override=", ">
               <text macro="juris-title" font-style="italic" strip-periods="true"/>
               <choose>
                 <if>
