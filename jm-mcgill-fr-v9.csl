@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" year-range-format="expanded" default-locale="fr-ca" require-comma-on-symbol="after-number"  >
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number"  >
   <info>
     <title>JM Manuel canadien de la référence juridique (9ème édition) </title>
     <id>http://juris-m.github.io/styles/jm-mcgill-fr-v9</id>
@@ -45,6 +45,33 @@
       <term name="in">dans</term>
     </terms>
   </locale>
+  <locale xml:lang="en">
+     <terms>
+      <term name="page" form="short">at</term>
+      <term name="paragraph" form="short">
+        <single>at para</single>
+        <multiple>at paras</multiple>
+      </term>
+      <term name="section" form="short">
+        <single>s</single>
+        <multiple>ss</multiple>
+      </term>
+      <term name="note" form="short">
+        <single>n</single>
+        <multiple>nn</multiple>
+      </term>
+      <term name="issue" form="short">
+        <single>at no</single>
+        <multiple>at nos</multiple>
+      </term>
+      <term name="chapter" form="short">c</term>
+      <term name="editor" form="verb-short">dir</term>
+      <term name="editor" form="short">dir</term>
+      <term name="editor" form="verb">dir</term>
+      <term name="translator" form="verb">traduit par</term>
+      <term name="in">dans</term>
+    </terms>
+  </locale>
   <!-- Juris-M Macros-->
   <macro name="juris-pretitle">
     <text value=""/>
@@ -78,21 +105,20 @@
       <if position="ibid-with-locator">
         <group delimiter=" ">
           <text term="ibid" text-case="capitalize-first" font-style="italic"/>
-          <group delimiter=" ">
-            <text value="at"/>
-            <group require="empty-label">
+          <choose>
+            <if locator="issue section" match="any">
+              <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
+            </if>
+            <else>
               <text macro="juris-locator" label-form="short" strip-periods="true"/>
-            </group>
-          </group>
-          <group delimiter=" " reject="empty-label">
-            <text macro="juris-locator" label-form="short" strip-periods="true"/>
-          </group>
+            </else>
+          </choose>
         </group>
       </if>
       <else-if position="ibid">
         <text term="ibid" text-case="capitalize-first" font-style="italic"/>
       </else-if>
-      <else-if position="subsequent" match="any">
+      <else-if position="subsequent">
         <!-- short form -->
         <group delimiter=", ">
           <choose>
@@ -113,7 +139,14 @@
           <group delimiter=" ">
             <text value="supra" font-style="italic"/>
             <text variable="first-reference-note-number" prefix="note " suffix=""/>
-            <text macro="juris-locator" label-form="short" strip-periods="true"/>
+            <choose>
+              <if locator="issue section" match="any">
+                <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
+              </if>
+              <else>
+                <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              </else>
+            </choose>
           </group>
         </group>
       </else-if>
@@ -136,16 +169,12 @@
             <text macro="juris-main" strip-periods="true"/>
           </group>
           <choose>
-            <if variable="locator">
-              <group delimiter=" ">
-                <group require="empty-label">
-                  <text macro="juris-locator" label-form="short" strip-periods="true"/>
-                </group>
-              </group>
-              <group delimiter=" " reject="empty-label">
-                <text macro="juris-locator" label-form="short" strip-periods="true"/>
-              </group>
+            <if locator="issue section" match="any">
+              <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
             </if>
+            <else>
+              <text macro="juris-locator" label-form="short" strip-periods="true"/>
+            </else>
           </choose>
           <choose>
             <if>
