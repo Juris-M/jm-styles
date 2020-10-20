@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-10-11T00:02:40+02:00</updated>
+    <updated>2020-10-18T23:38:42+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -336,7 +336,15 @@
           <text macro="series"/>
           <group delimiter=" ">
             <text variable="publisher"/>
-            <text macro="date-issued"/>
+            <choose>
+              <if variable="issued publication-date" match="all">
+                <text macro="date-issued" prefix="effective "/>
+                <date variable="publication-date" form="text" date-parts="year-month-day" prefix="published on "/>
+              </if>
+              <else>
+                <text macro="date-issued"/>
+              </else>
+            </choose>
           </group>
         </group>
       </else-if>
@@ -398,6 +406,11 @@
               <number variable="issue"/>
             </else>
           </choose>
+        </else-if>
+        <else-if type="legal_case" country="eu.int" match="all">
+          <number variable="collection-number" prefix="[" suffix="]"/>
+          <text variable="container-title" form="short"/>
+          <number variable="volume"/>
         </else-if>
         <else-if type="legal_case legislation">
           <text variable="container-title" form="short"/>
@@ -675,6 +688,9 @@
     </group>
   </macro>
   <citation>
+    <sort>
+      <key variable="issued" sort="descending"/>
+    </sort>
     <layout suffix="." delimiter="; ">
       <choose>
         <if position="ibid-with-locator">
@@ -700,7 +716,6 @@
             <!-- leading pinpoint locator -->
             <if type="legislation article treaty pamphlet" match="any">
               <text term="ibid" font-style="italic"/>
-                <!--<text macro="short-citation"/>-->
             </if>
             <else>
               <text term="ibid" font-style="italic"/>
