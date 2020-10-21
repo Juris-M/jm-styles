@@ -182,18 +182,9 @@
                 <condition match="none" context="bibliography"/>
                 <condition position="first"/>
               </conditions>
-              <choose>
-                <if variable="hereinafter">
-                  <group parallel-last="hereinafter">
-                    <text variable="hereinafter" prefix="[" suffix="]" font-style="italic"/>
-                  </group>
-                </if>
-                <else>
-                  <group parallel-last="title">
-                    <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
-                  </group>
-                </else>
-              </choose>
+              <group parallel-last="hereinafter title-short title">
+                <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
+              </group>
             </if>
           </choose>
         </group>            
