@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-10-18T23:38:42+02:00</updated>
+    <updated>2020-10-23T10:17:06+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -58,11 +58,14 @@
     <choose>
       <if>
         <conditions match="any">
-          <condition country="eu.int arb.cls un.int icc.int"/>
+          <condition country="eu.int arb.cls un.int icc.int coe.int"/>
           <condition variable="jurisdiction" match="none"/>
         </conditions>
         <text variable="genre"/>
       </if>
+      <else-if country="gb">
+        <text value="UK"/>
+      </else-if>
       <else>
         <text variable="country" text-case="uppercase"/>
       </else>
