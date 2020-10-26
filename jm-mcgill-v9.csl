@@ -174,17 +174,21 @@
         <!-- full form -->
         <group delimiter=" ">
           <group delimiter=", ">
-            <group delimiter=" " parallel-first="title jurisdiction authority" parallel-delimiter-override=", ">
-              <text macro="juris-title" font-style="italic" strip-periods="true"/>
-              <choose>
-                <if>
-                  <conditions match="all">
-                    <condition match="all" type="legal_case" variable="container-title"/>
-                    <condition match="none" variable="collection-number"/>
-                  </conditions>
-                  <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
-                </if>
-              </choose>
+            <group delimiter=" ">
+              <group parallel-first="title country" parallel-delimiter-override=", ">
+                <text macro="juris-title" font-style="italic" strip-periods="true"/>
+              </group>
+              <group parallel-first="authority">
+                <choose>
+                  <if>
+                    <conditions match="all">
+                      <condition match="all" type="legal_case" variable="container-title"/>
+                      <condition match="none" variable="collection-number"/>
+                    </conditions>
+                    <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
+                  </if>
+                </choose>
+              </group>
             </group>
             <text macro="juris-main" strip-periods="true"/>
           </group>
@@ -202,7 +206,7 @@
                 <condition match="none" context="bibliography"/>
                 <condition position="first"/>
               </conditions>
-              <group parallel-last="title-short title authority">
+              <group parallel-last="title-short title">
                 <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
               </group>
             </if>
