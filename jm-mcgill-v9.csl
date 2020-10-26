@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number"  >
   <info>
-    <title>JM Manuel canadien de la référence juridique (9ème édition) </title>
-    <id>http://juris-m.github.io/styles/jm-mcgill-fr-v9</id>
-    <link href="http://juris-m.github.io/styles/jm-mgcill-fr-v9" rel="self"/>
+    <title>JM Canadian Guide to Uniform Legal Citation (9th edition) / Manuel canadien de la référence juridique (9ᵉ édition)</title>
+    <id>http://juris-m.github.io/styles/jm-mcgill-v9</id>
+    <link href="http://juris-m.github.io/styles/jm-mgcill-v9" rel="self"/>
     <link href="https://lawjournal.mcgill.ca/fr/manuel-de-reference/" rel="documentation"/>
     <author>
       <name>Samuel Gagnon</name>
       <email>gagnon-samuel@outlook.com</email>
+      <uri>https://github.com/Droitslinguistiques</uri>
     </author>
     <contributor>
       <name>Frank Bennet</name>
+      <uri>https://juris-m.github.io/</uri>
     </contributor>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2020-10-19T15:45:45.469Z</updated>
+    <updated>2020-10-26T13:37:32.294Z</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="fr">
@@ -185,7 +187,7 @@
                 <condition match="none" context="bibliography"/>
                 <condition position="first"/>
               </conditions>
-              <group parallel-last="hereinafter title-short title">
+              <group parallel-last="title-short title authority">
                 <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
               </group>
             </if>
