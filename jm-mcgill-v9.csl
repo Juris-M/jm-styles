@@ -178,17 +178,21 @@
               <group parallel-first="title country" parallel-delimiter-override=", ">
                 <text macro="juris-title" font-style="italic" strip-periods="true"/>
               </group>
-              <group parallel-first="authority">
-                <choose>
-                  <if>
-                    <conditions match="all">
-                      <condition match="all" type="legal_case" variable="container-title"/>
-                      <condition match="none" variable="collection-number"/>
-                    </conditions>
-                    <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
-                  </if>
-                </choose>
-              </group>
+              <choose>
+                <if type="legal_case">
+                  <group parallel-first="authority">
+                    <choose>
+                      <if>
+                        <conditions match="all">
+                          <condition match="all" type="legal_case" variable="container-title"/>
+                          <condition match="none" variable="collection-number"/>
+                        </conditions>
+                        <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
+                      </if>
+                    </choose>
+                  </group>
+                </if>
+              </choose>
             </group>
             <choose>
               <if type="legal_case">
