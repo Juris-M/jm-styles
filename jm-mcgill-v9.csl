@@ -62,6 +62,7 @@
       <term name="editor" form="verb">dir</term>
       <term name="translator" form="verb">traduit par</term>
       <term name="in">dans</term>
+      <term name="online">en ligne</term>
     </terms>
   </locale>
   <locale xml:lang="en">
