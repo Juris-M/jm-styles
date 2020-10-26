@@ -11,8 +11,22 @@
       <uri>https://github.com/Droitslinguistiques</uri>
     </author>
     <contributor>
+      <name>Liam McHugh-Russell</name>
+      <email>liam.mchugh.russell@gmail.com</email>
+    </contributor>
+    <contributor>
       <name>Frank Bennet</name>
       <uri>https://juris-m.github.io/</uri>
+    </contributor>
+    <contributor>
+      <name>Florian Martin-Bariteau</name>
+      <email>f.martin-bariteau@umontreal.ca</email>
+      <uri>http://f-mb.github.io/cslegal/</uri>
+    </contributor>
+    <contributor>
+      <name>Gareth Spanglett</name>
+      <email>gspanglett@gmail.com</email>
+      <uri>https://gspanglett.github.io</uri>
     </contributor>
     <category citation-format="note"/>
     <category field="law"/>
