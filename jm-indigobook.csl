@@ -196,8 +196,14 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
                   <condition match="all" type="hearing" variable="title"/>
                   <condition match="all" type="hearing" variable="section number"/>
                 </conditions>
-                <text value="supra" font-style="italic"/>
-                <text macro="ib-at-locator" label-form="symbol"/>
+                <group delimiter=" ">
+                  <text value="supra" font-style="italic"/>
+                  <group delimiter=" ">
+                    <text value="note"/>
+                    <text variable="first-reference-note-number"/>
+                  </group>
+                  <text macro="ib-at-locator" label-form="symbol"/>
+                </group>
               </if>
             </choose>
             <choose>
@@ -712,7 +718,13 @@ href="http://juris-m.github.io/styles/jm-indigobook" rel="self"/>
             <if match="none" type="treaty">
               <group delimiter=" ">
                 <group delimiter=", ">
-                  <group><text value="supra" font-style="italic"/></group>
+                  <group delimiter=" ">
+                    <group><text value="supra" font-style="italic"/></group>
+                    <group delimiter=" ">
+                      <text value="note"/>
+                      <text variable="first-reference-note-number"/>
+                    </group>
+                  </group>
                   <text macro="ib-at-locator"/>
                 </group>
               </group>
