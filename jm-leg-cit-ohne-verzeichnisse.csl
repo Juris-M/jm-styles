@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-11-04T11:01:24+01:00</updated>
+    <updated>2020-11-04T22:40:27+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -137,7 +137,18 @@
     <text variable="publisher-place"/>
   </macro>
   <macro name="URL">
-    <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+    <choose>
+      <if>
+        <conditions>
+          <condition variable="archive"/>
+          <condition variable="archive_location archive-place" match="none"/>
+        </conditions>
+        <text variable="archive" prefix="&lt;" suffix="&gt;"/>
+      </if>
+      <else>
+        <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+      </else>
+    </choose>
   </macro>
   <macro name="edition">
     <choose>
@@ -504,7 +515,7 @@
                     </else>
                   </choose>
                   <choose>
-                    <if variable="URL" match="none">
+                    <if variable="archive" match="none">
                       <group delimiter=" " prefix="(" suffix=")">
                         <number variable="collection-number"/>
                         <text macro="year-date"/>
@@ -537,7 +548,7 @@
             <text macro="locator"/>
           </group>
           <choose>
-            <if variable="URL" type="legal_commentary">
+            <if variable="archive" type="legal_commentary">
               <choose>
                 <if variable="version" match="none">
                   <group delimiter=", " prefix="[" suffix="]">
@@ -546,7 +557,7 @@
                   </group>
                 </if>
               </choose>
-              <text variable="URL" prefix="(" suffix=")"/>
+              <text variable="archive" prefix="(" suffix=")"/>
             </if>
             <else>
               <text macro="URL"/>
