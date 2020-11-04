@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-10-09T14:46:40+02:00</updated>
+    <updated>2020-11-04T11:01:24+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -140,7 +140,14 @@
     <text variable="URL" prefix="&lt;" suffix="&gt;"/>
   </macro>
   <macro name="edition">
-    <number variable="edition" vertical-align="sup"/>
+    <choose>
+      <if variable="version">
+        <text variable="version" vertical-align="sup"/>
+      </if>
+      <else>
+        <number variable="edition" vertical-align="sup"/>
+      </else>
+    </choose>
   </macro>
   <macro name="container-title">
     <group>
@@ -348,13 +355,19 @@
       <group delimiter=" ">
         <choose>
           <if type="legal_commentary">
-            <!-- Code for legal commentaries -->
             <text macro="author-short"/>
-            <text term="in"/>
-            <group delimiter=", ">
-              <text macro="editor-short"/>
-              <text macro="container-title"/>
-            </group>
+            <choose>
+              <if variable="editor">
+                <text term="in"/>
+                <group delimiter=", ">
+                  <text macro="editor-short"/>
+                  <text macro="container-title"/>
+                </group>
+              </if>
+              <else>
+                <text macro="container-title"/>
+              </else>
+            </choose>
             <text macro="title-short"/>
           </if>
           <else-if>
@@ -407,11 +420,18 @@
         <choose>
           <if type="legal_commentary">
             <text macro="author-short"/>
-            <text term="in"/>
-            <group delimiter=", ">
-              <text macro="editor-short"/>
-              <text macro="container-title"/>
-            </group>
+            <choose>
+              <if variable="editor">
+                <text term="in"/>
+                <group delimiter=", ">
+                  <text macro="editor-short"/>
+                  <text macro="container-title"/>
+                </group>
+              </if>
+              <else>
+                <text macro="container-title"/>
+              </else>
+            </choose>
             <text macro="title"/>
           </if>
           <else>
@@ -467,16 +487,30 @@
             <choose>
               <if type="legal_commentary">
                 <group delimiter=" ">
-                  <text macro="author-short"/>
-                  <text term="in"/>
-                  <group delimiter=", ">
-                    <text macro="editor-suffix"/>
-                    <text macro="container-title"/>
-                  </group>
-                  <group delimiter=" " prefix="(" suffix=")">
-                    <number variable="collection-number"/>
-                    <text macro="year-date"/>
-                  </group>
+                  <choose>
+                    <if variable="editor">
+                      <text macro="author-short"/>
+                      <text term="in"/>
+                      <group delimiter=", ">
+                        <text macro="editor-suffix"/>
+                        <text macro="container-title"/>
+                      </group>
+                    </if>
+                    <else>
+                      <group delimiter=", ">
+                        <text macro="author-short"/>
+                        <text macro="container-title"/>
+                      </group>
+                    </else>
+                  </choose>
+                  <choose>
+                    <if variable="URL" match="none">
+                      <group delimiter=" " prefix="(" suffix=")">
+                        <number variable="collection-number"/>
+                        <text macro="year-date"/>
+                      </group>
+                    </if>
+                  </choose>
                   <text macro="title"/>
                 </group>
               </if>
@@ -502,7 +536,22 @@
           <group reject="comma-safe-numbers-only">
             <text macro="locator"/>
           </group>
-          <text macro="URL"/>
+          <choose>
+            <if variable="URL" type="legal_commentary">
+              <choose>
+                <if variable="version" match="none">
+                  <group delimiter=", " prefix="[" suffix="]">
+                    <number variable="collection-number"/>
+                    <text macro="full-date"/>
+                  </group>
+                </if>
+              </choose>
+              <text variable="URL" prefix="(" suffix=")"/>
+            </if>
+            <else>
+              <text macro="URL"/>
+            </else>
+          </choose>
           <choose>
             <if type="chapter legal_commentary" match="none">
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
