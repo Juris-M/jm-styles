@@ -144,12 +144,6 @@
     <group>
       <group delimiter=" ">
         <text variable="container-title"/>
-        <!--
-        <group delimiter=" &#x2013; ">
-          <text variable="container-title-main"/>
-          <text variable="container-title-sub"/>
-        </group>
-        -->
         <number variable="volume"/>
       </group>
       <text macro="edition"/>

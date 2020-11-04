@@ -146,13 +146,6 @@
     <group>
       <group delimiter=" ">
         <text variable="container-title"/>
-        <!-- for future availability of container-title-main/-sub -->
-        <!--
-        <group delimiter=" &#x2013; ">
-          <text variable="container-title-main"/>
-          <text variable="container-title-sub"/>
-        </group>
-        -->
         <number variable="volume"/>
       </group>
       <text macro="edition"/>
