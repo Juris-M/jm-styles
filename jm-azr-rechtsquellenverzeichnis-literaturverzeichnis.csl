@@ -49,6 +49,11 @@
         <multiple>Rz</multiple>
       </term>
     </terms>
+    <date form="text" delimiter=". ">
+      <date-part name="day" form="numeric"/>
+      <date-part name="month" form="numeric"/>
+      <date-part name="year"/>
+    </date>
   </locale>
   <macro name="dummy-disambiguate">
     <choose>
