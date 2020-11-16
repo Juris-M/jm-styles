@@ -618,22 +618,45 @@
     </choose>
   </macro>
 
-  <macro name="jurisdiction-sort">
+  <macro name="sort-jurisdiction">
     <choose>
-      <if type="legal_case regulation legislation bill">
+      <if country="eu.int">
+        <text value="10"/>
+      </if>
+      <else-if country="coe.int">
+        <text value="11"/>
+      </else-if>
+      <else-if country="un.int">
+        <text value="12"/>
+      </else-if>
+      <else-if country="at">
+        <text value="20"/>
+      </else-if>
+      <else>
+        <text value="50"/>
+      </else>
+    </choose>
+    <text value="country"/>
+  </macro>
+  <macro name="sort-courts">
+    <choose>
+      <if country="at">
         <choose>
-          <if country="eu.int">
-            <text value="1"/>
+          <if court-class="o1 v1 v0" match="any">
+            <text value="10"/>
           </if>
-          <else-if country="at">
-            <text value="2"/>
+          <else-if court-class="o2">
+            <text value="20"/>
+          </else-if>
+          <else-if court-class="o3 v2" match="any">
+            <text value="30"/>
           </else-if>
           <else>
-            <text variable="country"/>
+            <text value="40"/>
           </else>
         </choose>
       </if>
-    </choose>
+    </choose> 
   </macro>
 
   <macro name="type-sort-legal">
@@ -699,7 +722,12 @@
     </choose>
   </macro>
 
-  <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
+  <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true" givenname-disambiguation-rule="all-names">
+    <sort>
+      <key macro="sort-jurisdiction"/>
+      <key macro="sort-courts"/>
+      <key variable="issued" sort="descending"/>
+    </sort>
     <layout prefix="" suffix="." delimiter="; ">
       <text macro="citation"/>
     </layout>
@@ -707,7 +735,7 @@
   <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">
     <sort>
       <key macro="type-sort"/>
-      <key macro="jurisdiction-sort"/>
+      <key macro="sort-jurisdiction"/>
       <key macro="type-sort-legal"/>
       <key macro="author-short"/>
       <key variable="issued" sort="descending"/>
