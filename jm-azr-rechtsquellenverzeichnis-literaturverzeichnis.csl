@@ -20,7 +20,7 @@
     <style-options jurisdiction-preference="de deAT"/>
     <terms>
       <term name="et-al">ea</term>
-      <term name="editor" form="short">Hg</term>
+      <term name="editor" form="short">(Hrsg)</term>
       <term name="division"></term>
       <term name="collection-editor" form="short">Begr</term>
       <term name="container-author" form="short">Red</term>
@@ -112,16 +112,19 @@
     </choose>
   </macro>
   <macro name="editor-suffix">
-    <names variable="editor">
-      <label form="short" prefix=" (" suffix=")"/>
-      <substitute>
-        <names variable="collection-editor"/>
-        <names variable="container-author"/>
-      </substitute>
-    </names>
+    <group font-style="italic">
+      <names variable="editor">
+        <name/>
+        <label form="short" prefix=" " font-style="normal"/>
+        <substitute>
+          <names variable="collection-editor"/>
+          <names variable="container-author"/>
+        </substitute>
+      </names>
+    </group>
   </macro>
   <macro name="editor-short">
-    <names variable="editor">
+    <names variable="editor" font-style="italic">
       <substitute>
         <names variable="collection-editor"/>
         <names variable="container-author"/>
