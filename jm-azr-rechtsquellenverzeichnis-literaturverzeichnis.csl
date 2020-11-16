@@ -471,7 +471,7 @@
   </macro>
 
   <macro name="jurism">
-   <choose>
+    <choose>
       <if context="citation">
         <!-- short form -->
         <group delimiter=" ">
@@ -510,12 +510,23 @@
                   <condition match="all" type="regulation" variable="title gazette-flag"/>
                   <condition match="all" type="legislation" variable="title gazette-flag"/>
                 </conditions>
-                <text macro="juris-main-short"/>
+                <text macro="juris-main"/>
               </if>
             </choose>
-            <group require="comma-safe-numbers-only">
-              <text macro="juris-locator"/>
-            </group>
+            <choose>
+              <if>
+                <conditions>
+                  <condition type="legal_case" country="eu.int coe.int"/>
+                  <condition variable="commenter page issue" match="none"/>
+                </conditions>
+                <text macro="juris-locator"/>
+              </if>
+              <else>
+                <group require="comma-safe-numbers-only">
+                  <text macro="juris-locator"/>
+                </group>
+              </else>
+            </choose>
           </group>
           <choose>
             <if variable="locator">
@@ -532,6 +543,9 @@
                 </else>
               </choose>
             </if>
+            <else-if type="legal_case" country="at">
+              <text macro="juris-locator"/>
+            </else-if>
           </choose>
           <text macro="juris-tail-short"/>
         </group>
