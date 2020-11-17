@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-11-04T22:40:46+01:00</updated>
+    <updated>2020-11-17T16:55:22+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -182,6 +182,9 @@
           <text variable="genre"/>
           <text variable="publisher"/>
         </if>
+        <else-if type="chapter" variable="recipient">
+          <text variable="note"/>
+        </else-if>
         <else>
           <text variable="genre"/>
           <text variable="note"/>
@@ -390,13 +393,13 @@
             <else-if>
               <conditions match="all">
                 <condition type="chapter"/>
-                <condition variable="container-title-short editor collection-editor container-author" match="any"/>
+                <condition variable="container-title-short recipient editor collection-editor container-author" match="any"/>
               </conditions>
               <choose>
                 <if>
                   <conditions match="all">
                     <condition variable="title-short hereinafter" match="any"/>
-                    <condition variable="container-title-short" match="none"/>
+                    <condition variable="container-title-short recipient" match="none"/>
                   </conditions>
                   <group delimiter=", ">
                     <text macro="author-short"/>
@@ -410,6 +413,17 @@
                     <if variable="container-title-short">
                       <text variable="container-title-short"/>
                     </if>
+                    <else-if variable="recipient">
+                      <choose>
+                        <if variable="genre">
+                          <text variable="genre"/>
+                        </if>
+                        <else>
+                          <text value="FS"/>
+                        </else>
+                      </choose>
+                      <names variable="recipient"/>
+                    </else-if>
                     <else>
                       <text macro="editor-short"/>
                     </else>

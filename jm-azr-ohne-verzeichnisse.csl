@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8 ohne Verzeichnisse.</summary>
-    <updated>2020-11-16T01:24:59+01:00</updated>
+    <updated>2020-11-17T16:17:25+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -226,6 +226,9 @@
           <text variable="genre"/>
           <text variable="publisher"/>
         </if>
+        <else-if type="chapter" variable="recipient">
+          <text variable="note"/>
+        </else-if>
         <else>
           <text variable="genre"/>
           <text variable="note"/>
@@ -280,14 +283,42 @@
       <else>
         <group delimiter=" ">
           <text term="in"/>
-          <group delimiter=", ">
-            <text macro="editor-suffix"/>
-            <group delimiter=" ">
-              <text macro="container-title"/>
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition type="chapter"/>
+                <condition variable="container-title-short recipient" match="any"/>
+              </conditions>
+              <choose>
+                <if variable="container-title-short">
+                  <text variable="container-title-short"/>
+                </if>
+                <else-if variable="recipient">
+                  <choose>
+                    <if variable="genre">
+                      <text variable="genre"/>
+                    </if>
+                    <else>
+                      <text value="FS"/>
+                    </else>
+                  </choose>
+                  <names variable="recipient"/>
+                </else-if>
+              </choose>
               <text macro="extras-and-date"/>
-              <number variable="page"/>
-            </group>
-          </group>
+              <number variable="page-first"/>
+            </if>
+            <else>
+              <group delimiter=", ">
+                <text macro="editor-suffix"/>
+                <group delimiter=" ">
+                  <text macro="container-title"/>
+                  <text macro="extras-and-date"/>
+                  <number variable="page-first"/>
+                </group>
+              </group>
+            </else>
+          </choose>
         </group>
       </else>
     </choose>
@@ -401,7 +432,7 @@
                 <if>
                   <conditions match="all">
                     <condition variable="title-short hereinafter" match="any"/>
-                    <condition variable="container-title-short" match="none"/>
+                    <condition variable="container-title-short recipient" match="none"/>
                   </conditions>
                   <group delimiter=", ">
                     <text macro="author-short"/>
@@ -415,6 +446,17 @@
                     <if variable="container-title-short">
                       <text variable="container-title-short"/>
                     </if>
+                    <else-if variable="recipient">
+                      <choose>
+                        <if variable="genre">
+                          <text variable="genre"/>
+                        </if>
+                        <else>
+                          <text value="FS"/>
+                        </else>
+                      </choose>
+                      <names variable="recipient"/>
+                    </else-if>
                     <else-if variable="editor">
                       <text macro="editor-short"/>
                     </else-if>
@@ -476,7 +518,7 @@
               <if>
                 <conditions match="all">
                   <condition variable="title-short hereinafter" match="any"/>
-                  <condition variable="container-title-short" match="none"/>
+                  <condition variable="container-title-short recipient" match="none"/>
                 </conditions>
                 <group delimiter=", ">
                   <text macro="author-short"/>
@@ -490,6 +532,17 @@
                   <if variable="container-title-short">
                     <text variable="container-title-short"/>
                   </if>
+                  <else-if variable="recipient">
+                    <choose>
+                      <if variable="genre">
+                        <text variable="genre"/>
+                      </if>
+                      <else>
+                        <text value="FS"/>
+                      </else>
+                    </choose>
+                    <names variable="recipient"/>
+                  </else-if>
                   <else-if variable="editor">
                     <text macro="editor-short"/>
                   </else-if>
