@@ -266,7 +266,7 @@
             <if variable="volume">
               <number variable="volume"/>
               <text macro="full-date" prefix="(" suffix=")"/>
-              <number variable="page"/>
+              <number variable="page-first"/>
             </if>
             <else>
               <group delimiter=", ">
@@ -274,7 +274,7 @@
                   <number variable="issue"/>
                   <text macro="full-date"/>
                 </group>
-                <number variable="page"/>
+                <number variable="page-first"/>
               </group>
             </else>
           </choose>
@@ -433,11 +433,11 @@
             </else>
           </choose>
           <group reject="comma-safe-numbers-only">
-            <number variable="page"/>
+            <number variable="page-first"/>
           </group>
         </group>
         <group require="comma-safe-numbers-only">
-          <number variable="page"/>
+          <number variable="page-first"/>
         </group>
         <choose>
           <if variable="page" match="none">

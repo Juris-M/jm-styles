@@ -235,42 +235,53 @@
     </choose>
   </macro>
   <macro name="container-date-locator">
-    <choose>
-      <if type="article-journal article article-magazine article-newspaper" match="any">
-        <group delimiter=" ">
-          <text variable="container-title"/>
-          <choose>
-            <if variable="volume">
-              <number variable="volume"/>
-              <text macro="full-date" prefix="(" suffix=")"/>
-              <number variable="page"/>
-            </if>
-            <else>
-              <group delimiter=", ">
-                <group delimiter="/">
-                  <number variable="issue"/>
-                  <text macro="full-date"/>
+    <group delimiter=", ">
+      <group delimiter=" ">
+        <choose>
+          <if type="article-journal article article-magazine article-newspaper" match="any">
+            <text variable="container-title"/>
+            <choose>
+              <if variable="volume">
+                <number variable="volume"/>
+                <text macro="full-date" prefix="(" suffix=")"/>
+              </if>
+              <else>
+                <group delimiter=", ">
+                  <group delimiter="/">
+                    <choose>
+                      <if variable="issue">
+                        <number variable="issue"/>
+                        <text macro="full-date"/>
+                      </if>
+                      <else>
+                        <text macro="full-date"/>
+                        <number variable="number"/>
+                      </else>
+                    </choose>
+                  </group>
                 </group>
-                <number variable="page"/>
+              </else>
+            </choose>
+          </if>
+          <else>
+            <text term="in"/>
+            <group delimiter=", ">
+              <text macro="editor-suffix"/>
+              <group delimiter=" ">
+                <text macro="container-title"/>
+                <text macro="extras-and-date"/>
               </group>
-            </else>
-          </choose>
-        </group>
-      </if>
-      <else>
-        <group delimiter=" ">
-          <text term="in"/>
-          <group delimiter=", ">
-            <text macro="editor-suffix"/>
-            <group delimiter=" ">
-              <text macro="container-title"/>
-              <text macro="extras-and-date"/>
-              <number variable="page"/>
             </group>
-          </group>
+          </else>
+        </choose>
+        <group reject="comma-safe-numbers-only">
+          <number variable="page-first"/>
         </group>
-      </else>
-    </choose>
+      </group>
+      <group require="comma-safe-numbers-only">
+        <number variable="page-first"/>
+      </group>
+    </group>
   </macro>
   <macro name="title-volume-date">
     <group delimiter=" ">
@@ -321,17 +332,23 @@
                     <!-- article newspaper -->
                     <group delimiter=", ">
                       <text macro="full-date"/>
-                      <number variable="page"/>
+                      <number variable="page-first"/>
                     </group>
                   </if>
                   <else-if variable="volume">
                     <number variable="volume"/>
                     <text macro="year-date" prefix="(" suffix=")"/>
                   </else-if>
-                  <else>
+                  <else-if variable="issue">
                     <group delimiter="/">
                       <number variable="issue"/>
                       <text macro="year-date"/>
+                    </group>
+                  </else-if>
+                  <else>
+                    <group delimiter="/">
+                      <text macro="year-date"/>
+                      <number variable="number"/>
                     </group>
                   </else>
                 </choose>
@@ -459,7 +476,7 @@
                 <text macro="editor-short"/>
               </else>
             </choose>
-            <number variable="page"/>
+            <number variable="page-first"/>
           </else>
         </choose>
         <group reject="comma-safe-numbers-only">
