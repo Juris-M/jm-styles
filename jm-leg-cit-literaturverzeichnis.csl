@@ -200,14 +200,26 @@
   <macro name="locator">
     <group delimiter=" ">
       <choose>
-        <if locator="section">
-          <label variable="locator" form="symbol"/>
+        <if>
+          <conditions>
+            <condition type="article-newspaper"/>
+            <condition variable="author title" match="none"/>
+            <condition variable="page" locator="page" match="all"/>
+          </conditions>
+          <number variable="locator" prefix="(" suffix=")"/>
         </if>
-        <else-if locator="page" match="none">
-          <label variable="locator" form="short"/>
-        </else-if>
+        <else>
+          <choose>
+            <if locator="section">
+              <label variable="locator" form="symbol"/>
+            </if>
+            <else-if locator="page" match="none">
+              <label variable="locator" form="short"/>
+            </else-if>
+          </choose>
+          <number variable="locator"/>
+        </else>
       </choose>
-      <number variable="locator"/>
     </group>
   </macro>
   <macro name="container-date-locator">
