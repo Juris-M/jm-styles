@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" et-al-min="4" et-al-use-first="1" initialize-with="." demote-non-dropping-particle="sort-only" delimiter-precedes-last="never" default-locale="en-GB">
   <info>
-    <title>JM IBFD Standard Citations and References (with page label)</title>
-    <id>https://juris-m.github.io/styles/jm-ibfd-with-page-label</id>
-    <link href="https://juris-m.github.io/styles/jm-ibfd-with-page-label" rel="self"/>
+    <title>JM IBFD Standard Citations and References</title>
+    <id>http://www.zotero.org/styles/jm-ibfd</id>
+    <link href="http://www.zotero.org/styles/jm-ibfd" rel="self"/>
     <link href="http://www.zotero.org/styles/bluebook-law-review" rel="template"/>
     <link href="https://www.ibfd.org/sites/ibfd.org/files/content/pdf/Guidelines-IBFD-Standard-Citations-References.pdf" rel="documentation"/>
     <author>
@@ -12,8 +12,8 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2020-11-25T13:45:23+00:00</updated>
+    <summary>IBFD Standard Citations and References.</summary>
+    <updated>2020-11-25T13:43:54+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -40,6 +40,10 @@
       <term name="ordinal-11">th</term>
       <term name="ordinal-12">th</term>
       <term name="ordinal-13">th</term>
+      <term name="page" form="short">
+        <single></single>
+        <multiple></multiple>
+      </term>
       <term name="schedule" form="short">sched.</term>
       <term name="section" form="short">
         <single>sec.</single>
