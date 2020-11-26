@@ -115,8 +115,7 @@
         <text value="[P]."/>
       </else-if>
       <else>
-        <text macro="title" suffix="[J]."/>
-        <text value=""/>
+        <text value="[J]."/>
       </else>
     </choose>
   </macro>
