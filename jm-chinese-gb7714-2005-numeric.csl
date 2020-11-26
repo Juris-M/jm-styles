@@ -226,7 +226,6 @@
     <group delimiter="">
       <group delimiter=" ">
         <group delimiter="">
-          <text variable="citation-number" prefix="[" suffix="]"/>
           <group delimiter=" ">
             <text macro="author" suffix="."/>
             <group delimiter="">
@@ -290,7 +289,6 @@
     <group delimiter="">
       <group delimiter=" ">
         <group delimiter=" ">
-          <text variable="citation-number" prefix="[" suffix="]"/>
           <group delimiter=" ">
             <text macro="author" suffix="."/>
             <group delimiter="">
@@ -358,9 +356,11 @@
   </citation>
   <bibliography et-al-min="3" et-al-use-first="3" second-field-align="flush" entry-spacing="0">
     <layout suffix="." locale="en">
-      <text macro="bib-entry-en"/>
+        <text variable="citation-number" prefix="[" suffix="]"/>
+        <text macro="bib-entry-en"/>
     </layout>
     <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="]"/>
       <text macro="bib-entry-zh"/>
     </layout>
   </bibliography>
