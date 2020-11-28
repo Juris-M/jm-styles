@@ -156,9 +156,9 @@
 
  -->
   <macro name="publisherSupp">
-    <group delimiter=" ">
+    <group delimiter=", ">
       <text variable="publisher-place" suffix=":"/>
-      <group delimiter=", " suffix=",">
+      <group delimiter=", ">
         <text variable="publisher"/>
         <choose>
           <if type="webpage" variable="container-title" match="all">
@@ -189,9 +189,11 @@
           </else>
         </choose>
       </group>
-      <number variable="volume"/>
+      <group>
+        <number variable="volume"/>
+        <number variable="issue" prefix="(" suffix=")"/>
+      </group>
     </group>
-    <number variable="issue" prefix="(" suffix=")"/>
   </macro>
   <macro name="pageField">
     <number variable="page"/>
