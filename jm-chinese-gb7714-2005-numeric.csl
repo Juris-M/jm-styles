@@ -14,7 +14,7 @@
     <category field="generic-base"/>
     <category field="science"/>
     <summary>This style just partly implemented what the Chinese GB/T 7714-2005 requires.</summary>
-    <updated>2014-08-28T01:36:46+00:00</updated>
+    <updated>2020-11-28T04:45:10+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -115,8 +115,7 @@
         <text value="[P]."/>
       </else-if>
       <else>
-        <text macro="title" suffix="[J]."/>
-        <text value=""/>
+        <text value="[J]."/>
       </else>
     </choose>
   </macro>
@@ -157,9 +156,9 @@
 
  -->
   <macro name="publisherSupp">
-    <group delimiter=" ">
+    <group delimiter=", ">
       <text variable="publisher-place" suffix=":"/>
-      <group delimiter=", " suffix=",">
+      <group delimiter=", ">
         <text variable="publisher"/>
         <choose>
           <if type="webpage" variable="container-title" match="all">
@@ -190,9 +189,11 @@
           </else>
         </choose>
       </group>
-      <number variable="volume"/>
+      <group>
+        <number variable="volume"/>
+        <number variable="issue" prefix="(" suffix=")"/>
+      </group>
     </group>
-    <number variable="issue" prefix="(" suffix=")"/>
   </macro>
   <macro name="pageField">
     <number variable="page"/>
@@ -227,7 +228,6 @@
     <group delimiter="">
       <group delimiter=" ">
         <group delimiter="">
-          <text variable="citation-number" prefix="[" suffix="]"/>
           <group delimiter=" ">
             <text macro="author" suffix="."/>
             <group delimiter="">
@@ -291,7 +291,6 @@
     <group delimiter="">
       <group delimiter=" ">
         <group delimiter=" ">
-          <text variable="citation-number" prefix="[" suffix="]"/>
           <group delimiter=" ">
             <text macro="author" suffix="."/>
             <group delimiter="">
@@ -359,9 +358,11 @@
   </citation>
   <bibliography et-al-min="3" et-al-use-first="3" second-field-align="flush" entry-spacing="0">
     <layout suffix="." locale="en">
-      <text macro="bib-entry-en"/>
+        <text variable="citation-number" prefix="[" suffix="]"/>
+        <text macro="bib-entry-en"/>
     </layout>
     <layout suffix=".">
+      <text variable="citation-number" prefix="[" suffix="]"/>
       <text macro="bib-entry-zh"/>
     </layout>
   </bibliography>
