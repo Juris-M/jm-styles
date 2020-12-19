@@ -226,9 +226,7 @@
     <group delimiter=". ">
       <names variable="author">
         <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
-        <institution institution-parts="short-long">
-          <institution-part name="short" prefix="(" suffix=")" strip-periods="true"/>
-        </institution>
+        <institution/>
         <substitute>
           <text macro="editor"/>
           <text macro="translator"/>
