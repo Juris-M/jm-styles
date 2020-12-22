@@ -2,8 +2,8 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" et-al-min="4" et-al-use-first="1" initialize-with="." demote-non-dropping-particle="sort-only" delimiter-precedes-last="never" default-locale="en-GB">
   <info>
     <title>JM IBFD Standard Citations and References</title>
-    <id>http://www.zotero.org/styles/jm-ibfd</id>
-    <link href="http://www.zotero.org/styles/jm-ibfd" rel="self"/>
+    <id>https://juris-m.github.io/styles/jm-ibfd</id>
+    <link href="https://juris-m.github.io/styles/jm-ibfd" rel="self"/>
     <link href="http://www.zotero.org/styles/bluebook-law-review" rel="template"/>
     <link href="https://www.ibfd.org/sites/ibfd.org/files/content/pdf/Guidelines-IBFD-Standard-Citations-References.pdf" rel="documentation"/>
     <author>
@@ -13,13 +13,13 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References.</summary>
-    <updated>2020-11-25T13:49:40+00:00</updated>
+    <updated>2020-12-08T23:11:01+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
     <style-options
       jurisdiction-preference="englished enIBFD"
-      skip-words="about,above,across,afore,after,against,along,alongside,amid,amidst,among,amongst,anenst,apropos,apud,around,as,aside,astride,at,athwart,atop,barring,before,behind,below,beneath,beside,besides,between,beyond,but,by,circa,despite,down,during,except,for,forenenst,from,given,in,inside,into,lest,like,modulo,near,next,notwithstanding,of,off,on,onto,out,over,per,plus,pro,qua,sans,since,than,through,thru,throughout,thruout,till,to,toward,towards,under,underneath,until,unto,up,upon,versus,vs.,v.,vs,v,via,vis-à-vis,with,within,without,according to,ahead of,apart from,as for,as of,as per,as regards,aside from,back to,because of,close to,due to,except for,far from,inside of,instead of,near to,next to,on to,out from,out of,outside of,prior to,pursuant to,rather than,regardless of,such as,that of,up to,where as,or,yet,so,for,and,nor,a,an,the,de,d',von,van,c,et,ca,is,this,that"/>
+      skip-words="about,above,across,afore,after,against,along,alongside,amid,amidst,among,amongst,anenst,apropos,apud,around,as,aside,astride,at,athwart,atop,barring,before,behind,below,beneath,beside,besides,between,beyond,but,by,circa,despite,down,during,except,for,forenenst,from,given,in,inside,into,lest,like,modulo,near,next,notwithstanding,of,off,on,onto,out,over,per,plus,pro,qua,sans,since,than,through,thru,throughout,thruout,till,to,toward,towards,under,underneath,until,unto,up,upon,versus,vs.,v.,vs,v,via,vis-à-vis,with,within,without,according to,ahead of,apart from,as for,as of,as per,as regards,aside from,back to,because of,close to,due to,except for,far from,inside of,instead of,near to,next to,on to,out from,out of,outside of,prior to,pursuant to,rather than,regardless of,such as,that of,up to,where as,or,yet,so,for,and,nor,a,an,the,de,d',von,van,c,et,ca,is,this,that,if"/>
     <terms>
       <term name="and" form="symbol">&#38;</term>
       <term name="chapter" form="short">ch.</term>
@@ -145,13 +145,13 @@
   </macro>
   <macro name="title-version">
     <group delimiter=" ">
-      <text variable="title"/>
+      <text variable="title" text-case="title"/>
       <text macro="translation-version"/>
     </group>
   </macro>
   <macro name="title-italic-version">
     <group delimiter=" ">
-      <text variable="title" font-style="italic"/>
+      <text variable="title" text-case="title" font-style="italic"/>
       <text macro="translation-version"/>
     </group>
   </macro>
@@ -385,7 +385,7 @@
       <choose>
         <if type="chapter paper-conference entry-encyclopedia" match="any">
           <text term="in" font-style="normal"/>
-          <text variable="container-title" font-style="italic"/>
+          <text variable="container-title" font-style="italic" text-case="title"/>
         </if>
         <else-if type="article-journal article-newspaper article-magazine" match="any">
           <choose>
@@ -400,7 +400,7 @@
               <number variable="volume"/>
             </else>
           </choose>
-          <text variable="container-title" form="short"/>
+          <text variable="container-title" form="short" text-case="title"/>
           <choose>
             <if>
               <conditions>
@@ -416,17 +416,17 @@
         </else-if>
         <else-if type="legal_case" country="eu.int" match="all">
           <number variable="collection-number" prefix="[" suffix="]"/>
-          <text variable="container-title" form="short"/>
+          <text variable="container-title" form="short" text-case="title"/>
           <number variable="volume"/>
         </else-if>
         <else-if type="legal_case legislation">
-          <text variable="container-title" form="short"/>
+          <text variable="container-title" form="short" text-case="title"/>
           <number variable="volume"/>
           <date variable="publication-date" form="numeric" date-parts="year" prefix="(" suffix=")"/>
         </else-if>
         <else>
           <number variable="volume"/>
-          <text variable="container-title" form="short"/>
+          <text variable="container-title" form="short" text-case="title"/>
         </else>
       </choose>
     </group>
@@ -459,10 +459,10 @@
   <macro name="title-short">
     <choose>
       <if variable="hereinafter">
-        <text variable="hereinafter"/>
+        <text variable="hereinafter" text-case="title"/>
       </if>
       <else-if variable="title-short">
-        <text variable="title-short"/>
+        <text variable="title-short" text-case="title"/>
       </else-if>
     </choose>
   </macro>
