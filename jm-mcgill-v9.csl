@@ -30,7 +30,7 @@
     </contributor>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2020-10-26T13:37:32.294Z</updated>
+    <updated>2021-01-16T18:37:32.294Z</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="fr">
@@ -663,18 +663,7 @@
   </macro>
   <macro name="pinpoint-fr">
     <group delimiter=" ">
-      <choose>
-        <if locator="page">
-          <choose>
-            <if variable="locator">
-              <text term="at"/>
-            </if>
-          </choose>
-        </if>
-        <else>
-          <label variable="locator" plural="contextual" form="short" strip-periods="true"/>
-        </else>
-      </choose>
+      <label variable="locator" plural="contextual" form="short" strip-periods="true"/>
       <text variable="locator"/>
     </group>
   </macro>
