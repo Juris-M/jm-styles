@@ -231,7 +231,7 @@
                 </if>
               </choose>
               <choose>
-                <if type="hearing" match="any">
+                <if type="hearing legal_case" match="any">
                   <text macro="juris-title" font-style="italic"/>
                 </if>
                 <else>
@@ -300,10 +300,17 @@
             <if>
               <conditions match="all">
                 <condition type="legal_case" match="any"/>
-                <condition match="none" variable="document-name archive container-title collection-number"/>
+                <condition match="none" variable="archive container-title collection-number"/>
               </conditions>
               <text variable="URL"/>
             </if>
+            <else-if>
+              <conditions match="all">
+                <condition type="report"/>
+                <condition match="none" variable="accessed"/>
+              </conditions>
+              <text variable="URL"/>
+            </else-if>
           </choose>
         </group>
       </else>
