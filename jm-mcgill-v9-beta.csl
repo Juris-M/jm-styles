@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number"  >
   <info>
-    <title>JM Canadian Guide to Uniform Legal Citation (9th edition) / Manuel canadien de la référence juridique (9ᵉ édition)</title>
-    <id>http://juris-m.github.io/styles/jm-mcgill-v9</id>
+    <title>BETA - JM Canadian Guide to Uniform Legal Citation (9th edition) / Manuel canadien de la référence juridique (9ᵉ édition)</title>
+    <id>http://juris-m.github.io/styles/jm-mcgill-v9-beta</id>
     <link href="http://juris-m.github.io/styles/jm-mgcill-v9" rel="self"/>
     <link href="https://lawjournal.mcgill.ca/fr/manuel-de-reference/" rel="documentation"/>
     <author>
@@ -152,34 +152,27 @@
       </else-if>
       <else-if position="subsequent">
         <!-- short form -->
-        <group delimiter=", ">
+        <group delimiter=" ">
           <choose>
-            <if variable="hereinafter">
-              <text variable="hereinafter" font-style="italic" strip-periods="true"/>
+            <if match="any" variable="hereinafter title-short">
+              <group delimiter=", ">
+                <text macro="juris-title-short" font-style="italic" strip-periods="true" suffix=","/>
+                <text value="supra" font-style="italic"/>
+              </group>
             </if>
             <else>
-              <choose>
-                <if variable="title">
-                  <text macro="juris-title-short" font-style="italic" strip-periods="true"/>
-                </if>
-                <else>
-                  <text macro="juris-main-short"/>
-                </else>
-              </choose>
+              <text value="supra" font-style="italic" text-case="capitalize-first"/>
             </else>
           </choose>
-          <group delimiter=" ">
-            <text value="supra" font-style="italic"/>
-            <text variable="first-reference-note-number" prefix="note " suffix=""/>
-            <choose>
-              <if locator="issue section" match="any">
-                <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
-              </if>
-              <else>
-                <text macro="juris-locator" label-form="short" strip-periods="true"/>
-              </else>
-            </choose>
-          </group>
+          <text variable="first-reference-note-number" prefix="note " suffix=""/>
+          <choose>
+            <if locator="issue section" match="any">
+              <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
+            </if>
+            <else>
+              <text macro="juris-locator" label-form="short" strip-periods="true"/>
+            </else>
+          </choose>
         </group>
       </else-if>
       <else>
@@ -201,8 +194,8 @@
               <text macro="juris-title" font-style="italic" strip-periods="true"/>
             </group>
             <group delimiter=", ">
-              <text macro="juris-main" strip-periods="true"/>
-              <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              <text macro="juris-main"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
             <choose>
               <if>
@@ -220,7 +213,7 @@
           </else-if>
           <else-if type="legal_case">
             <group delimiter=", ">
-              <group parallel-first="authority" delimiter=" ">
+              <group parallel-first="authority" delimiter=" " parallel-delimiter-override=", ">
                 <text macro="juris-title" strip-periods="true" font-style="italic"/>
                 <choose>
                   <if>
@@ -232,9 +225,11 @@
                   </if>
                 </choose>
               </group>
-              <group delimiter=" ">
-                <text macro="juris-main" strip-periods="true"/>
-                <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              <group delimiter=", ">
+                <group delimiter=" ">
+                  <text macro="juris-main" strip-periods="true"/>
+                  <text macro="juris-locator" label-form="short" strip-periods="true"/>
+                </group>
               </group>
             </group>
             <choose>
@@ -242,7 +237,6 @@
                 <conditions match="all">
                   <condition match="none" context="bibliography"/>
                   <condition position="first"/>
-                  <condition type="legal_case"/>
                 </conditions>
                 <group parallel-last="title-short title">
                   <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
@@ -261,6 +255,7 @@
           <condition match="any" type="legal_case legislation bill"/>
           <condition match="all" variable="jurisdiction"/>
           <condition match="all" country="ca"/>
+          <condition match="none" variable="gazette-flag admin-flag"/>
         </conditions>
         <text macro="jurism" strip-periods="true"/>
       </if>
@@ -277,10 +272,15 @@
       <!-- For future versions? Cannot test for whether short form exists (Supra should be capitalized if no short form) -->
       <else-if position="subsequent">
         <group delimiter=" ">
-          <group delimiter=", ">
-            <text macro="short-form"/>
-            <text value="supra" font-style="italic"/>
-          </group>
+          <choose>
+            <if variable="title-short">
+              <text macro="short-form" suffix=","/>
+              <text value="supra" font-style="italic"/>
+            </if>
+            <else>
+              <text value="supra" font-style="italic" text-case="capitalize-first"/>
+            </else>
+          </choose>
           <text value="note"/>
           <text variable="first-reference-note-number"/>
           <text macro="pinpoint"/>
