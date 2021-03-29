@@ -614,81 +614,161 @@
   <macro name="jurism">
     <choose>
       <if context="citation">
-        <!-- short form -->
         <group delimiter=" ">
           <choose>
-            <if type="bill">
-              <number variable="locator-extra"/>
-            </if>
-          </choose>
-          <group delimiter=", ">
-            <text macro="juris-pretitle"/>
-            <choose>
-              <if>
-                <conditions match="any">
-                  <condition match="all" variable="title"/>
-                  <condition match="all" type="hearing" variable="number"/>
-                </conditions>
+            <if position="first" type="legislation regulation bill">
+              <!-- long form -->
+              <choose>
+                <if type="bill">
+                  <number variable="locator-extra"/>
+                </if>
+              </choose>
+              <group delimiter=", ">
+                <text macro="juris-pretitle"/>
                 <choose>
                   <if>
                     <conditions match="any">
-                      <condition variable="admin-flag"/>
-                      <condition match="all" type="report bill legislation regulation patent" variable="jurisdiction"/>
+                      <condition match="all" variable="title"/>
+                      <condition match="all" type="hearing" variable="number"/>
                     </conditions>
-                    <text macro="juris-title-short"/>
+                    <choose>
+                      <if>
+                        <conditions match="any">
+                          <condition variable="admin-flag"/>
+                          <condition match="all" type="report bill legislation regulation patent" variable="jurisdiction"/>
+                        </conditions>
+                        <text macro="juris-title"/>
+                      </if>
+                      <else>
+                        <text macro="juris-title" font-style="italic"/>
+                      </else>
+                    </choose>
+                  </if>
+                </choose>
+                <choose>
+                  <if>
+                    <conditions match="any">
+                      <condition type="legal_case bill"/>
+                      <condition match="none" variable="title"/>
+                      <condition match="all" type="regulation" variable="title gazette-flag"/>
+                      <condition match="all" type="legislation" variable="title gazette-flag"/>
+                    </conditions>
+                    <text macro="juris-main"/>
+                  </if>
+                </choose>
+                <choose>
+                  <if>
+                    <conditions>
+                      <condition type="legal_case" country="eu.int coe.int"/>
+                      <condition variable="commenter page issue" match="none"/>
+                    </conditions>
+                    <text macro="juris-locator"/>
                   </if>
                   <else>
-                    <text macro="juris-title-short" font-style="italic"/>
+                    <group require="comma-safe-numbers-only">
+                      <text macro="juris-locator"/>
+                    </group>
                   </else>
                 </choose>
-              </if>
-            </choose>
-            <choose>
-              <if>
-                <conditions match="any">
-                  <condition type="legal_case bill"/>
-                  <condition match="none" variable="title"/>
-                  <condition match="all" type="regulation" variable="title gazette-flag"/>
-                  <condition match="all" type="legislation" variable="title gazette-flag"/>
-                </conditions>
-                <text macro="juris-main"/>
-              </if>
-            </choose>
-            <choose>
-              <if>
-                <conditions>
-                  <condition type="legal_case" country="eu.int coe.int"/>
-                  <condition variable="commenter page issue" match="none"/>
-                </conditions>
-                <text macro="juris-locator"/>
-              </if>
-              <else>
-                <group require="comma-safe-numbers-only">
-                  <text macro="juris-locator"/>
-                </group>
-              </else>
-            </choose>
-          </group>
-          <choose>
-            <if variable="locator">
+              </group>
               <choose>
-                <if locator="section">
-                  <group reject="comma-safe-numbers-only">
-                    <text macro="juris-locator" label-form="symbol"/>
-                  </group>
+                <if variable="locator">
+                  <choose>
+                    <if locator="section">
+                      <group reject="comma-safe-numbers-only">
+                        <text macro="juris-locator" label-form="symbol"/>
+                      </group>
+                    </if>
+                    <else>
+                      <group reject="comma-safe-numbers-only">
+                        <text macro="juris-locator" label-form="short"/>
+                      </group>
+                    </else>
+                  </choose>
                 </if>
-                <else>
-                  <group reject="comma-safe-numbers-only">
-                    <text macro="juris-locator" label-form="short"/>
-                  </group>
-                </else>
+                <else-if type="legal_case" country="at">
+                  <text macro="juris-locator"/>
+                </else-if>
               </choose>
+              <text macro="juris-tail"/>
             </if>
-            <else-if type="legal_case" country="at">
-              <text macro="juris-locator"/>
-            </else-if>
+            <else>
+              <!-- short form -->
+              <choose>
+                <if type="bill">
+                  <number variable="locator-extra"/>
+                </if>
+              </choose>
+              <group delimiter=", ">
+                <text macro="juris-pretitle"/>
+                <choose>
+                  <if>
+                    <conditions match="any">
+                      <condition match="all" variable="title"/>
+                      <condition match="all" type="hearing" variable="number"/>
+                    </conditions>
+                    <choose>
+                      <if>
+                        <conditions match="any">
+                          <condition variable="admin-flag"/>
+                          <condition match="all" type="report bill legislation regulation patent" variable="jurisdiction"/>
+                        </conditions>
+                        <text macro="juris-title-short"/>
+                      </if>
+                      <else>
+                        <text macro="juris-title-short" font-style="italic"/>
+                      </else>
+                    </choose>
+                  </if>
+                </choose>
+                <choose>
+                  <if>
+                    <conditions match="any">
+                      <condition type="legal_case bill"/>
+                      <condition match="none" variable="title"/>
+                      <condition match="all" type="regulation" variable="title gazette-flag"/>
+                      <condition match="all" type="legislation" variable="title gazette-flag"/>
+                    </conditions>
+                    <text macro="juris-main"/>
+                  </if>
+                </choose>
+                <choose>
+                  <if>
+                    <conditions>
+                      <condition type="legal_case" country="eu.int coe.int"/>
+                      <condition variable="commenter page issue" match="none"/>
+                    </conditions>
+                    <text macro="juris-locator"/>
+                  </if>
+                  <else>
+                    <group require="comma-safe-numbers-only">
+                      <text macro="juris-locator"/>
+                    </group>
+                  </else>
+                </choose>
+              </group>
+              <choose>
+                <if variable="locator">
+                  <choose>
+                    <if locator="section">
+                      <group reject="comma-safe-numbers-only">
+                        <text macro="juris-locator" label-form="symbol"/>
+                      </group>
+                    </if>
+                    <else>
+                      <group reject="comma-safe-numbers-only">
+                        <text macro="juris-locator" label-form="short"/>
+                      </group>
+                    </else>
+                  </choose>
+                </if>
+                <else-if type="legal_case" country="at">
+                  <text macro="juris-locator"/>
+                </else-if>
+              </choose>
+              <text macro="juris-tail-short"/>
+            </else>
           </choose>
-          <text macro="juris-tail-short"/>
         </group>
       </if>
       <else>
