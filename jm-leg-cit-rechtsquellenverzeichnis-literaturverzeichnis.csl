@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2020-11-25T13:49:40+00:00</updated>
+    <updated>2021-03-31T22:51:07+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -103,7 +103,9 @@
       </if>
       <else>
         <names variable="author" font-style="italic">
+          <name/>
           <et-al term="et-al"/>
+          <institution delimiter="/"/>
           <substitute>
             <text macro="editor-suffix"/>
             <names variable="editor"/>
@@ -116,6 +118,8 @@
   </macro>
   <macro name="editor-suffix">
     <names variable="editor">
+      <name/>
+      <institution delimiter="/"/>
       <label form="short" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="collection-editor"/>
@@ -125,6 +129,8 @@
   </macro>
   <macro name="editor-short">
     <names variable="editor">
+      <name/>
+      <institution delimiter="/"/>
       <substitute>
         <names variable="collection-editor"/>
         <names variable="container-author"/>
