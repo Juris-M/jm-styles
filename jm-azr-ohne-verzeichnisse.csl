@@ -195,6 +195,16 @@
       <text macro="edition"/>
     </group>
   </macro>
+  <macro name="article-container">
+    <choose>
+      <if variable="container-title-short">
+        <text variable="container-title-short"/>
+      </if>
+      <else>
+        <text variable="container-title"/>
+      </else>
+    </choose>
+  </macro>
   <macro name="commentary-container">
     <group>
       <group delimiter=", ">
@@ -261,7 +271,7 @@
     <choose>
       <if type="article-journal article article-magazine article-newspaper" match="any">
         <group delimiter=" ">
-          <text variable="container-title"/>
+          <text macro="article-container"/>
           <choose>
             <if variable="volume">
               <number variable="volume"/>
@@ -360,13 +370,13 @@
   </macro>
   <macro name="author-title">
     <choose>
-      <if variable="container-title">
+      <if variable="container-title container-title-short" match="any">
         <group delimiter=", ">
           <text macro="author-short"/>
           <choose>
             <if type="article article-journal article-newspaper article-magazine">
               <group delimiter=" ">
-                <text variable="container-title"/>
+                <text macro="article-container"/>
                 <choose>
                   <if variable="author title" match="none">
                     <!-- article newspaper -->
@@ -631,7 +641,7 @@
           <group delimiter=", ">
             <text macro="author-short"/>
             <choose>
-              <if variable="container-title">
+              <if variable="container-title container-title-short" match="any">
                 <text macro="title"/>
                 <text macro="container-date-locator"/>
               </if>
