@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>Zitierregeln der österreichischen (Steuer-)Rechtssprache.</summary>
-    <updated>2021-03-30T14:52:02+02:00</updated>
+    <updated>2021-03-30T22:43:42+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -934,24 +934,6 @@
     </choose>
   </macro>
 
-  <!-- sort macros -->
-  <macro name="type-sort">
-    <choose>
-      <if type="legal_case regulation" match="any">
-        <text value="1"/>
-      </if>
-      <else-if type="legislation bill" match="any">
-        <text value="2"/>
-      </else-if>
-      <else-if type="webpage post-weblog post">
-        <text value="4"/>
-      </else-if>
-      <else>
-        <text value="3"/>
-      </else>
-    </choose>
-  </macro>
-
   <macro name="citation">
     <choose>
       <if position="subsequent" match="any">
@@ -969,39 +951,54 @@
   <!-- sort macros -->
   <macro name="type-sort">
     <choose>
-      <if type="legal_case regulation" match="any">
-        <text value="1"/>
+      <if type="book">
+        <text value="10"/>
       </if>
-      <else-if type="legislation bill" match="any">
-        <text value="2"/>
+      <else-if type="legal_commentary">
+        <text value="20"/>
+      </else-if>
+      <else-if type="chapter">
+        <text value="30"/>
+      </else-if>
+      <else-if type="article-journal">
+        <text value="40"/>
       </else-if>
       <else-if type="webpage post-weblog post">
-        <text value="4"/>
+        <text value="60"/>
+      </else-if>
+      <else-if type="legal_case regulation">
+        <text value="70"/>
+      </else-if>
+      <else-if type="legislation bill">
+        <text value="80"/>
       </else-if>
       <else>
-        <text value="3"/>
+        <text value="50"/>
       </else>
     </choose>
   </macro>
   <macro name="sort-jurisdiction">
     <choose>
       <if country="eu.int">
-        <text value="10"/>
+        <text value="20"/>
       </if>
       <else-if country="coe.int">
-        <text value="11"/>
+        <text value="21"/>
       </else-if>
       <else-if country="un.int">
-        <text value="12"/>
+        <text value="22"/>
       </else-if>
       <else-if country="at">
-        <text value="20"/>
+        <text value="10"/>
+      </else-if>
+      <else-if country="de">
+        <text value="30"/>
       </else-if>
       <else>
         <text value="50"/>
       </else>
     </choose>
-    <text value="country"/>
+    <text variable="country"/>
   </macro>
   <macro name="sort-courts">
     <choose>
@@ -1030,41 +1027,71 @@
         <choose>
           <if country="at">
             <choose>
-              <if court-class="o1">
-                <text value="1"/>
+              <if court-class="v0">
+                <text value="10"/>
               </if>
-              <else-if court-class="o2">
-                <text value="2"/>
-              </else-if>
-              <else-if court-class="o3">
-                <text value="2"/>
-              </else-if>
-              <else-if court-class="o4">
-                <text value="2"/>
-              </else-if>
-              <else-if court-class="v0">
-                <text value="3"/>
-              </else-if>
               <else-if court-class="v1">
-                <text value="4"/>
+                <text value="20"/>
+              </else-if>
+              <else-if court-class="v2f">
+                <text value="21"/>
               </else-if>
               <else-if court-class="v2">
-                <text value="5"/>
+                <text value="22"/>
+              </else-if>
+              <else-if court-class="v3">
+                <text value="23"/>
+              </else-if>
+              <else-if court-class="o1">
+                <text value="30"/>
+              </else-if>
+              <else-if court-class="o2">
+                <text value="31"/>
+              </else-if>
+              <else-if court-class="o3">
+                <text value="32"/>
+              </else-if>
+              <else-if court-class="o4">
+                <text value="33"/>
               </else-if>
               <else>
-                <text value="6"/>
+                <text value="40"/>
               </else>
             </choose>
           </if>
+          <else-if country="de">
+            <choose>
+              <if court-class="f1">
+                <text value="10"/>
+              </if>
+              <else>
+                <text value="20"/>
+              </else>
+            </choose>
+          </else-if>
         </choose>
         <text variable="jurisdiction"/>
       </if>
       <else-if type="legislation">
-        <text value="10"/>
+        <text value="200"/>
       </else-if>
       <else-if type="regulation bill" match="any">
-        <text value="20"/>
+        <text value="300"/>
       </else-if>
+    </choose>
+  </macro>
+  <macro name="sort-author">
+    <choose>
+      <if type="legislation legal_case regulation bill hearing" match="none">
+        <text macro="author-short"/>
+      </if>
+    </choose>
+  </macro>
+  <macro name="sort-title">
+    <choose>
+      <if type="legislation legal_case regulation bill hearing" match="none">
+        <text macro="title"/>
+      </if>
     </choose>
   </macro>
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-givenname="true" givenname-disambiguation-rule="all-names">
@@ -1093,7 +1120,8 @@
       <key macro="type-sort"/>
       <key macro="sort-jurisdiction"/>
       <key macro="type-sort-legal"/>
-      <key macro="author-short"/>
+      <key macro="sort-author"/>
+      <key macro="sort-title"/>
       <key variable="issued" sort="descending"/>
     </sort>
     <layout suffix=".">
