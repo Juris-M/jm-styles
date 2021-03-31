@@ -225,7 +225,14 @@
           </else>
         </choose>
         <group delimiter=" ">
-          <text variable="container-title"/>
+          <choose>
+            <if context="citation">
+              <text macro="container-title-short"/>
+            </if>
+            <else>
+              <text variable="container-title"/>
+            </else>
+          </choose>
           <number variable="volume"/>
         </group>
       </group>
