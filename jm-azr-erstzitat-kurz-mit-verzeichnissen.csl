@@ -935,8 +935,11 @@
               <else-if court-class="v2">
                 <text value="5"/>
               </else-if>
-              <else>
+              <else-if court-class="v3">
                 <text value="6"/>
+              </else-if>
+              <else>
+                <text value="7"/>
               </else>
             </choose>
           </if>
