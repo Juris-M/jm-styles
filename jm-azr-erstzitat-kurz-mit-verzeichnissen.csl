@@ -337,7 +337,10 @@
               <group delimiter=", ">
                 <text macro="editor-suffix"/>
                 <group delimiter=" ">
-                  <text macro="container-title"/>
+                  <group delimiter=", ">
+                    <text macro="container-title"/>
+                    <text macro="collection-collectionvolume"/>
+                  </group>
                   <text macro="extras-and-date"/>
                   <number variable="page-first"/>
                 </group>
@@ -347,6 +350,12 @@
         </group>
       </else>
     </choose>
+  </macro>
+  <macro name="collection-collectionvolume">
+    <group delimiter=" ">
+      <text variable="collection-title"/>
+      <number variable="collection-number"/>
+    </group>
   </macro>
   <macro name="title-volume-date">
     <group delimiter=" ">
@@ -362,12 +371,15 @@
           <text macro="full-date"/>
         </if>
         <else>
-          <group>
-            <group delimiter=" ">
-              <text macro="title"/>
-              <number variable="volume"/>
+          <group delimiter=", ">
+            <group>
+              <group delimiter=" ">
+                <text macro="title"/>
+                <number variable="volume"/>
+              </group>
+              <text macro="edition"/>
             </group>
-            <text macro="edition"/>
+            <text macro="collection-collectionvolume"/>
           </group>
           <text macro="extras-and-date"/>
         </else>
