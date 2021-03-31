@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8. Erstzitat in Kurzform, wo möglich bei Literatureintrag in Verzeichnissen.</summary>
-    <updated>2021-03-31T22:56:58+02:00</updated>
+    <updated>2021-03-31T22:59:18+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -37,6 +37,10 @@
         <multiple>Nr</multiple>
       </term>
       <term name="paragraph" form="short">
+        <single>Abs</single>
+        <multiple>Abs</multiple>
+      </term>
+      <term name="paragraph" form="symbol">
         <single>Abs</single>
         <multiple>Abs</multiple>
       </term>
