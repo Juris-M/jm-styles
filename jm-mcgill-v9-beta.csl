@@ -218,37 +218,39 @@
             </choose>
           </else-if>
           <else-if type="legal_case">
-            <group delimiter=", ">
-              <group parallel-first="authority" delimiter=" " parallel-delimiter-override=", ">
-                <text macro="juris-title" strip-periods="true" font-style="italic"/>
-                <choose>
-                  <if>
-                    <conditions match="all">
-                      <condition match="all" type="legal_case" variable="container-title"/>
-                      <condition match="none" variable="collection-number"/>
-                    </conditions>
-                    <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
-                  </if>
-                </choose>
-              </group>
+            <group delimiter=" ">
               <group delimiter=", ">
-                <group delimiter=" ">
-                  <text macro="juris-main" strip-periods="true"/>
-                  <text macro="juris-locator" label-form="short" strip-periods="true"/>
+                <group parallel-first="authority" delimiter=" " parallel-delimiter-override=", ">
+                  <text macro="juris-title" strip-periods="true" font-style="italic"/>
+                  <choose>
+                    <if>
+                      <conditions match="all">
+                        <condition match="all" type="legal_case" variable="container-title"/>
+                        <condition match="none" variable="collection-number"/>
+                      </conditions>
+                      <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
+                    </if>
+                  </choose>
+                </group>
+                <group delimiter=", ">
+                  <group delimiter=" ">
+                    <text macro="juris-main" strip-periods="true"/>
+                    <text macro="juris-locator" label-form="short" strip-periods="true"/>
+                  </group>
                 </group>
               </group>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="none" context="bibliography"/>
+                    <condition position="first"/>
+                  </conditions>
+                  <group parallel-last="title-short title">
+                    <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
+                  </group>
+                </if>
+              </choose>
             </group>
-            <choose>
-              <if>
-                <conditions match="all">
-                  <condition match="none" context="bibliography"/>
-                  <condition position="first"/>
-                </conditions>
-                <group parallel-last="title-short title">
-                  <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
-                </group>
-              </if>
-            </choose>
           </else-if>
         </choose>         
       </else>
