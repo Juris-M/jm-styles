@@ -556,7 +556,7 @@
       <text variable="title" quotes="true"/>
       <text term="in" form="short"/>
       <text macro="editor" strip-periods="true" suffix=","/>
-      <text macro="container-title" font-style="italic"/>
+      <text macro="container-title" font-style="italic" suffix=","/>
       <text macro="series-info" suffix=","/>
       <text macro="edition"/>
       <text macro="publisher-place-year"/>
