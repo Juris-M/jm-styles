@@ -64,8 +64,8 @@
       <term name="in">dans</term>
       <term name="online">en ligne</term>
       <term name="and" form="symbol">et</term>
-      <term name="open-quote" form="short"></term>
-      <term name="close-quote" form="short"></term>
+      <term name="open-quote" form="short">, </term>
+      <term name="close-quote" form="short">,</term>
       <term name="open-inner-quote" form="short">,</term>
     </terms>
   </locale>
@@ -94,15 +94,14 @@
         <multiple>at nos</multiple>
       </term>
       <term name="chapter" form="short">c</term>
-      <term name="editor" form="verb-short">dir</term>
-      <term name="editor" form="short">dir</term>
-      <term name="editor" form="verb">dir</term>
-      <term name="translator" form="verb">traduit par</term>
-      <term name="in">dans</term>
+      <term name="editor" form="verb-short">ed</term>
+      <term name="editor" form="short">ed</term>
+      <term name="translator" form="verb">translated by</term>
+      <term name="in">in</term>
       <term name="and" form="symbol">&#38;</term>
       <term name="et-al">et al</term>
       <term name="supplement" form="short">Supp</term>
-      <term name="open-quote" form="short">(</term>
+      <term name="open-quote" form="short"> (</term>
       <term name="close-quote" form="short">)</term>
       <term name="open-inner-quote" form="short">:</term>
     </terms>
@@ -558,8 +557,10 @@
       <text macro="editor" strip-periods="true" suffix=","/>
       <text macro="container-title" font-style="italic" suffix=","/>
       <text macro="series-info" suffix=","/>
-      <text macro="edition"/>
-      <text macro="publisher-place-year"/>
+      <group>
+        <text macro="edition"/>
+        <text macro="publisher-place-year"/>
+      </group>
       <number variable="page-first"/>
     </group>
   </macro>
@@ -578,15 +579,15 @@
   </macro>
   <macro name="render-book">
     <group delimiter=" ">
+      <text variable="title" font-style="italic"/>
       <group delimiter=", ">
-        <text variable="title" font-style="italic"/>
         <text macro="edition"/>
         <text macro="translator"/>
         <text macro="editor"/>
         <text macro="series-info"/>
-        <text macro="publisher-place-year"/>
       </group>
     </group>
+    <text macro="publisher-place-year"/>
   </macro>
   <macro name="render-report">
     <group delimiter=", ">
