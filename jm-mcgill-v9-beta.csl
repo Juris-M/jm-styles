@@ -67,6 +67,7 @@
       <term name="open-quote" form="short">, </term>
       <term name="close-quote" form="short">,</term>
       <term name="open-inner-quote" form="short">,</term>
+      <term name="close-inner-quote" form="short"></term>
     </terms>
   </locale>
   <locale xml:lang="en">
@@ -104,6 +105,7 @@
       <term name="open-quote" form="short"> (</term>
       <term name="close-quote" form="short">)</term>
       <term name="open-inner-quote" form="short">:</term>
+      <term name="close-inner-quote" form="short">)</term>
     </terms>
   </locale>
   <!-- Juris-M Macros-->
@@ -280,7 +282,11 @@
       <else-if position="subsequent">
         <group delimiter=" ">
           <choose>
-            <if variable="title-short">
+            <if>
+              <conditions match="any">
+                <condition match="none" type="bill legislation case"/>
+                <condition match="all" variable="title-short"/>
+              </conditions>
               <text macro="short-form" suffix=","/>
               <text value="supra" font-style="italic"/>
             </if>
@@ -578,14 +584,12 @@
     </group>
   </macro>
   <macro name="render-book">
-    <group delimiter=" ">
+    <group delimiter=", ">
       <text variable="title" font-style="italic"/>
-      <group delimiter=", ">
-        <text macro="edition"/>
-        <text macro="translator"/>
-        <text macro="editor"/>
-        <text macro="series-info"/>
-      </group>
+      <text macro="edition"/>
+      <text macro="translator"/>
+      <text macro="editor"/>
+      <text macro="series-info"/>
     </group>
     <text macro="publisher-place-year"/>
   </macro>
@@ -806,7 +810,18 @@
       <text variable="publisher" suffix=","/>
       <group>
         <date form="text" variable="issued" date-parts="year"/>
-        <text term="close-quote" form="short"/>
+        <choose>
+          <if>
+            <conditions match="all">
+              <condition match="all" type="book"/>
+              <condition match="none" variable="locator"/>
+            </conditions>
+            <text term="close-inner-quote" form="short"/>
+          </if>
+          <else>
+            <text term="close-quote" form="short"/>
+          </else>
+        </choose>
       </group>
     </group>
   </macro>
