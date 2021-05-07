@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" year-range-format="expanded" require-comma-on-symbol="after-number"  >
   <info>
-    <title>BETA - JM Canadian Guide to Uniform Legal Citation (9th edition) / Manuel canadien de la référence juridique (9ᵉ édition)</title>
-    <id>http://juris-m.github.io/styles/jm-mcgill-v9-beta</id>
+    <title>JM - Canadian Guide to Uniform Legal Citation (9th edition) / Manuel canadien de la référence juridique (9ᵉ édition)</title>
+    <id>http://juris-m.github.io/styles/jm-mcgill-v9</id>
     <link href="http://juris-m.github.io/styles/jm-mgcill-v9" rel="self"/>
     <link href="https://lawjournal.mcgill.ca/fr/manuel-de-reference/" rel="documentation"/>
     <author>
@@ -56,6 +56,7 @@
         <single>nᵒ</single>
         <multiple>nᵒ</multiple>
       </term>
+      <term name="issue" form="long">no</term>
       <term name="chapter" form="short">c</term>
       <term name="editor" form="verb-short">dir</term>
       <term name="editor" form="short">dir</term>
@@ -94,6 +95,7 @@
         <single>at no</single>
         <multiple>at nos</multiple>
       </term>
+      <term name="issue" form="long">No</term>
       <term name="chapter" form="short">c</term>
       <term name="editor" form="verb-short">ed</term>
       <term name="editor" form="short">ed</term>
@@ -106,6 +108,8 @@
       <term name="close-quote" form="short">)</term>
       <term name="open-inner-quote" form="short">:</term>
       <term name="close-inner-quote" form="short">)</term>
+      <term name="ordinal-02">d</term>
+      <term name="ordinal-03">d</term>
     </terms>
   </locale>
   <!-- Juris-M Macros-->
@@ -226,7 +230,7 @@
                   <choose>
                     <if>
                       <conditions match="all">
-                        <condition match="all" type="legal_case" variable="container-title"/>
+                        <condition match="all" type="legal_case" variable="container-title volume"/>
                         <condition match="none" variable="collection-number"/>
                       </conditions>
                       <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
@@ -238,6 +242,15 @@
                     <text macro="juris-main" strip-periods="true"/>
                     <text macro="juris-locator" label-form="short" strip-periods="true"/>
                   </group>
+                  <choose>
+                    <if match="all" variable="archive archive_location">
+                      <group parallel-last="archive archive_location submitted">
+                        <group parallel-last-to-first="archive archive_location submitted">
+                          <text macro="juris-tail" strip-periods="true"/>
+                        </group>
+                      </group> 
+                    </if>
+                  </choose>
                 </group>
               </group>
               <choose>
@@ -284,7 +297,7 @@
           <choose>
             <if>
               <conditions match="any">
-                <condition match="none" type="bill legislation case"/>
+                <condition match="none" type="bill legislation legal_case"/>
                 <condition match="all" variable="title-short"/>
               </conditions>
               <text macro="short-form" suffix=","/>
