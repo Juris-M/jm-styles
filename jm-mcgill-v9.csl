@@ -56,6 +56,10 @@
         <single>nᵒ</single>
         <multiple>nᵒ</multiple>
       </term>
+      <term name="article" form="short">
+        <single>art</single>
+        <multiple>arts</multiple>
+      </term>
       <term name="issue" form="long">no</term>
       <term name="chapter" form="short">c</term>
       <term name="editor" form="verb-short">dir</term>
@@ -65,6 +69,7 @@
       <term name="in">dans</term>
       <term name="online">en ligne</term>
       <term name="and" form="symbol">et</term>
+      <term name="supplement" form="short">supp</term>
       <term name="open-quote" form="short">, </term>
       <term name="close-quote" form="short">,</term>
       <term name="open-inner-quote" form="short">,</term>
@@ -110,6 +115,10 @@
       <term name="close-inner-quote" form="short">)</term>
       <term name="ordinal-02">d</term>
       <term name="ordinal-03">d</term>
+      <term name="article" form="short">
+        <single>art</single>
+        <multiple>arts</multiple>
+      </term>
     </terms>
   </locale>
   <!-- Juris-M Macros-->
@@ -142,7 +151,18 @@
   </macro>
   <macro name="jurism">
     <choose>
-      <if position="ibid-with-locator">
+      <if>
+        <conditions match="all">
+          <condition type="legislation"/>
+          <condition match="none" variable="volume container-title number"/>
+          <condition match="all" variable="title-short"/>
+        </conditions>
+        <group delimiter=" ">
+          <text macro="juris-locator"/>
+          <text macro="juris-title-short" strip-periods="true"/>
+        </group>
+      </if>
+      <else-if position="ibid-with-locator">
         <choose>
           <if locator="issue section" match="any">
             <group delimiter=", ">
@@ -157,7 +177,7 @@
             </group>
           </else>
         </choose>
-      </if>
+      </else-if>
       <else-if position="ibid">
         <text term="ibid" text-case="capitalize-first" font-style="italic"/>
       </else-if>
@@ -201,10 +221,8 @@
             </group>
           </if>
           <else-if type="legislation">
-            <group parallel-first="title country" parallel-delimiter-override=", ">
-              <text macro="juris-title" font-style="italic" strip-periods="true"/>
-            </group>
             <group delimiter=", ">
+              <text macro="juris-title" font-style="italic" strip-periods="true"/>
               <text macro="juris-main"/>
               <text macro="juris-locator" label-form="short"/>
             </group>
