@@ -21,7 +21,7 @@
     </contributor>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2020-11-02T14:05:40+00:00</updated>
+    <updated>2020-12-20T08:55:05+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -592,7 +592,7 @@
   <macro name="std-authority-child-shy">
     <names variable="authority">
       <name/>
-      <institution institution-parts="short" stop-first="1" use-last="1"/>
+      <institution institution-parts="short"/>
     </names>
   </macro>
   <macro name="std-authority-key">
@@ -604,7 +604,7 @@
   <macro name="std-authority-parent">
     <names variable="authority">
       <name/>
-      <institution institution-parts="short" use-first="1"/>
+      <institution institution-parts="short"/>
     </names>
   </macro>
   <macro name="std-inventor-label">
@@ -672,59 +672,14 @@
     </group>
   </macro>
   <macro name="render-report">
-    <choose>
-      <if jurisdiction="nz;maori">
-        <group delimiter=" ">
-          <text font-style="italic" strip-periods="true" variable="title"/>
-          <group delimiter=", " prefix="(" suffix=")">
-            <number variable="number"/>
-            <date date-parts="year" form="text" variable="issued"/>
-          </group>
-          <text macro="volume-number"/>
-        </group>
-      </if>
-      <else-if jurisdiction="nz">
-        <group delimiter=" ">
-          <choose>
-            <if variable="genre">
-              <text font-style="italic" strip-periods="true" variable="title"/>
-              <group delimiter=" " prefix="(" suffix=")">
-                <text variable="genre"/>
-                <group delimiter=", ">
-                  <number variable="number"/>
-                  <date date-parts="year" form="text" variable="issued"/>
-                </group>
-              </group>
-            </if>
-            <else-if match="all" variable="collection-title">
-              <group delimiter=" ">
-                <text quotes="true" variable="title"/>
-                <number variable="number"/>
-                <group prefix="(" suffix=")">
-                  <text macro="issued-long"/>
-                </group>
-                <text font-style="italic" variable="collection-title"/>
-              </group>
-            </else-if>
-            <else>
-              <text quotes="true" variable="title"/>
-              <text macro="issued-long" prefix="(" suffix=")"/>
-              <number variable="number"/>
-            </else>
-          </choose>
-        </group>
-      </else-if>
-      <else>
-        <group delimiter=" ">
-          <text font-style="italic" strip-periods="true" variable="title"/>
-          <group delimiter=" " prefix="(" suffix=")">
-            <number variable="number"/>
-            <text form="short" variable="publisher"/>
-            <date date-parts="year" form="text" variable="issued"/>
-          </group>
-        </group>
-      </else>
-    </choose>
+    <group delimiter=" ">
+      <text font-style="italic" strip-periods="true" variable="title"/>
+      <group delimiter=" " prefix="(" suffix=")">
+        <number variable="number"/>
+        <text form="short" variable="publisher"/>
+        <date date-parts="year" form="text" variable="issued"/>
+      </group>
+    </group>
   </macro>
   <macro name="hereinafter">
     <group prefix="[" suffix="]">
@@ -1011,7 +966,7 @@
         <number variable="volume"/>
         <text variable="container-title"/>
         <number variable="page"/>
-        <group delimiter=" " is-parallel="last" prefix="(" suffix=")">
+        <group delimiter=" " parallel-last="original-date available-date event-date issued" prefix="(" suffix=")">
           <group delimiter=", ">
             <group delimiter=" ">
               <text value="adopted"/>
@@ -1045,7 +1000,7 @@
               <name/>
               <institution and="none" delimiter="&#8211;" institution-parts="short"/>
             </names>
-            <group delimiter=" " is-parallel="last" prefix="(" suffix=")">
+            <group delimiter=" " parallel-last="original-date available-date event-date issued" prefix="(" suffix=")">
               <group delimiter=", ">
                 <group delimiter=" ">
                   <text value="adopted"/>
@@ -1114,7 +1069,7 @@
               </else>
             </choose>
           </group>
-          <group delimiter=", " is-parallel="last">
+          <group delimiter=", ">
             <group delimiter=" ">
               <text value="above n"/>
               <text variable="first-reference-note-number"/>
@@ -1287,11 +1242,11 @@
           <group delimiter=" ">
             <text value="at"/>
             <group require="empty-label">
-              <text macro="juris-locator" label-form="symbol"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
           </group>
           <group delimiter=" " reject="empty-label">
-            <text macro="juris-locator" label-form="symbol"/>
+            <text macro="juris-locator" label-form="short"/>
           </group>
         </group>
       </if>
@@ -1343,11 +1298,11 @@
                   <group delimiter=" ">
                     <text value="at"/>
                     <group require="empty-label">
-                      <text macro="juris-locator" label-form="symbol"/>
+                      <text macro="juris-locator" label-form="short"/>
                     </group>
                   </group>
                   <group delimiter=" " reject="empty-label">
-                    <text macro="juris-locator" label-form="symbol"/>
+                    <text macro="juris-locator" label-form="short"/>
                   </group>
                 </group>
               </if>
@@ -1381,10 +1336,10 @@
           <group delimiter=" ">
             <text value="at"/>
             <group require="empty-label">
-              <text macro="juris-locator" label-form="symbol"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
           </group>
-          <text macro="juris-locator" label-form="symbol"/>
+          <text macro="juris-locator" label-form="short"/>
           <text macro="juris-tail-short"/>
         </group>
       </else-if>
@@ -1429,16 +1384,16 @@
                   </choose>
                   <group delimiter=" " require="empty-label">
                     <text value="at"/>
-                    <text macro="juris-locator" label-form="symbol"/>
+                    <text macro="juris-locator" label-form="short"/>
                   </group>
                   <group require="comma-safe">
-                    <text macro="juris-locator" label-form="symbol"/>
+                    <text macro="juris-locator" label-form="short"/>
                   </group>
                 </group>
               </group>
             </group>
             <group reject="comma-safe">
-              <text macro="juris-locator" label-form="symbol"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
             <group prefix="&#60;" suffix="&#62;">
               <date variable="locator-date">
