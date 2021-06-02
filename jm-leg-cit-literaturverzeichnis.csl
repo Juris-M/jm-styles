@@ -52,6 +52,11 @@
         <multiple>Rz</multiple>
       </term>
     </terms>
+    <date form="text" delimiter=".">
+      <date-part name="day" form="numeric-leading-zeros"/>
+      <date-part name="month" form="numeric-leading-zeros"/>
+      <date-part name="year" form="long" suffix=""/>
+    </date>
   </locale>
   <macro name="dummy-disambiguate">
     <choose>
@@ -200,11 +205,7 @@
     </group>
   </macro>
   <macro name="full-date">
-    <date variable="issued">
-      <date-part name="day" form="numeric-leading-zeros" suffix="."/>
-      <date-part name="month" form="numeric-leading-zeros" suffix="."/>
-      <date-part name="year" form="long" suffix=""/>
-    </date>
+    <date variable="issued" form="text"/>
   </macro>
   <macro name="locator">
     <group delimiter=" ">
