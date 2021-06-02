@@ -81,7 +81,14 @@
     </choose>
   </macro>
   <macro name="title-short-hereinafter">
-    <text variable="hereinafter"/>
+    <choose>
+      <if variable="hereinafter">
+        <text variable="hereinafter"/>
+      </if>
+      <else>
+        <text variable="title-short"/>
+      </else>
+    </choose>
   </macro>
   <macro name="author-short">
     <choose>
