@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2021-03-31T22:51:07+02:00</updated>
+    <updated>2021-06-02T23:31:49+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -76,16 +76,6 @@
       </if>
       <else>
         <text variable="title" form="short"/>
-      </else>
-    </choose>
-  </macro>
-  <macro name="title-short-hereinafter">
-    <choose>
-      <if variable="hereinafter">
-        <text variable="hereinafter"/>
-      </if>
-      <else>
-        <text variable="title-short"/>
       </else>
     </choose>
   </macro>
@@ -523,7 +513,7 @@
           <text macro="URL"/>
           <choose>
             <if type="chapter" match="none">
-              <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
+              <text macro="title-short" prefix="[" suffix="]"/>
             </if>
             <else-if variable="container-title-short editor collection-editor container-author" match="none">
               <text macro="title-short-herinafter" prefix="[" suffix="]"/>
