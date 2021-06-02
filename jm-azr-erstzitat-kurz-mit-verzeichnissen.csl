@@ -13,7 +13,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8. Erstzitat in Kurzform, wo möglich bei Literatureintrag in Verzeichnissen.</summary>
-    <updated>2021-03-31T22:59:18+02:00</updated>
+    <updated>2021-06-02T14:11:41+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -286,27 +286,53 @@
       <number variable="locator"/>
     </group>
   </macro>
+  <macro name="article-volume-issue-date-pages">
+    <group delimiter=" ">
+      <choose>
+        <if variable="volume">
+          <number variable="volume"/>
+          <text macro="full-date" prefix="(" suffix=")"/>
+          <group delimiter=", ">
+            <number variable="issue"/>
+            <number variable="page-first"/>
+          </group>
+        </if>
+        <else-if variable="issue page-first" match="all">
+          <group delimiter=", ">
+            <group delimiter="/">
+              <number variable="issue"/>
+              <text macro="full-date"/>
+            </group>
+            <number variable="page-first"/>
+          </group>
+        </else-if>
+        <else-if variable="issue">
+          <group delimiter="/">
+            <text macro="full-date"/>
+            <number variable="issue"/>
+          </group>
+        </else-if>
+        <else-if variable="number">
+          <group delimiter="/">
+            <text macro="full-date"/>
+            <number variable="number"/>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", ">
+            <text macro="full-date"/>
+            <number variable="page-first"/>
+          </group>
+        </else>
+      </choose>
+    </group>
+  </macro>
   <macro name="container-date-locator">
     <choose>
       <if type="article-journal article article-magazine article-newspaper" match="any">
         <group delimiter=" ">
           <text macro="container-title-short"/>
-          <choose>
-            <if variable="volume">
-              <number variable="volume"/>
-              <text macro="full-date" prefix="(" suffix=")"/>
-              <number variable="page-first"/>
-            </if>
-            <else>
-              <group delimiter=", ">
-                <group delimiter="/">
-                  <number variable="issue"/>
-                  <text macro="full-date"/>
-                </group>
-                <number variable="page-first"/>
-              </group>
-            </else>
-          </choose>
+          <text macro="article-volume-issue-date-pages"/>
         </group>
       </if>
       <else>
@@ -413,18 +439,8 @@
                     <!-- article newspaper -->
                     <text macro="full-date"/>
                   </if>
-                  <else-if variable="issue">
-                    <group delimiter="/">
-                      <text macro="year-date"/>
-                      <number variable="issue"/>
-                    </group>
-                  </else-if>
-                  <else-if variable="volume">
-                    <number variable="volume"/>
-                    <text macro="year-date" prefix="(" suffix=")"/>
-                  </else-if>
                   <else>
-                    <text macro="year-date"/>
+                    <text macro="article-volume-issue-date-pages"/>
                   </else>
                 </choose>
               </group>
@@ -512,13 +528,22 @@
               <text macro="author-title"/>
             </else>
           </choose>
-          <group reject="comma-safe-numbers-only">
-            <number variable="page-first"/>
-          </group>
+          <choose>
+            <!-- article types already come with page-first if appropriate -->
+            <if type="article article-journal article-newspaper article-magazine" match="none">
+              <group reject="comma-safe-numbers-only">
+                <number variable="page-first"/>
+              </group>
+            </if>
+          </choose>
         </group>
-        <group require="comma-safe-numbers-only">
-          <number variable="page-first"/>
-        </group>
+        <choose>
+          <if type="article article-journal article-newspaper article-magazine" match="none">
+            <group require="comma-safe-numbers-only">
+              <number variable="page-first"/>
+            </group>
+          </if>
+        </choose>
         <choose>
           <if variable="page" match="none">
             <group require="comma-safe-numbers-only">
