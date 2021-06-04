@@ -171,6 +171,15 @@
       <text macro="edition"/>
     </group>
   </macro>
+  <macro name="container-title-short">
+    <group>
+      <group delimiter=" ">
+        <text variable="container-title" form="short"/>
+        <number variable="volume"/>
+      </group>
+      <text macro="edition"/>
+    </group>
+  </macro>
   <macro name="year-date">
     <date variable="issued">
       <date-part name="year" form="long" suffix=""/>
@@ -240,7 +249,7 @@
       <group delimiter=" ">
         <choose>
           <if type="article-journal article article-magazine article-newspaper" match="any">
-            <text variable="container-title"/>
+            <text variable="container-title" form="short"/>
             <choose>
               <if variable="volume">
                 <number variable="volume"/>
@@ -327,7 +336,7 @@
           <choose>
             <if type="article article-journal article-newspaper article-magazine">
               <group delimiter=" ">
-                <text variable="container-title"/>
+                <text variable="container-title" form="short"/>
                 <choose>
                   <if variable="author title" match="none">
                     <!-- article newspaper -->
@@ -386,13 +395,17 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="editor">
+              <if variable="container-title-short">
+                <text term="in"/>
+                <text macro="container-title-short"/>
+              </if>
+              <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
                   <text macro="container-title"/>
                 </group>
-              </if>
+              </else-if>
               <else>
                 <text macro="container-title"/>
               </else>
@@ -461,13 +474,17 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="editor">
+              <if variable="container-title-short">
+                <text term="in"/>
+                <text macro="container-title-short"/>
+              </if>
+              <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
                   <text macro="container-title"/>
                 </group>
-              </if>
+              </else-if>
               <else>
                 <text macro="container-title"/>
               </else>
