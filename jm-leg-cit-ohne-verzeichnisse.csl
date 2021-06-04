@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2021-06-04T16:44:22+02:00</updated>
+    <updated>2021-06-04T16:52:11+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -93,7 +93,8 @@
         <text variable="title-short"/>
       </else>
     </choose>
-  </macro><macro name="author-short">
+  </macro>
+  <macro name="author-short">
     <choose>
       <if type="legal_case">
         <names variable="author">
