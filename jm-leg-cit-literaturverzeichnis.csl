@@ -16,7 +16,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit Literaturverzeichnis.</summary>
-    <updated>2021-06-02T23:40:42+01:00</updated>
+    <updated>2021-06-04T16:05:52+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -52,9 +52,14 @@
         <multiple>Rz</multiple>
       </term>
     </terms>
-    <date form="text" delimiter=".">
+    <date form="numeric" delimiter=".">
       <date-part name="day" form="numeric-leading-zeros"/>
       <date-part name="month" form="numeric-leading-zeros"/>
+      <date-part name="year" form="long" suffix=""/>
+    </date>
+    <date form="text" delimiter=" ">
+      <date-part name="day" form="numeric-leading-zeros" suffix="."/>
+      <date-part name="month" form="short" strip-periods="true"/>
       <date-part name="year" form="long" suffix=""/>
     </date>
   </locale>
@@ -195,6 +200,11 @@
         <else-if type="chapter" variable="recipient">
           <text variable="note"/>
         </else-if>
+        <else-if type="chapter">
+          <text variable="genre"/>
+          <text variable="note"/>
+          <number variable="collection-number"/>
+        </else-if>
         <else>
           <text variable="genre"/>
           <text variable="note"/>
@@ -204,7 +214,14 @@
     </group>
   </macro>
   <macro name="full-date">
-    <date variable="issued" form="text"/>
+    <choose>
+      <if has-day="issued">
+        <date variable="issued" form="numeric"/>
+      </if>
+      <else>
+        <date variable="issued" form="text"/>
+      </else>
+    </choose>
   </macro>
   <macro name="locator">
     <group delimiter=" ">
