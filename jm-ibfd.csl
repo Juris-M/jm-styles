@@ -6,6 +6,7 @@
     <link href="https://juris-m.github.io/styles/jm-ibfd" rel="self"/>
     <link href="http://www.zotero.org/styles/bluebook-law-review" rel="template"/>
     <link href="https://www.ibfd.org/sites/ibfd.org/files/content/pdf/Guidelines-IBFD-Standard-Citations-References.pdf" rel="documentation"/>
+    <link href="https://learn.wu.ac.at/open/fit4research/ibfd" rel="documentation"/>
     <author>
       <name>Georg Mayr-Duffner</name>
       <email>georg.mayr-duffner@wu.ac.at</email>
@@ -13,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References.</summary>
-    <updated>2020-12-22T14:46:01+00:00</updated>
+    <updated>2021-06-07T14:09:04+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
