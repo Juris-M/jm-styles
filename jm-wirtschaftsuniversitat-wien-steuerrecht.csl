@@ -7,6 +7,7 @@
     <link href="https://juris-m.github.io/styles/jm-wirtschaftsuniversitat-wien-steuerrecht" rel="self"/>
     <link href="https://juris-m.github.io/styles/jm-azr" rel="template"/>
     <link href="https://www.wu.ac.at/fileadmin/wu/d/i/taxlaw/teaching/Zitierregeln_Steuerrecht.pdf" rel="documentation"/>
+    <link href="https://learn.wu.ac.at/open/fit4research/steuerrecht" rel="documentation"/>
     <author>
       <name>Georg Mayr-Duffner</name>
       <email>georg.mayr-duffner@wu.ac.at</email>
@@ -14,7 +15,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>Zitierregeln der österreichischen (Steuer-)Rechtssprache.</summary>
-    <updated>2021-06-02T14:27:01+01:00</updated>
+    <updated>2021-06-07T14:08:02+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">

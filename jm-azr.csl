@@ -6,6 +6,7 @@
     <id>https://juris-m.github.io/styles/jm-azr</id>
     <link href="https://juris-m.github.io/styles/jm-azr" rel="self"/>
     <link href="https://www.manz.at/unternehmen/autorenservice/azr" rel="documentation"/>
+    <link href="https://learn.wu.ac.at/open/fit4research/azr" rel="documentation"/>
     <author>
       <name>Georg Mayr-Duffner</name>
       <email>georg.mayr-duffner@wu.ac.at</email>
@@ -13,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8.</summary>
-    <updated>2021-06-02T14:16:14+01:00</updated>
+    <updated>2021-06-07T14:07:43+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
