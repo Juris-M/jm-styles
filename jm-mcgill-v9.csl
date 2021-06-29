@@ -77,6 +77,8 @@
       <term name="close-quote" form="short">,</term>
       <term name="open-inner-quote" form="short">,</term>
       <term name="close-inner-quote" form="short"></term>
+      <term name="letter" form="verb">lettre</term>
+      <term name="from">de</term>
     </terms>
   </locale>
   <locale xml:lang="en">
@@ -378,6 +380,9 @@
               <else-if type="report">
                 <text macro="render-report"/>
               </else-if>
+              <else-if type="personal_communication">
+                <text macro="render-personal_communication"/>
+              </else-if>
               <else>
                 <text macro="author-note" strip-periods="true"/>
                 <choose>
@@ -445,7 +450,7 @@
         </conditions>
         <text macro="jurism"/>
       </if>
-      <else-if type="bill legal_case report legislation" match="any">
+      <else-if type="bill legal_case report legislation personal_communication" match="any">
         <choose>
           <if type="bill legislation" match="any">
             <text macro="render-bill"/>
@@ -455,6 +460,9 @@
           </else-if>
           <else-if type="report">
             <text macro="render-report"/>
+          </else-if>
+          <else-if type="personal_communication">
+            <text macro="render-personal_communication"/>
           </else-if>
         </choose>
       </else-if>
@@ -545,13 +553,17 @@
   </macro>
   <macro name="internet-location">
     <group delimiter=", ">
-      <text variable="title" quotes="true"/>
-      <text macro="issued-long" prefix="(" suffix=")"/>
       <group delimiter=" ">
         <text term="online"/>
         <text value=":"/>
-        <text variable="container-title" font-style="italic"/>
-        <text variable="genre" prefix="&#60;" suffix="&#62;"/>
+        <choose>
+          <if variable="source">
+            <text variable="source" prefix="&#60;" suffix="&#62;"/>
+          </if>
+          <else>
+            <text variable="genre" prefix="&#60;" suffix="&#62;"/>
+          </else>
+        </choose>
       </group>
       <text variable="URL" prefix="[" suffix="]"/>
     </group>
@@ -860,6 +872,16 @@
       </else>
     </choose>
     <!-- COMMENTED OUT FOR 9TH ED  <text variable="URL" prefix=" (available on " suffix=")"/> -->
+  </macro>
+  <macro name="render-personal_communication">
+    <group delimiter=" ">
+      <text term="letter" text-case="capitalize-first"/>
+      <text term="from"/>
+      <names variable="author"/>
+      <text term="recipient" form="verb"/>
+      <names variable="recipient"/>
+      <date form="text" variable="issued" date-parts="year-month-day" prefix="(" suffix=")"/>
+    </group>
   </macro>
   <macro name="pinpoint">
     <group delimiter=" ">
