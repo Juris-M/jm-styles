@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References. Contains off-guidlines addition of page labels as used in IBFD articles.</summary>
-    <updated>2021-06-07T14:09:23+02:00</updated>
+    <updated>2021-07-08T16:35:28+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -171,7 +171,7 @@
           <choose>
             <if country="eu.int" match="none">
               <group delimiter=": ">
-                <text variable="country" text-case="uppercase"/>
+                <text macro="country-code"/>
                 <group delimiter=", ">
                   <group delimiter=" ">
                     <group delimiter=", ">
@@ -259,7 +259,14 @@
                   <!-- EU case law -->
                   <if country="eu.int">
                     <group delimiter=" ">
-                      <text value="Case"/>
+                      <choose>
+                        <if is-multiple="number">
+                          <text value="Joined cases"/>
+                        </if>
+                        <else>
+                          <text value="Case"/>
+                        </else>
+                      </choose>
                       <number variable="number"/>
                     </group>
                     <text macro="title-italic-version"/>
