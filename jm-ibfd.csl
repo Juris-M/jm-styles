@@ -45,6 +45,10 @@
         <single></single>
         <multiple></multiple>
       </term>
+      <term name="paragraph" form="short">
+        <single>para.</single>
+        <multiple>paras.</multiple>
+      </term>
       <term name="schedule" form="short">sched.</term>
       <term name="section" form="short">
         <single>sec.</single>
