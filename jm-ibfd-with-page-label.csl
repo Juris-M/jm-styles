@@ -259,7 +259,14 @@
                   <!-- EU case law -->
                   <if country="eu.int">
                     <group delimiter=" ">
-                      <text value="Case"/>
+                      <choose>
+                        <if is-multiple="number">
+                          <text value="Joined cases"/>
+                        </if>
+                        <else>
+                          <text value="Case"/>
+                        </else>
+                      </choose>
                       <number variable="number"/>
                     </group>
                     <text macro="title-italic-version"/>
