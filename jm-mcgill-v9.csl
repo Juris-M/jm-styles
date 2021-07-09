@@ -230,24 +230,25 @@
             </group>
           </if>
           <else-if type="legislation">
-            <group delimiter=", ">
-              <text macro="juris-title" font-style="italic" strip-periods="true"/>
-              <text macro="juris-main"/>
-              <text macro="juris-locator" label-form="short"/>
+            <group delimiter=" ">
+              <group delimiter=", ">
+                <text macro="juris-title" font-style="italic" strip-periods="true"/>
+                <text macro="juris-main"/>
+                <text macro="juris-locator" label-form="short"/>
+              </group>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="none" context="bibliography"/>
+                    <condition position="first"/>
+                    <condition type="legislation"/>
+                  </conditions>
+                  <group parallel-last="title-short title">
+                    <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
+                  </group>
+                </if>
+              </choose>
             </group>
-            <choose>
-              <if>
-                <conditions match="all">
-                  <condition match="none" context="bibliography"/>
-                  <condition position="first"/>
-                  <condition type="legislation"/>
-                  <condition match="all" variable="volume container-title"/>
-                </conditions>
-                <group parallel-last="title-short title">
-                  <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
-                </group>
-              </if>
-            </choose>
           </else-if>
           <else-if type="legal_case">
             <group delimiter=" ">
@@ -303,7 +304,10 @@
                 <text macro="juris-locator"/>
                 <choose>
                   <if context="citation">
-                    <text macro="juris-tail"/>
+                    <group delimiter=" ">
+                      <text macro="juris-tail"/>
+                      <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
+                    </group>
                   </if>
                 </choose>
               </group>
@@ -424,12 +428,12 @@
           </group>
           <text macro="pinpoint"/>
           <choose>
-            <if type="legal_case" match="any">
-              <group delimiter =" ">
-                <text variable="references" prefix=", "/>
-                <text variable="title-short" prefix="[" suffix="]" font-style="italic"/>
-              </group>
-            </if>  
+            <if variable="hereinafter">
+              <text variable="hereinafter" prefix="[" suffix="]" font-style="italic"/>
+            </if>
+            <else-if variable="title-short">
+              <text variable="title-short" prefix="[" suffix="]" font-style="italic"/>
+            </else-if>
           </choose>
           <choose>
             <if type="article-newspaper article-magazine" match="any">
@@ -893,7 +897,10 @@
     <!-- Hump to overcome: cannot check against existence of short title.
     Not implemented: "cited to" for cases construct short casenames adding ref to article -->
     <choose>
-      <if type="bill legal_case legislation" match="none">
+      <if variable="hereinafter">
+        <text variable="hereinafter" font-style="italic"/>
+      </if>
+      <else-if type="book article-journal chapter article-newspaper post-weblog">
         <names variable="author">
           <name and="symbol" form="short" delimiter-precedes-last="never"/>
           <substitute>
@@ -902,12 +909,10 @@
             </names>
           </substitute>
         </names>
-        <choose>
-          <if type="article-journal">
-            <text variable="title-short" quotes="true" prefix=", "/>
-          </if>
-        </choose>
-      </if>
+      </else-if>
+      <else-if variable="title-short">
+        <text variable="title-short" font-style="italic"/>
+      </else-if>
     </choose>
   </macro>
   <macro name="publisher-place-year">
