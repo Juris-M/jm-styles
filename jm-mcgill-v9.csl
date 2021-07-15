@@ -296,7 +296,6 @@
           </else-if>
           <else-if type="hearing">
             <group delimiter=", ">
-              <text macro="farts"/>
               <text macro="juris-pretitle"/>
               <text macro="juris-title" font-style="italic"/>
               <group delimiter=" ">
