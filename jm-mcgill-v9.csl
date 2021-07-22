@@ -173,16 +173,16 @@
       </if>
       <else-if position="ibid-with-locator">
         <choose>
-          <if locator="issue section" match="any">
+          <if type="legislation regulation" match="any">
             <group delimiter=", ">
               <text term="ibid" text-case="capitalize-first" font-style="italic"/>
-              <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
           </if>
           <else>
             <group delimiter=" ">
               <text term="ibid" text-case="capitalize-first" font-style="italic"/>
-              <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              <text macro="juris-locator" label-form="short"/>
             </group>
           </else>
         </choose>
@@ -204,12 +204,15 @@
               <text value="supra" font-style="italic" text-case="capitalize-first"/>
             </else>
           </choose>
-          <text variable="first-reference-note-number" prefix="note " suffix=""/>
           <choose>
-            <if locator="issue section" match="any">
-              <text macro="juris-locator" label-form="short" strip-periods="true" prefix=","/>
+            <if match="any" type="legislation regulation">
+              <group delimiter=", ">
+                <text variable="first-reference-note-number" prefix="note "/>
+                <text macro="juris-locator" label-form="short" strip-periods="true"/>
+              </group>
             </if>
             <else>
+              <text variable="first-reference-note-number" prefix="note "/>            
               <text macro="juris-locator" label-form="short" strip-periods="true"/>
             </else>
           </choose>
@@ -296,7 +299,6 @@
           </else-if>
           <else-if type="hearing">
             <group delimiter=", ">
-              <text macro="farts"/>
               <text macro="juris-pretitle"/>
               <text macro="juris-title" font-style="italic"/>
               <group delimiter=" ">
