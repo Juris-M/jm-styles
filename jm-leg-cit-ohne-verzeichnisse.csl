@@ -6,6 +6,7 @@
     <id>https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse</id>
     <link href="https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
+    <link href="https://learn.wu.ac.at/open/fit4research/zit_leg-cit" rel="documentation"/>
     <author>
       <name>Laurenz Liedermann</name>
     </author>
@@ -16,7 +17,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2020-11-25T13:49:40+00:00</updated>
+    <updated>2021-06-07T14:06:38+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -52,6 +53,16 @@
         <multiple>Rz</multiple>
       </term>
     </terms>
+    <date form="numeric" delimiter=".">
+      <date-part name="day" form="numeric-leading-zeros"/>
+      <date-part name="month" form="numeric-leading-zeros"/>
+      <date-part name="year" form="long" suffix=""/>
+    </date>
+    <date form="text" delimiter=" ">
+      <date-part name="day" form="numeric-leading-zeros" suffix="."/>
+      <date-part name="month" form="short" strip-periods="true"/>
+      <date-part name="year" form="long" suffix=""/>
+    </date>
   </locale>
   <macro name="dummy-disambiguate">
     <choose>
@@ -64,7 +75,7 @@
       <text variable="title-sub"/>
     </group>
   </macro>
-  <macro name="title-short">
+  <macro name="shorttitle_or_title">
     <choose>
       <if variable="hereinafter">
         <text variable="hereinafter"/>
@@ -83,7 +94,8 @@
         <text variable="title-short"/>
       </else>
     </choose>
-  </macro><macro name="author-short">
+  </macro>
+  <macro name="author-short">
     <choose>
       <if type="legal_case">
         <names variable="author">
@@ -97,7 +109,9 @@
       </if>
       <else>
         <names variable="author" font-style="italic">
+          <name/>
           <et-al term="et-al"/>
+          <institution delimiter="/"/>
           <substitute>
             <text macro="editor-suffix"/>
             <names variable="editor"/>
@@ -110,6 +124,8 @@
   </macro>
   <macro name="editor-suffix">
     <names variable="editor">
+      <name/>
+      <institution delimiter="/"/>
       <label form="short" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="collection-editor"/>
@@ -119,6 +135,8 @@
   </macro>
   <macro name="editor-short">
     <names variable="editor">
+      <name/>
+      <institution delimiter="/"/>
       <substitute>
         <names variable="collection-editor"/>
         <names variable="container-author"/>
@@ -169,6 +187,15 @@
       <text macro="edition"/>
     </group>
   </macro>
+  <macro name="container-title-short">
+    <group>
+      <group delimiter=" ">
+        <text variable="container-title" form="short"/>
+        <number variable="volume"/>
+      </group>
+      <text macro="edition"/>
+    </group>
+  </macro>
   <macro name="year-date">
     <date variable="issued">
       <date-part name="year" form="long" suffix=""/>
@@ -184,6 +211,11 @@
         <else-if type="chapter" variable="recipient">
           <text variable="note"/>
         </else-if>
+        <else-if type="chapter">
+          <text variable="genre"/>
+          <text variable="note"/>
+          <number variable="collection-number"/>
+        </else-if>
         <else>
           <text variable="genre"/>
           <text variable="note"/>
@@ -193,11 +225,14 @@
     </group>
   </macro>
   <macro name="full-date">
-    <date variable="issued">
-      <date-part name="day" form="numeric-leading-zeros" suffix="."/>
-      <date-part name="month" form="numeric-leading-zeros" suffix="."/>
-      <date-part name="year" form="long"/>
-    </date>
+    <choose>
+      <if has-day="issued">
+        <date variable="issued" form="numeric"/>
+      </if>
+      <else>
+        <date variable="issued" form="text"/>
+      </else>
+    </choose>
   </macro>
   <macro name="locator">
     <choose>
@@ -242,7 +277,7 @@
       <group delimiter=" ">
         <choose>
           <if type="article-journal article article-magazine article-newspaper" match="any">
-            <text variable="container-title"/>
+            <text variable="container-title" form="short"/>
             <choose>
               <if variable="volume">
                 <number variable="volume"/>
@@ -315,7 +350,7 @@
   <macro name="title-short-volume-edition">
     <group>
       <group delimiter=" ">
-        <text macro="title-short"/>
+        <text macro="shorttitle_or_title"/>
         <number variable="volume"/>
       </group>
       <text macro="edition"/>
@@ -329,7 +364,7 @@
           <choose>
             <if type="article article-journal article-newspaper article-magazine">
               <group delimiter=" ">
-                <text variable="container-title"/>
+                <text variable="container-title" form="short"/>
                 <choose>
                   <if variable="author title" match="none">
                     <!-- article newspaper -->
@@ -388,18 +423,22 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="editor">
+              <if variable="container-title-short">
+                <text term="in"/>
+                <text macro="container-title-short"/>
+              </if>
+              <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
                   <text macro="container-title"/>
                 </group>
-              </if>
+              </else-if>
               <else>
                 <text macro="container-title"/>
               </else>
             </choose>
-            <text macro="title-short"/>
+            <text macro="shorttitle_or_title"/>
           </if>
           <else-if>
             <conditions match="all">
@@ -463,13 +502,17 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="editor">
+              <if variable="container-title-short">
+                <text term="in"/>
+                <text macro="container-title-short"/>
+              </if>
+              <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
                   <text macro="container-title"/>
                 </group>
-              </if>
+              </else-if>
               <else>
                 <text macro="container-title"/>
               </else>
