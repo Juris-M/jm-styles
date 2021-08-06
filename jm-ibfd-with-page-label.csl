@@ -480,10 +480,14 @@
         <if type="book treaty">
           <text macro="title-short" font-style="italic"/>
         </if>
+        <else-if type="book chapter article-journal article-newspaper article-magazine thesis" disambiguate="true" match="all">
+          <text macro="title-short" font-style="italic"/>
+        </else-if>
         <else-if>
           <conditions>
             <condition type="report"/>
             <condition variable="hereinafter title-short" match="any"/>
+            <condition disambiguate="true"/>
           </conditions>
           <text macro="short-citation-title"/>
         </else-if>
@@ -622,6 +626,32 @@
       <else>
         <group delimiter=", ">
           <text macro="short-citation-title"/>
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition disambiguate="true"/>
+                <condition type="book chapter article-journal article-newspaper article-magazine thesis" match="any"/>
+              </conditions>
+              <choose>
+                <if variable="title-short hereinafter" match="any">
+                  <text macro="title-short" font-style="italic"/>
+                </if>
+                <else>
+                  <text variable="title" font-style="italic"/>
+                </else>
+              </choose>
+            </if>
+            <else-if type="report" disambiguate="true" match="all">
+              <choose>
+                <if variable="title-short hereinafter" match="any">
+                  <text macro="title-short"/>
+                </if>
+                <else>
+                  <text variable="title"/>
+                </else>
+              </choose>
+            </else-if>
+          </choose>
           <choose>
             <if type="legal_case" match="none">
               <text macro="supra-note"/>
