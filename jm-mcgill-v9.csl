@@ -60,8 +60,10 @@
         <single>art</single>
         <multiple>arts</multiple>
       </term>
+      <term name="accessed">dernière consultation le</term>
       <term name="issue" form="long">nᵒ</term>
-      <term name="number" form="long">nᵒ</term>
+      <term name="issue" form="verb">nᵒ de catalogue</term>
+      <term name="number" form="long">au nᵒ</term>
       <term name="chapter" form="short">c</term>
       <term name="collection-editor" form="short">dir</term>
       <term name="collection-editor" form="long">président :</term>
@@ -69,6 +71,7 @@
       <term name="editor" form="verb">dir</term>
       <term name="translator" form="verb">traduit par</term>
       <term name="in">dans</term>
+      <term name="in" form="symbol"> :</term>
       <term name="online">en ligne</term>
       <term name="online" form="short">en ligne (blogue)</term>
       <term name="and" form="symbol">et</term>
@@ -105,7 +108,9 @@
         <single>at no</single>
         <multiple>at nos</multiple>
       </term>
+      <term name="accessed">last visited</term>
       <term name="issue" form="long">No</term>
+      <term name="issue" form="verb">Catalogue No</term>
       <term name="number" form="long">No</term>
       <term name="chapter" form="short">c</term>
       <term name="editor" form="verb-short">ed</term>
@@ -114,6 +119,7 @@
       <term name="collection-editor" form="long">Chair:</term>
       <term name="translator" form="verb">translated by</term>
       <term name="in">in</term>
+      <term name="in" form="symbol">:</term>
       <term name="online" form="short">en ligne (blog)</term>
       <term name="and" form="symbol">&#38;</term>
       <term name="et-al">et al</term>
@@ -128,6 +134,7 @@
         <single>art</single>
         <multiple>arts</multiple>
       </term>
+      
     </terms>
   </locale>
   <!-- Juris-M Macros-->
@@ -256,7 +263,7 @@
           <else-if type="legal_case">
             <group delimiter=" ">
               <group delimiter=", ">
-                <group parallel-first="authority" delimiter=" " parallel-delimiter-override=", ">
+                <group parallel-first="authority title" delimiter=" " parallel-delimiter-override=", ">
                   <text macro="juris-title" strip-periods="true" font-style="italic"/>
                   <choose>
                     <if>
@@ -315,6 +322,50 @@
               </group>
             </group>
           </else-if>
+          <else-if type="report">
+            <choose>
+              <if variable="collection-title">
+                <group delimiter=", ">
+                  <text macro="juris-pretitle"/>
+                  <group>
+                    <text term="open-quote"/>
+                    <text macro="juris-title"/>
+                    <text term="close-quote"/>
+                  </group>
+                  <group delimiter=" ">
+                    <text macro="juris-main"/>
+                    <text macro="juris-locator" label-form="short"/>
+                  </group>
+                </group>
+              </if>
+              <else>
+                <group delimiter=", ">
+                  <text macro="juris-pretitle"/>
+                  <group delimiter=" ">
+                    <text macro="juris-title" font-style="italic"/>
+                    <text macro="juris-main"/>
+                    <text macro="juris-locator" label-form="short"/>
+                  </group>
+                </group>
+              </else>
+            </choose>
+          </else-if>
+          <else-if type="gazette">
+            <group delimiter=" ">
+              <text macro="juris-title" font-style="italic"/>
+              <text macro="juris-main"/>
+            </group>
+          </else-if>
+          <else-if type="regulation">
+            <group delimiter=", ">
+              <text macro="juris-pretitle"/>
+              <group delimiter=" ">
+                <text macro="juris-title" font-style="italic"/>
+                <text macro="juris-main"/>
+              </group>
+              <text macro="juris-locator"/>
+            </group>
+          </else-if>
         </choose>         
       </else>
     </choose>
@@ -323,7 +374,7 @@
     <choose>
       <if>
         <conditions match="all">
-          <condition match="any" type="legal_case legislation bill hearing"/>
+          <condition match="any" type="legal_case legislation bill gazette hearing report regulation"/>
           <condition match="all" variable="jurisdiction"/>
           <condition match="all" country="ca"/>
           <condition match="none" variable="gazette-flag admin-flag"/>
@@ -413,6 +464,12 @@
                   <else-if type="book">
                     <text macro="render-book"/>
                   </else-if>
+                  <else-if type="entry-encyclopedia">
+                    <text macro="render-entry-encyclopedia"/>
+                  </else-if>
+                  <else-if type="article">
+                    <text macro="render-article"/>
+                  </else-if>
                   <!--                    <else-if type="song" match="any"><text macro="render-song"/></else-if><else-if type="patent" match="any"><text macro="render-patent"/></else-if><else-if type="manuscript" match="any"><text macro="render-manuscript"/></else-if> -->
                   <else>
                     <group delimiter=" ">
@@ -450,7 +507,7 @@
     <choose>
       <if>
         <conditions match="all">
-          <condition match="any" type="legal_case legislation hearing bill"/>
+          <condition match="any" type="legal_case legislation hearing bill gazette report regulation"/>
           <condition match="all" variable="jurisdiction"/>
           <condition match="all" country="ca"/>
         </conditions>
@@ -506,6 +563,12 @@
             <else-if type="manuscript">
               <text macro="render-manuscript"/>
             </else-if>
+            <else-if type="entry-encyclopedia">
+              <text macro="render-entry-encyclopedia"/>
+            </else-if>
+            <else-if type="article">
+              <text macro="render-article"/>
+            </else-if>
             <else>
               <group>
                 <group delimiter=", ">
@@ -522,8 +585,8 @@
       </else>
     </choose>
   </macro>
-  <macro name="collection-editor">
-    <names variable="collection-editor">
+  <macro name="editor">
+    <names variable="editor">
       <name and="symbol" delimiter-precedes-last="never"/>
       <et-al term="et-al"/>
       <label form="short" prefix=", "/>
@@ -543,7 +606,7 @@
       <name and="symbol" delimiter-precedes-last="never"/>
       <et-al term="et-al"/>
       <substitute>
-        <text macro="collection-editor"/>
+        <text macro="editor"/>
       </substitute>
     </names>
   </macro>
@@ -558,19 +621,19 @@
     </names>
   </macro>
   <macro name="internet-location">
-    <group delimiter=", ">
-      <group delimiter=" ">
+    <group delimiter=" ">
+      <group>
         <text term="online"/>
-        <text value=":"/>
-        <choose>
-          <if variable="source">
-            <text variable="source" prefix="&#60;" suffix="&#62;"/>
-          </if>
-          <else>
-            <text variable="genre" prefix="&#60;" suffix="&#62;"/>
-          </else>
-        </choose>
+        <text term="in" form="symbol"/>
       </group>
+      <choose>
+        <if variable="source">
+          <text variable="source" prefix="&#60;" suffix="&#62;"/>
+        </if>
+        <else>
+          <text variable="genre" prefix="&#60;" suffix="&#62;"/>
+        </else>
+      </choose>
       <text variable="URL" prefix="[" suffix="]"/>
     </group>
   </macro>
@@ -578,11 +641,18 @@
     <text variable="genre"/>
   </macro>
   <macro name="issued-long">
-    <date variable="issued" delimiter=" ">
-      <date-part name="day"/>
-      <date-part name="month" form="long"/>
-      <date-part name="year" form="long"/>
-    </date>
+    <choose>
+      <if variable="issued">
+        <date variable="issued" delimiter=" ">
+          <date-part name="day"/>
+          <date-part name="month" form="long"/>
+          <date-part name="year" form="long"/>
+        </date>
+      </if>
+      <else-if variable="accessed">
+        <date variable="accessed" form="text"/>
+      </else-if>
+    </choose>
   </macro>
   <macro name="submitted-long">
     <date variable="submitted" delimiter=" ">
@@ -632,15 +702,16 @@
   <!-- the 'rendering' macros mostly check if called from w/i bibliography so that author gets printed
     right. Only actually need to check for 'first' because w/i cite all the other tests should have been done... -->
   <macro name="render-chapter">
-    <group delimiter=" ">
-      <text variable="title" quotes="true"/>
-      <text term="in" form="short"/>
-      <text macro="collection-editor" strip-periods="true" suffix=","/>
+    <group delimiter=", ">
+      <group delimiter=" ">
+        <text variable="title" quotes="true"/>
+        <text term="in" form="short"/>
+        <text macro="editor" strip-periods="true"/>
+      </group>
       <text macro="container-title" font-style="italic"/>
-      <text macro="series-info" suffix=","/>
       <text macro="edition"/>
     </group>
-    <group delimiter=" ">
+    <group delimiter=", ">
       <text macro="publisher-place-year"/>
       <number variable="page-first"/>
     </group>
@@ -699,10 +770,20 @@
             <text term="by"/>
             <names variable="author"/>
           </group>
-          <group delimiter=" ">
-            <text term="issue" form="long"/>
-            <number variable="number"/>
-          </group>
+          <choose>
+            <if variable="call-number">
+              <group delimiter=" ">
+                <text term="issue" form="verb"/>
+                <number variable="call-number"/>
+              </group>
+            </if>
+            <else>
+              <group delimiter=" ">
+                <text term="issue" form="long"/>
+                <number variable="number"/>
+              </group>
+            </else>
+          </choose>
           <text variable="genre" prefix="(" suffix=")"/>
         </group>
         <text macro="publisher-place-year"/>
@@ -733,13 +814,46 @@
       <number variable="page-first"/>
     </group>
   </macro>
+  <macro name="render-article">
+    <group delimiter=", ">
+      <group delimiter=" ">
+        <group>
+          <text term="open-quote"/>
+          <text variable="title"/>
+          <text term="close-quote"/>
+        </group>
+        <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
+        <text macro="pinpoint"/>
+      </group>
+      <group delimiter=" ">
+        <text term="online"/>
+        <group>
+          <text value="(pdf)"/>
+          <text term="in" form="symbol"/>
+        </group>
+        <text variable="publisher" font-style="italic"/>
+        <text variable="URL" prefix="&#60;" suffix="&#62;"/>
+        <text variable="archive" prefix="[" suffix="]"/>
+      </group>
+    </group>
+  </macro>
   <macro name="render-webpage">
     <group delimiter=", ">
       <text variable="title" quotes="true"/>
       <text macro="issued-long" prefix="(" suffix=")"/>
       <group delimiter=" ">
-        <text term="online" form="short"/>
-        <text value=":"/>
+        <choose>
+          <if type="post-weblog">
+            <text term="online" form="short"/>
+            <text term="in" form="symbol"/>
+          </if>
+          <else>
+            <group>
+              <text term="online"/>
+              <text term="in" form="symbol"/>
+            </group>
+          </else>
+        </choose>
         <text variable="container-title" font-style="italic"/>
         <text variable="genre" prefix="&#60;" suffix="&#62;"/>
         <text variable="URL" prefix="[" suffix="]"/>
@@ -889,6 +1003,28 @@
       <date form="text" variable="issued" date-parts="year-month-day" prefix="(" suffix=")"/>
     </group>
   </macro>
+  <macro name="render-entry-encyclopedia">
+    <!-- test whether the entry is from the JurisClasseur Québec
+          (the only encyclopedic digest with editor information)-->
+    <choose>
+      <if variable="editor">
+        <group delimiter=" ">
+          <group>
+            <text term="open-quote"/>
+            <text variable="title"/>
+            <text term="close-quote"/>
+          </group>
+          <group>
+            <text macro="pinpoint" suffix=","/>
+          </group>
+          <text term="in"/>
+          <text macro="editor" suffix=","/>
+          <text variable="container-title"/>
+          <text variable="collection-title"/>
+        </group>  
+      </if>
+    </choose>
+  </macro>
   <macro name="pinpoint">
     <group delimiter=" ">
       <label variable="locator" plural="contextual" form="short"/>
@@ -926,7 +1062,14 @@
       </group>
       <text variable="publisher" suffix=","/>
       <group>
-        <date form="text" variable="issued" date-parts="year"/>
+        <choose>
+          <if type="report">
+            <date form="text" variable="issued"/>
+          </if>
+          <else>
+            <date form="text" variable="issued" date-parts="year"/>
+          </else>
+        </choose>
         <choose>
           <if>
             <conditions match="all">
