@@ -328,9 +328,7 @@
                 <group delimiter=", ">
                   <text macro="juris-pretitle"/>
                   <group>
-                    <text term="open-quote"/>
-                    <text macro="juris-title"/>
-                    <text term="close-quote"/>
+                    <text macro="juris-title" quotes="true"/>
                   </group>
                   <group delimiter=" ">
                     <text macro="juris-main"/>
@@ -818,9 +816,7 @@
     <group delimiter=", ">
       <group delimiter=" ">
         <group>
-          <text term="open-quote"/>
-          <text variable="title"/>
-          <text term="close-quote"/>
+          <text variable="title" quotes="true"/>
         </group>
         <date variable="issued" form="numeric" date-parts="year" prefix="(" suffix=")"/>
         <text macro="pinpoint"/>
@@ -1010,9 +1006,7 @@
       <if variable="editor">
         <group delimiter=" ">
           <group>
-            <text term="open-quote"/>
-            <text variable="title"/>
-            <text term="close-quote"/>
+            <text variable="title" quotes="true"/>
           </group>
           <group>
             <text macro="pinpoint" suffix=","/>
