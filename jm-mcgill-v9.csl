@@ -431,7 +431,7 @@
               <else-if type="legal_case">
                 <group delimiter=" ">
                   <group delimiter=", ">
-                    <group parallel-first="authority title" delimiter=" " parallel-delimiter-override=", ">
+                    <group parallel-first="authority title issued" delimiter=" " parallel-delimiter-override=", ">
                       <text macro="juris-title" strip-periods="true" font-style="italic"/>
                       <choose>
                         <if>
