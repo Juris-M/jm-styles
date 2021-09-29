@@ -1,2 +1,4 @@
 *.swp
 schemas.xml
+test.csl
+.gitignore
