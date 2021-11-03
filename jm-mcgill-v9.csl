@@ -386,13 +386,20 @@
                   <text macro="juris-main"/>
                 </group>
               </else-if>
-              <else-if type="regulation">
+              <else-if type="regulation" variable="authority">
                 <group delimiter=", ">
                   <text macro="juris-pretitle"/>
                   <group delimiter=" ">
                     <text macro="juris-title" font-style="italic"/>
                     <text macro="juris-main"/>
                   </group>
+                  <text macro="juris-locator"/>
+                </group>
+              </else-if>            
+              <else-if type="regulation">
+                <group delimiter=", ">
+                  <text macro="juris-title" font-style="italic"/>
+                  <text macro="juris-main"/>
                   <text macro="juris-locator"/>
                 </group>
               </else-if>
