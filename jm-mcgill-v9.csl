@@ -434,7 +434,7 @@
                     </else>
                   </choose>
                   <group parallel-first="issued" parallel-delimiter-override=" ">
-                    <text macro="juris-locator"/>
+                    <text macro="pinpoint"/>
                   </group>
                   <group delimiter=", " parallel-first="issued" parallel-delimiter-override=" ">
                     <group delimiter=" ">
@@ -489,7 +489,7 @@
                     </choose>
                     <number variable="page-first"/>
                   </group>
-                  <text macro="juris-locator"/>
+                  <text macro="pinpoint"/>
                 </group>
               </else-if>
             </choose>
@@ -515,7 +515,7 @@
                 <text variable="archive_location"/>
                 <date variable="issued" date-parts="year" prefix="(" suffix=")" form="numeric"/>
                 <number variable="page-first"/>
-                <text macro="juris-locator"/>
+                <text macro="pinpoint"/>
               </group>
             </group>
           </else-if>
@@ -1386,17 +1386,19 @@
     </choose>
   </macro>
   <macro name="pinpoint">
-    <group delimiter=" ">
-      <choose>
-        <if type="treaty" variable="locator" locator="section">
-          <label variable="locator" form="long" plural="contextual"/>
-        </if>
-        <else>
-          <label variable="locator" plural="contextual" form="short"/>
-        </else>
-      </choose>
-      <text variable="locator"/>
-    </group>
+    <choose>
+      <if page="page" match="none">
+        <group delimiter=" ">
+          <label form="short" plural="contextual" variable="page"/>
+        </group>
+      </if>
+      <else>
+        <group delimiter=" ">
+          <label variable="locator" form="short" plural="contextual"/>   
+          <number variable="locator"/>
+        </group>
+      </else>
+    </choose>
   </macro>
   <macro name="short-form">
     <!-- Hump to overcome: cannot check against existence of short title.
