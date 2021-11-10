@@ -184,7 +184,7 @@
       <if>
         <conditions match="all">
           <condition type="legislation"/>
-          <condition match="none" variable="volume container-title number"/>
+          <condition match="none" variable="volume section container-title number"/>
           <condition match="all" variable="title-short"/>
         </conditions>
         <group delimiter=" ">
@@ -258,23 +258,37 @@
               <else-if type="legislation">
                 <group delimiter=" ">
                   <group delimiter=", ">
-                    <group parallel-first="title">
+                    <group parallel-first="title" parallel-delimiter-override=", ">
                       <text macro="juris-title" font-style="italic" strip-periods="true"/>
                     </group>
                     <choose>
-                      <if variable="volume">
-                        <text macro="juris-main" strip-periods="false"/>
-                        <text macro="juris-locator" label-form="short"/>
+                      <if variable="volume number container-title" match="all">
+                        <text macro="juris-locator"/>
+                        <group delimiter=" ">
+                          <text term="part" form="long"/>
+                          <number variable="volume" form="roman" text-case="uppercase"/>
+                          <text term="from" form="verb-short"/>
+                          <text variable="container-title" font-style="italic"/>
+                        </group>
+                        <group delimiter=" ">
+                          <text term="schedule" form="long"/>
+                          <number variable="number"/>
+                          <text term="from" form="verb"/>
+                        </group>
                       </if>
-                      <else>
+                      <else-if variable="page">
                         <group parallel-first="title" delimiter=", ">
                           <text macro="juris-locator"/>
-                            <group delimiter=" ">
-                              <text term="schedule" form="verb"/>
-                              <number variable="page"/>
-                              <text term="from" form="verb"/>
-                            </group>
+                          <group delimiter=" ">
+                            <text term="schedule" form="verb"/>
+                            <number variable="page"/>
+                            <text term="from" form="verb"/>
+                          </group>
                         </group>
+                      </else-if>
+                      <else>
+                        <text macro="juris-main" strip-periods="false"/>
+                        <text macro="juris-locator" label-form="short"/>
                       </else>
                     </choose>
                   </group>
@@ -285,7 +299,7 @@
                         <condition position="first"/>
                         <condition type="legislation"/>
                       </conditions>
-                      <group parallel-last="title-short title">
+                      <group parallel-last="issued">
                         <text macro="juris-title-short" prefix="[" suffix="]" font-style="italic"/>
                       </group>
                     </if>
