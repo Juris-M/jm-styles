@@ -262,7 +262,7 @@
                       <text macro="juris-title" font-style="italic" strip-periods="true"/>
                     </group>
                     <choose>
-                      <if variable="volume number container-title" match="all">
+                      <if variable="volume page container-title" match="all">
                         <text macro="juris-locator"/>
                         <group delimiter=" ">
                           <text term="part" form="long"/>
@@ -272,7 +272,7 @@
                         </group>
                         <group delimiter=" ">
                           <text term="schedule" form="long"/>
-                          <number variable="number"/>
+                          <number variable="page"/>
                           <text term="from" form="verb"/>
                         </group>
                       </if>
