@@ -321,8 +321,8 @@
                       </group>
                       <choose>
                         <if match="all" variable="archive archive_location">
-                          <group parallel-last="archive archive_location submitted">
-                            <group parallel-last-to-first="archive archive_location submitted">
+                          <group parallel-last="issued submitted">
+                            <group parallel-last-to-first="issued submitted">
                               <text macro="juris-tail" strip-periods="true"/>
                             </group>
                           </group> 
@@ -1158,7 +1158,7 @@
           <text variable="genre" prefix="(" suffix=")"/>
         </group>
         <choose>
-          <if variables="publisher place">
+          <if variable="publisher-place">
             <text macro="publisher-place-year"/>
           </if>
         </choose>
