@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>IBFD Standard Citations and References.</summary>
-    <updated>2021-07-08T16:35:08+02:00</updated>
+    <updated>2022-03-09T12:59:58+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale>
@@ -23,6 +23,10 @@
       skip-words="about,above,across,afore,after,against,along,alongside,amid,amidst,among,amongst,anenst,apropos,apud,around,as,aside,astride,at,athwart,atop,barring,before,behind,below,beneath,beside,besides,between,beyond,but,by,circa,despite,down,during,except,for,forenenst,from,given,in,inside,into,lest,like,modulo,near,next,notwithstanding,of,off,on,onto,out,over,per,plus,pro,qua,sans,since,than,through,thru,throughout,thruout,till,to,toward,towards,under,underneath,until,unto,up,upon,versus,vs.,v.,vs,v,via,vis-à-vis,with,within,without,according to,ahead of,apart from,as for,as of,as per,as regards,aside from,back to,because of,close to,due to,except for,far from,inside of,instead of,near to,next to,on to,out from,out of,outside of,prior to,pursuant to,rather than,regardless of,such as,that of,up to,where as,or,yet,so,for,and,nor,a,an,the,de,d',von,van,c,et,ca,is,this,that,if"/>
     <terms>
       <term name="and" form="symbol">&#38;</term>
+      <term name="article" form="short">
+        <single>art.</single>
+        <multiple>arts.</multiple>
+      </term>
       <term name="chapter" form="short">ch.</term>
       <term name="editor" form="verb-short">ed.</term>
       <term name="ibid">id.</term>
@@ -56,6 +60,10 @@
       </term>
       <term name="supplement" form="short">supp.</term>
       <term name="translator" form="verb-short">trans.</term>
+      <term name="verse" form="short">
+        <single>rec.</single>
+        <multiple>recs.</multiple>
+      </term>
     </terms>
     <date form="text" delimiter=" ">
       <date-part name="day"/>
