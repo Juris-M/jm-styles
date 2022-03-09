@@ -267,7 +267,7 @@
                 <text macro="date-issued"/>
                 <choose>
                   <!-- EU case law -->
-                  <if country="eu.int">
+                  <if country="eu.int coe.int">
                     <group delimiter=" ">
                       <choose>
                         <if is-multiple="number">
@@ -282,18 +282,6 @@
                     <text macro="title-italic-version"/>
                     <text macro="container"/>
                   </if>
-                  <else-if country="coe.int">
-                    <group delimiter=" ">
-                      <choose>
-                        <if is-numeric="number">
-                          <text value="no."/>
-                        </if>
-                      </choose>
-                    </group>
-                    <number variable="number"/>
-                    <text macro="title-italic-version"/>
-                    <text macro="container"/>
-                  </else-if>
                   <else-if match="any" variable="title">
                     <text macro="title-italic-version"/>
                   </else-if>
