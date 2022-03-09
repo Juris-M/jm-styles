@@ -30,7 +30,7 @@
     </contributor>
     <category citation-format="note"/>
     <category field="law"/>
-    <updated>2021-04-18T22:53:52+00:00</updated>
+    <updated>2022-03-09T22:53:52+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="fr">
@@ -1484,6 +1484,9 @@
       <else-if variable="title-short">
         <text variable="title-short" font-style="italic"/>
       </else-if>
+      <else>
+        <text variable="title" font-style="italic"/>
+      </else>
     </choose>
   </macro>
   <macro name="publisher-place-year">
