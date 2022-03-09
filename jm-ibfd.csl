@@ -115,6 +115,12 @@
             <if country="eu.int" variable="author">
               <text macro="name-macro" prefix="Opinion of Advocate General "/>
             </if>
+            <else-if country="coe.int">
+              <names variable="authority">
+                <name/>
+                <institution form="short"/>
+              </names>
+            </else-if>
             <else>
               <names variable="authority">
                 <name/>
