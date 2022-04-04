@@ -722,22 +722,10 @@
       <else-if position="ibid">
         <text term="ibid" font-style="italic" strip-periods="true"/>
       </else-if>
-      <!-- For future versions? Cannot test for whether short form exists (Supra should be capitalized if no short form) -->
       <else-if position="subsequent">
         <group delimiter=" ">
-          <choose>
-            <if>
-              <conditions match="any">
-                <condition match="none" type="bill gazette legislation legal_case"/>
-                <condition match="all" variable="title-short"/>
-              </conditions>
-              <text macro="short-form" suffix=","/>
-              <text value="supra" font-style="italic"/>
-            </if>
-            <else>
-              <text value="supra" font-style="italic" text-case="capitalize-first"/>
-            </else>
-          </choose>
+          <text macro="short-form" suffix=","/>
+          <text value="supra" font-style="italic"/>
           <text value="note"/>
           <text variable="first-reference-note-number"/>
           <text macro="pinpoint"/>
@@ -1338,7 +1326,6 @@
           <text variable="version"/>
           <date variable="original-date" form="text"/>
         </group>
-        <text macro="short-form"/>
       </group>
     </group>
   </macro>
@@ -1485,7 +1472,7 @@
         <text variable="title-short" font-style="italic"/>
       </else-if>
       <else>
-        <text variable="title" font-style="italic"/>
+        <text variable="title" font-style="italic" form="short"/>
       </else>
     </choose>
   </macro>
