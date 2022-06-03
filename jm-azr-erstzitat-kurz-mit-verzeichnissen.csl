@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8. Erstzitat in Kurzform, wo möglich bei Literatureintrag in Verzeichnissen.</summary>
-    <updated>2021-06-07T14:07:51+02:00</updated>
+    <updated>2021-06-29T15:06:29+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -290,7 +290,7 @@
   <macro name="article-volume-issue-date-pages">
     <group delimiter=" ">
       <choose>
-        <if variable="volume">
+        <if variable="volume issued" match="all">
           <number variable="volume"/>
           <text macro="full-date" prefix="(" suffix=")"/>
           <group delimiter=", ">
@@ -298,6 +298,15 @@
             <number variable="page-first"/>
           </group>
         </if>
+        <else-if variable="volume">
+          <group delimiter=", ">
+            <group delimiter="/">
+              <number variable="volume"/>
+              <number variable="issue"/>
+            </group>
+            <number variable="page-first"/>
+          </group>
+        </else-if>
         <else-if variable="issue page-first" match="all">
           <group delimiter=", ">
             <group delimiter="/">
