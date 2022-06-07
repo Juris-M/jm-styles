@@ -15,7 +15,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>Zitierregeln der österreichischen (Steuer-)Rechtssprache.</summary>
-    <updated>2021-07-07T12:12:37+02:00</updated>
+    <updated>2022-06-07T20:43:26+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -665,6 +665,27 @@
               </group>
             </if>
           </choose>
+        </else-if>
+        <else-if type="post post-weblog webpage">
+          <group delimiter=", ">
+            <text macro="author-short"/>
+            <text macro="title"/>
+            <group delimiter=" ">
+              <text macro="url"/>
+              <group delimiter=" " prefix="(" suffix=")">
+                <choose>
+                  <if variable="issued">
+                    <text value="Stand"/>
+                    <date variable="issued" form="text"/>
+                  </if>
+                  <else>
+                    <text value="abgefragt"/>
+                    <date variable="accessed" form="text"/>
+                  </else>
+                </choose>
+              </group>
+            </group>
+          </group>
         </else-if>
         <else>
           <group delimiter=", ">
