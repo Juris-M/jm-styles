@@ -215,7 +215,7 @@
         <!-- short form -->
         <group delimiter=" ">
           <group delimiter=", ">
-            <text macro="juris-title-short" font-style="italic" strip-periods="true" suffix=","/>
+            <text macro="juris-title-short" font-style="italic" strip-periods="true"/>
             <text value="supra" font-style="italic"/>
           </group>
           <choose>
@@ -316,7 +316,7 @@
                     </group>
                     <group delimiter=", ">
                       <group delimiter=" ">
-                        <text macro="juris-main" strip-periods="true"/>
+                        <text macro="juris-main"/>
                         <text macro="juris-locator" label-form="short" strip-periods="true"/>
                       </group>
                       <choose>
