@@ -770,7 +770,7 @@
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
             </if>
             <else-if variable="container-title-short editor collection-editor container-author" match="none">
-              <text macro="title-short-herinafter" prefix="[" suffix="]"/>
+              <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
             </else-if>
           </choose>
         </else>
