@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8.</summary>
-    <updated>2022-06-07T20:33:44+02:00</updated>
+    <updated>2022-09-07T15:01:01+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -765,6 +765,7 @@
             </else>
           </choose>
           <text macro="URL"/>
+          <!--
           <choose>
             <if type="chapter" match="none">
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
@@ -773,6 +774,7 @@
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
             </else-if>
           </choose>
+          -->
         </else>
       </choose>
     </group>
