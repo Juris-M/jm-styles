@@ -17,7 +17,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2021-06-07T14:06:38+02:00</updated>
+    <updated>2022-09-20T14:38:13+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -578,10 +578,44 @@
             </group>
           </group>
         </if>
+        <else-if type="legal_commentary" context="bibliography" match="all">
+          <group delimiter=" ">
+            <group delimiter=", ">
+              <choose>
+                <if variable="editor">
+                  <text macro="editor-suffix"/>
+                </if>
+                <else>
+                  <text macro="author-short"/>
+                </else>
+              </choose>
+              <text macro="container-title"/>
+            </group>
+            <choose>
+              <if variable="archive">
+                <choose>
+                  <if variable="version" match="none">
+                    <group delimiter=", " prefix="[" suffix="]">
+                      <number variable="collection-number"/>
+                      <text macro="full-date"/>
+                    </group>
+                  </if>
+                </choose>
+                <text variable="archive" prefix="(" suffix=")"/>
+              </if>
+              <else>
+                <group delimiter=" " prefix="(" suffix=")">
+                  <number variable="collection-number"/>
+                  <text macro="year-date"/>
+                </group>
+              </else>
+            </choose>
+          </group>
+        </else-if>
         <else>
           <group delimiter=", ">
             <choose>
-              <if type="legal_commentary">
+              <if type="legal_commentary" context="citation" match="all">
                 <group delimiter=" ">
                   <choose>
                     <if variable="editor">
@@ -633,7 +667,7 @@
             <text macro="locator"/>
           </group>
           <choose>
-            <if variable="archive" type="legal_commentary">
+            <if variable="archive" type="legal_commentary" context="citation">
               <choose>
                 <if variable="version" match="none">
                   <group delimiter=", " prefix="[" suffix="]">
@@ -736,7 +770,7 @@
             <choose>
               <if>
                 <conditions match="all">
-                    <!--<condition match="none" type="bill"/>-->
+                  <!--<condition match="none" type="bill"/>-->
                   <condition locator="page"/>
                   <condition variable="page" match="none"/>
                 </conditions>
@@ -778,6 +812,74 @@
           <text macro="juris-tail-short"/>
         </group>
       </if>
+      <else-if context="bibliography">
+        <group delimiter=", ">
+          <group delimiter=" ">
+            <group delimiter=", ">
+              <choose>
+                <if type="hearing report legal_case">
+                  <text macro="juris-pretitle"/>
+                </if>
+              </choose>
+              <choose>
+                <if type="hearing" match="any">
+                  <text macro="juris-title" font-style="italic"/>
+                </if>
+                <else>
+                  <text macro="juris-title"/>
+                </else>
+              </choose>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition match="all" type="report"/>
+                    <condition match="none" variable="title committee"/>
+                  </conditions>
+                  <text macro="juris-main" label-form="symbol"/>
+                </if>
+                <else-if>
+                  <conditions match="all">
+                    <condition match="all" type="hearing"/>
+                    <condition match="none" variable="committee"/>
+                  </conditions>
+                  <text macro="juris-main" label-form="symbol"/>
+                </else-if>
+                <else>
+                  <text macro="juris-main" label-form="symbol"/>
+                </else>
+              </choose>
+              <group require="comma-safe-numbers-only">
+                <text macro="juris-locator" label-form="symbol"/>
+              </group>
+            </group>
+            <choose>
+              <if locator="section">
+                <group reject="comma-safe-numbers-only">
+                  <text macro="juris-locator" label-form="symbol"/>
+                </group>
+              </if>
+              <else-if locator="page" match="none">
+                <group reject="comma-safe-numbers-only">
+                  <text macro="juris-locator" label-form="short"/>
+                </group>
+              </else-if>
+              <else>
+                <text macro="juris-locator"/>
+              </else>
+            </choose>
+            <text macro="juris-tail"/>
+          </group>
+          <choose>
+            <if>
+              <conditions match="all">
+                <condition type="legal_case" match="any"/>
+                <condition match="none" variable="document-name archive container-title"/>
+              </conditions>
+              <text variable="URL"/>
+            </if>
+          </choose>
+        </group>
+      </else-if>
       <else>
         <!-- full form -->
         <group delimiter=", ">
@@ -882,12 +984,99 @@
       </else>
     </choose>
   </macro>
+  <!-- sort macros -->
+  <macro name="type-sort">
+    <choose>
+      <if type="legal_case regulation" match="any">
+        <text value="1"/>
+      </if>
+      <else-if type="legislation bill" match="any">
+        <text value="2"/>
+      </else-if>
+      <else-if type="webpage post-weblog post">
+        <text value="4"/>
+      </else-if>
+      <else>
+        <text value="3"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="jurisdiction-sort">
+    <choose>
+      <if type="legal_case regulation legislation bill">
+        <choose>
+          <if country="eu.int">
+            <text value="1"/>
+          </if>
+          <else-if country="at">
+            <text value="2"/>
+          </else-if>
+          <else>
+            <text variable="country"/>
+          </else>
+        </choose>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="type-sort-legal">
+    <choose>
+      <if type="legal_case">
+        <text value="1"/>
+        <choose>
+          <if country="at">
+            <choose>
+              <if court-class="o1">
+                <text value="1"/>
+              </if>
+              <else-if court-class="o2">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="o3">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="o4">
+                <text value="2"/>
+              </else-if>
+              <else-if court-class="v0">
+                <text value="3"/>
+              </else-if>
+              <else-if court-class="v1">
+                <text value="4"/>
+              </else-if>
+              <else-if court-class="v2">
+                <text value="5"/>
+              </else-if>
+              <else>
+                <text value="6"/>
+              </else>
+            </choose>
+          </if>
+        </choose>
+        <text variable="jurisdiction"/>
+      </if>
+      <else-if type="legislation">
+        <text value="10"/>
+      </else-if>
+      <else-if type="regulation bill" match="any">
+        <text value="20"/>
+      </else-if>
+    </choose>
+  </macro>
 
   <macro name="citation">
     <choose>
-      <if position="subsequent" match="any">
-        <text macro="short-citation"/>
+      <if>
+        <conditions match="all">
+          <condition match="any" type="legal_case legislation bill hearing report regulation"/>
+          <condition match="all" variable="jurisdiction"/>
+        </conditions>
+        <text macro="jurism"/>
       </if>
+      <else-if position="subsequent" match="any">
+        <text macro="short-citation"/>
+      </else-if>
       <else-if position="container-subsequent">
         <text macro="container-subsequent-citation"/>
       </else-if>
@@ -913,9 +1102,16 @@
       </choose>
     </layout>
   </citation>
-  <bibliography>
+  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">
+    <sort>
+      <key macro="type-sort"/>
+      <key macro="jurisdiction-sort"/>
+      <key macro="type-sort-legal"/>
+      <key macro="author-short"/>
+      <key variable="issued" sort="descending"/>
+    </sort>
     <layout suffix=".">
-      <text value=""/>
+      <text macro="citation"/>
     </layout>
   </bibliography>
 </style>
