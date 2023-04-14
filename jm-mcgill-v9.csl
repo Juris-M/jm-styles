@@ -122,7 +122,8 @@
       <term name="in" form="short">in</term>
       <term name="in" form="verb">reprinted in</term>
       <term name="in" form="symbol">:</term>
-      <term name="online" form="short">en ligne (blog)</term>
+      <term name="online">online</term>
+      <term name="online" form="short">online (blog)</term>
       <term name="and" form="symbol">&#38;</term>
       <term name="et-al">et al</term>
       <term name="from" form="verb">to the</term>
