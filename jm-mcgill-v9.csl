@@ -1479,8 +1479,8 @@
   </macro>
   <macro name="publisher-place-year">
     <group delimiter=" ">
-      <text term="open-quote" form="short"/>
       <group>
+        <text term="open-quote" form="short"/>
         <text variable="publisher-place"/>
         <text term="open-inner-quote" form="short"/>
       </group>
