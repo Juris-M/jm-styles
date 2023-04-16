@@ -1559,7 +1559,7 @@
     </choose>
   </macro>
   <macro name="publisher-place-year">
-    <text term="open-quote" form="short"/>
+  	<text term="open-quote" form="short"/>									  
     <group delimiter=" ">
       <group>
         <text variable="publisher-place"/>
