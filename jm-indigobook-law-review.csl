@@ -38,10 +38,10 @@
         <single>art.</single>
         <multiple>arts.</multiple>
       </term>
-      <term name="rule">Rule</term>
+      <term name="rule">rule</term>
       <term name="rule" form="short">r.</term>
-      <term name="title">title</term>
-      <term form="short" name="title">tit.</term>
+      <term name="title" form="long">title</term>
+      <term name="title" form="short">tit.</term>
       <term form="short" name="chapter">ch.</term>
       <term form="short" name="column">col.</term>
       <term form="short" name="figure">fig.</term>
