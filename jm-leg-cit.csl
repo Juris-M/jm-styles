@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" track-containers="chapter legal_commentary">
   <info>
-    <title>JM leg cit ohne Verzeichnisse</title>
-    <title-short>JM leg cit ohne Verzeichnisse</title-short>
+    <title>JM leg cit</title>
+    <title-short>JM leg cit</title-short>
     <id>https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse</id>
     <link href="https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
@@ -16,8 +16,8 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2022-09-20T14:38:13+02:00</updated>
+    <summary>leg cit 4 mit allen Erstzitaten in Langform.</summary>
+    <updated>2023-03-03T16:49:06+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
