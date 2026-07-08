@@ -14,7 +14,7 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>AZR 8.</summary>
-    <updated>2022-09-07T15:01:01+02:00</updated>
+    <updated>2023-09-22T10:23:54+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -115,6 +115,17 @@
             <text macro="title"/>
           </substitute>
         </names>
+      </else>
+    </choose>
+  </macro>
+  <macro name="author-sorting">
+    <choose>
+      <!-- Sort by commentaries editor in bibliographies -->
+      <if type="legal_commentary" variable="editor" match="all">
+        <names variable="editor" />
+      </if>
+      <else>
+        <text macro="author-short"/>
       </else>
     </choose>
   </macro>
@@ -691,10 +702,14 @@
               </group>
             </if>
           </choose>
-          <!-- TODO reparieren - Das stimmt nicht! -->
-          <text macro="title-short"/>
-          <!-- /TODO reparieren! -->
-          <text macro="locator"/>
+          <choose>
+            <if context="citation" match="all">
+              <!-- TODO reparieren - Das stimmt nicht! -->
+              <text macro="title-short"/>
+              <!-- /TODO reparieren! -->
+              <text macro="locator"/>
+            </if>
+          </choose>
           <choose>
             <if variable="archive">
               <group delimiter=", " prefix="(" suffix=")">
@@ -1185,7 +1200,7 @@
       <key macro="type-sort"/>
       <key macro="sort-jurisdiction"/>
       <key macro="type-sort-legal"/>
-      <key macro="author-short"/>
+      <key macro="author-sorting"/>
       <key variable="issued" sort="descending"/>
     </sort>
     <layout suffix=".">
