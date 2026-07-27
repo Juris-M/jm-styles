@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" track-containers="chapter legal_commentary">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always">
   <info>
-    <title>JM leg cit</title>
-    <title-short>JM leg cit</title-short>
-    <id>https://juris-m.github.io/styles/jm-leg-cit</id>
-    <link href="https://juris-m.github.io/styles/jm-leg-cit" rel="self"/>
+    <title>JM leg cit Literatur Erstzitat kurz</title>
+    <title-short>JM leg cit Fn mit LV</title-short>
+    <id>https://juris-m.github.io/styles/jm-leg-cit-literatur-erstzitat-kurz</id>
+    <link href="https://juris-m.github.io/styles/jm-leg-cit-literatur-erstzitat-kurz" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <link href="https://learn.wu.ac.at/open/fit4research/zit_leg-cit" rel="documentation"/>
     <author>
@@ -16,8 +16,8 @@
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>leg cit 4 mit allen Erstzitaten in Langform.</summary>
-    <updated>2026-07-27T15:29:04+01:00</updated>
+    <summary>leg cit 4 Literatur Erstzitat kurz.</summary>
+    <updated>2026-07-27T15:37:07+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -235,30 +235,17 @@
     </choose>
   </macro>
   <macro name="locator">
-    <choose>
-      <if>
-        <conditions>
-          <condition locator="page" variable="page"/>
-          <condition position="first" match="any"/>
-        </conditions>
-        <number variable="locator" prefix="(" suffix=")"/>
-      </if>
-      <else-if>
-        <conditions>
-          <condition locator="page" variable="page" type="legal_commentary chapter" match="all"/>
-          <condition position="subsequent" match="none"/>
-        </conditions>
-        <number variable="locator" prefix="(" suffix=")"/>
-      </else-if>
-      <else-if>
-        <conditions>
-          <condition type="article-newspaper" variable="page" locator="page"/>
-          <condition variable="author" match="none"/>
-        </conditions>
-        <number variable="locator" prefix="(" suffix=")"/>
-      </else-if>
-      <else-if variable="locator">
-        <group delimiter=" ">
+    <group delimiter=" ">
+      <choose>
+        <if>
+          <conditions>
+            <condition type="article-newspaper"/>
+            <condition variable="author title" match="none"/>
+            <condition variable="page" locator="page" match="all"/>
+          </conditions>
+          <number variable="locator" prefix="(" suffix=")"/>
+        </if>
+        <else>
           <choose>
             <if locator="section">
               <label variable="locator" form="symbol"/>
@@ -268,9 +255,9 @@
             </else-if>
           </choose>
           <number variable="locator"/>
-        </group>
-      </else-if>
-    </choose>
+        </else>
+      </choose>
+    </group>
   </macro>
   <macro name="container-date-locator">
     <group delimiter=", ">
@@ -417,141 +404,81 @@
     </choose>
   </macro>
   <macro name="short-citation">
-    <group delimiter=", ">
-      <group delimiter=" ">
-        <choose>
-          <if type="legal_commentary">
-            <text macro="author-short"/>
-            <choose>
-              <if variable="original-title">
-                <text term="in"/>
-                <text variable="original-title"/>
-              </if>
-              <else-if variable="editor">
-                <text term="in"/>
-                <group delimiter=", ">
-                  <text macro="editor-short"/>
-                  <text macro="container-title-short"/>
-                </group>
-              </else-if>
-              <else>
-                <text macro="container-title"/>
-              </else>
-            </choose>
-            <text macro="shorttitle_or_title"/>
-          </if>
-          <else-if>
-            <conditions match="all">
-              <condition type="chapter legal_commentary"/>
-              <condition variable="container-title-short recipient editor collection-editor container-author" match="any"/>
-            </conditions>
-            <choose>
-              <if>
-                <conditions match="all">
-                  <condition variable="title-short hereinafter" match="any"/>
-                  <condition variable="container-title-short recipient" match="none"/>
-                </conditions>
-                <group delimiter=", ">
-                  <text macro="author-short"/>
-                  <text macro="title-short-volume-edition"/>
-                </group>
-              </if>
-              <else>
-                <text macro="author-short"/>
-                <text term="in"/>
-                <choose>
-                  <if variable="container-title-short">
-                    <text variable="container-title-short"/>
-                  </if>
-                  <else-if variable="recipient">
-                    <choose>
-                      <if variable="genre">
-                        <text variable="genre"/>
-                      </if>
-                      <else>
-                        <text value="FS"/>
-                      </else>
-                    </choose>
-                    <names variable="recipient"/>
-                  </else-if>
-                  <else>
-                    <text macro="editor-short"/>
-                  </else>
-                </choose>
-              </else>
-            </choose>
-          </else-if>
-          <else>
-            <text macro="author-title"/>
-          </else>
-        </choose>
-        <group reject="comma-safe-numbers-only">
-          <text macro="locator"/>
-        </group>
-      </group>
-      <group require="comma-safe-numbers-only">
-        <text macro="locator"/>
-      </group>
-    </group>
-  </macro>
-
-  <macro name="container-subsequent-citation">
-    <group delimiter=", ">
-      <group delimiter=" ">
-        <choose>
-          <if type="legal_commentary">
-            <text macro="author-short"/>
-            <choose>
-              <if variable="original-title">
-                <text term="in"/>
-                <text variable="original-title"/>
-              </if>
-              <else-if variable="editor">
-                <text term="in"/>
-                <group delimiter=", ">
-                  <text macro="editor-short"/>
-                  <text macro="container-title-short"/>
-                </group>
-              </else-if>
-              <else>
-                <text macro="container-title"/>
-              </else>
-            </choose>
-            <text macro="title"/>
-          </if>
-          <else>
-            <group delimiter=", ">
+    <group delimiter=" ">
+      <group delimiter=", ">
+        <group delimiter=" ">
+          <choose>
+            <if type="legal_commentary">
               <text macro="author-short"/>
-              <text macro="title"/>
-              <text term="in"/>
-            </group>
-            <choose>
-              <if variable="container-title-short">
-                <text variable="container-title-short"/>
-              </if>
-              <else-if variable="recipient">
-                <choose>
-                  <if variable="genre">
-                    <text variable="genre"/>
-                  </if>
-                  <else>
-                    <text value="FS"/>
-                  </else>
-                </choose>
-                <names variable="recipient"/>
-              </else-if>
-              <else>
-                <text macro="editor-short"/>
-              </else>
-            </choose>
-            <number variable="page-first"/>
-          </else>
-        </choose>
-        <group reject="comma-safe-numbers-only">
+              <choose>
+                <if variable="container-title-short">
+                  <text term="in"/>
+                  <text macro="container-title-short"/>
+                </if>
+                <else-if variable="editor">
+                  <text term="in"/>
+                  <group delimiter=", ">
+                    <text macro="editor-short"/>
+                    <text macro="container-title"/>
+                  </group>
+                </else-if>
+                <else>
+                  <text macro="container-title"/>
+                </else>
+              </choose>
+              <text macro="shorttitle_or_title"/>
+            </if>
+            <else-if>
+              <conditions match="all">
+                <condition type="chapter"/>
+                <condition variable="container-title-short recipient editor collection-editor container-author" match="any"/>
+              </conditions>
+              <choose>
+                <if>
+                  <conditions match="all">
+                    <condition variable="title-short hereinafter" match="any"/>
+                    <condition variable="container-title-short recipient" match="none"/>
+                  </conditions>
+                  <group delimiter=", ">
+                    <text macro="author-short"/>
+                    <text macro="title-short-volume-edition"/>
+                  </group>
+                </if>
+                <else>
+                  <text macro="author-short"/>
+                  <text term="in"/>
+                  <choose>
+                    <if variable="container-title-short">
+                      <text variable="container-title-short"/>
+                    </if>
+                    <else-if variable="recipient">
+                      <choose>
+                        <if variable="genre">
+                          <text variable="genre"/>
+                        </if>
+                        <else>
+                          <text value="FS"/>
+                        </else>
+                      </choose>
+                      <names variable="recipient"/>
+                    </else-if>
+                    <else>
+                      <text macro="editor-short"/>
+                    </else>
+                  </choose>
+                </else>
+              </choose>
+            </else-if>
+            <else>
+              <text macro="author-title"/>
+            </else>
+          </choose>
+        </group>
+        <group require="comma-safe-numbers-only">
           <text macro="locator"/>
         </group>
       </group>
-      <group require="comma-safe-numbers-only">
+      <group reject="comma-safe-numbers-only">
         <text macro="locator"/>
       </group>
     </group>
@@ -561,7 +488,6 @@
     <group delimiter=" ">
       <choose>
         <if type="legislation bill" match="any">
-          <text macro="locator"/>
           <group delimiter=", ">
             <text variable="title"/>
             <group delimiter=" ">
@@ -578,7 +504,7 @@
             </group>
           </group>
         </if>
-        <else-if type="legal_commentary" context="bibliography" match="all">
+        <else-if type="legal_commentary">
           <group delimiter=" ">
             <group delimiter=", ">
               <choose>
@@ -614,76 +540,20 @@
         </else-if>
         <else>
           <group delimiter=", ">
+            <text macro="author-short"/>
             <choose>
-              <if type="legal_commentary" context="citation" match="all">
-                <group delimiter=" ">
-                  <choose>
-                    <if variable="editor">
-                      <text macro="author-short"/>
-                      <text term="in"/>
-                      <group delimiter=", ">
-                        <text macro="editor-suffix"/>
-                        <text macro="container-title"/>
-                      </group>
-                    </if>
-                    <else>
-                      <group delimiter=", ">
-                        <text macro="author-short"/>
-                        <text macro="container-title"/>
-                      </group>
-                    </else>
-                  </choose>
-                  <choose>
-                    <if variable="archive" match="none">
-                      <group delimiter=" " prefix="(" suffix=")">
-                        <number variable="collection-number"/>
-                        <text macro="year-date"/>
-                      </group>
-                    </if>
-                  </choose>
-                  <text macro="title"/>
-                </group>
+              <if variable="container-title">
+                <text macro="title"/>
+                <text macro="container-date-locator"/>
               </if>
               <else>
-                <group delimiter=", ">
-                  <text macro="author-short"/>
-                  <choose>
-                    <if variable="container-title">
-                      <text macro="title"/>
-                      <text macro="container-date-locator"/>
-                    </if>
-                    <else>
-                      <text macro="title-volume-date"/>
-                    </else>
-                  </choose>
-                </group>
+                <text macro="title-volume-date"/>
               </else>
             </choose>
-            <group require="comma-safe-numbers-only">
-              <text macro="locator"/>
-            </group>
           </group>
-          <group reject="comma-safe-numbers-only">
-            <text macro="locator"/>
-          </group>
+          <text macro="URL"/>
           <choose>
-            <if variable="archive" type="legal_commentary" context="citation">
-              <choose>
-                <if variable="version" match="none">
-                  <group delimiter=", " prefix="[" suffix="]">
-                    <number variable="collection-number"/>
-                    <text macro="full-date"/>
-                  </group>
-                </if>
-              </choose>
-              <text variable="archive" prefix="(" suffix=")"/>
-            </if>
-            <else>
-              <text macro="URL"/>
-            </else>
-          </choose>
-          <choose>
-            <if type="chapter legal_commentary" match="none">
+            <if type="chapter" match="none">
               <text macro="title-short-hereinafter" prefix="[" suffix="]"/>
             </if>
             <else-if variable="container-title-short editor collection-editor container-author" match="none">
@@ -910,14 +780,14 @@
                         <condition match="all" type="report"/>
                         <condition match="none" variable="title committee"/>
                       </conditions>
-                      <text macro="juris-main" label-form="symbol"/>
+                      <text macro="juris-main"/>
                     </if>
                     <else-if>
                       <conditions match="all">
                         <condition match="all" type="hearing"/>
                         <condition match="none" variable="committee"/>
                       </conditions>
-                      <text macro="juris-main" label-form="symbol"/>
+                      <text macro="juris-main"/>
                     </else-if>
                     <else>
                       <text macro="juris-main"/>
@@ -984,6 +854,7 @@
       </else>
     </choose>
   </macro>
+
   <!-- sort macros -->
   <macro name="type-sort">
     <choose>
@@ -1064,7 +935,6 @@
       </else-if>
     </choose>
   </macro>
-
   <macro name="citation">
     <choose>
       <if>
@@ -1074,11 +944,8 @@
         </conditions>
         <text macro="jurism"/>
       </if>
-      <else-if position="subsequent" match="any">
+      <else-if context="citation">
         <text macro="short-citation"/>
-      </else-if>
-      <else-if position="container-subsequent">
-        <text macro="container-subsequent-citation"/>
       </else-if>
       <else>
         <text macro="long-citation"/>
@@ -1086,20 +953,9 @@
     </choose>
   </macro>
 
-  <citation et-al-min="4" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
+  <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
-      <choose>
-        <if>
-          <conditions match="all">
-            <condition match="any" type="legal_case legislation bill hearing report regulation"/>
-            <condition match="all" variable="jurisdiction"/>
-          </conditions>
-          <text macro="jurism"/>
-        </if>
-        <else>
-          <text macro="citation"/>
-        </else>
-      </choose>
+      <text macro="citation"/>
     </layout>
   </citation>
   <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">

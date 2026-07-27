@@ -3,21 +3,21 @@
   <info>
     <title>JM leg cit Erstzitat kurz</title>
     <title-short>JM leg cit Erstzitat kurz</title-short>
-    <id>https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis</id>
-    <link href="https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis" rel="self"/>
+    <id>https://juris-m.github.io/styles/jm-leg-cit-erstzitat-kurz</id>
+    <link href="https://juris-m.github.io/styles/jm-leg-cit-erstzitat-kurz" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <link href="https://learn.wu.ac.at/open/fit4research/zit_leg-cit" rel="documentation"/>
     <author>
       <name>Laurenz Liedermann</name>
     </author>
     <author>
-      <name>Georg Mayr-Duffner</name>
-      <email>georg.mayr-duffner@wu.ac.at</email>
+      <name>Georg Duffner</name>
+      <email>georg.duffner@wu.ac.at</email>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
     <summary>leg cit 4 mit allen Erstzitaten in Kurzform.</summary>
-    <updated>2023-03-03T16:50:28+01:00</updated>
+    <updated>2026-07-27T17:21:35+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -411,19 +411,19 @@
             <if type="legal_commentary">
               <text macro="author-short"/>
               <choose>
-                <if variable="container-title-short">
+                <if variable="original-title">
                   <text term="in"/>
-                  <text macro="container-title-short"/>
+                  <text variable="original-title"/>
                 </if>
                 <else-if variable="editor">
                   <text term="in"/>
                   <group delimiter=", ">
                     <text macro="editor-short"/>
-                    <text macro="container-title"/>
+                    <text macro="container-title-short"/>
                   </group>
                 </else-if>
                 <else>
-                  <text macro="container-title"/>
+                  <text macro="container-title-short"/>
                 </else>
               </choose>
               <text macro="shorttitle_or_title"/>
