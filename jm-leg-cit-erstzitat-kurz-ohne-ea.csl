@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always">
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-last="always">
   <info>
-    <title>JM leg cit mit Rechtsquellenverzeichnis und Literaturverzeichnis</title>
-    <title-short>JM leg cit Fn mit RSV und LV</title-short>
-    <id>https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis</id>
-    <link href="https://juris-m.github.io/styles/jm-leg-cit-rechtsquellenverzeichnis-literaturverzeichnis" rel="self"/>
+    <title>JM leg cit Erstzitat kurz ohne ea</title>
+    <title-short>JM leg cit Erstzitat kurz ohne ea</title-short>
+    <id>https://juris-m.github.io/styles/jm-leg-cit-erstzitat-kurz-ohne-ea</id>
+    <link href="https://juris-m.github.io/styles/jm-leg-cit-erstzitat-kurz-ohne-ea" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <link href="https://learn.wu.ac.at/open/fit4research/zit_leg-cit" rel="documentation"/>
     <author>
       <name>Laurenz Liedermann</name>
     </author>
     <author>
-      <name>Georg Mayr-Duffner</name>
-      <email>georg.mayr-duffner@wu.ac.at</email>
+      <name>Georg Duffner</name>
+      <email>georg.duffner@wu.ac.at</email>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>leg cit 4 mit Rechtsquellen- und Literaturverzeichnis.</summary>
-    <updated>2021-06-07T14:07:20+02:00</updated>
+    <summary>leg cit 4 mit allen Erstzitaten in Kurzform.</summary>
+    <updated>2026-07-27T17:54:16+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -110,7 +110,6 @@
       <else>
         <names variable="author" font-style="italic">
           <name/>
-          <et-al term="et-al"/>
           <institution delimiter="/"/>
           <substitute>
             <text macro="editor-suffix"/>
@@ -411,19 +410,19 @@
             <if type="legal_commentary">
               <text macro="author-short"/>
               <choose>
-                <if variable="container-title-short">
+                <if variable="original-title">
                   <text term="in"/>
-                  <text macro="container-title-short"/>
+                  <text variable="original-title"/>
                 </if>
                 <else-if variable="editor">
                   <text term="in"/>
                   <group delimiter=", ">
                     <text macro="editor-short"/>
-                    <text macro="container-title"/>
+                    <text macro="container-title-short"/>
                   </group>
                 </else-if>
                 <else>
-                  <text macro="container-title"/>
+                  <text macro="container-title-short"/>
                 </else>
               </choose>
               <text macro="shorttitle_or_title"/>
@@ -831,12 +830,12 @@
     </choose>
   </macro>
 
-  <citation et-al-min="3" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-givenname="true">
+  <citation disambiguate-add-givenname="true">
     <layout prefix="" suffix="." delimiter="; ">
       <text macro="citation"/>
     </layout>
   </citation>
-  <bibliography et-al-min="4" et-al-use-first="1" et-al-subsequent-min="2" et-al-subsequent-use-first="1" initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">
+  <bibliography initialize-with=". " entry-spacing="0" hanging-indent="true" consolidate-containers="legal_commentary">
     <sort>
       <key macro="type-sort"/>
       <key macro="jurisdiction-sort"/>

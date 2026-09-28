@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.1mlz1" class="note" default-locale="de-AT" name-delimiter="/" name-form="short" delimiter-precedes-et-al="never" delimiter-precedes-last="always" track-containers="chapter legal_commentary">
   <info>
-    <title>JM leg cit ohne Verzeichnisse</title>
-    <title-short>JM leg cit ohne Verzeichnisse</title-short>
-    <id>https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse</id>
-    <link href="https://juris-m.github.io/styles/jm-leg-cit-ohne-verzeichnisse" rel="self"/>
+    <title>JM leg cit</title>
+    <title-short>JM leg cit</title-short>
+    <id>https://juris-m.github.io/styles/jm-leg-cit</id>
+    <link href="https://juris-m.github.io/styles/jm-leg-cit" rel="self"/>
     <link href="http://www.verlagoesterreich.at/downloads/legcit" rel="documentation"/>
     <link href="https://learn.wu.ac.at/open/fit4research/zit_leg-cit" rel="documentation"/>
     <author>
       <name>Laurenz Liedermann</name>
     </author>
     <author>
-      <name>Georg Mayr-Duffner</name>
-      <email>georg.mayr-duffner@wu.ac.at</email>
+      <name>Georg Duffner</name>
+      <email>georg.duffner@wu.ac.at</email>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
-    <summary>leg cit 4 ohne Verzeichnisse.</summary>
-    <updated>2022-09-20T14:38:13+02:00</updated>
+    <summary>leg cit 4 mit allen Erstzitaten in Langform.</summary>
+    <updated>2026-07-27T15:29:04+01:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de">
@@ -423,15 +423,15 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="container-title-short">
+              <if variable="original-title">
                 <text term="in"/>
-                <text macro="container-title-short"/>
+                <text variable="original-title"/>
               </if>
               <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
-                  <text macro="container-title"/>
+                  <text macro="container-title-short"/>
                 </group>
               </else-if>
               <else>
@@ -502,15 +502,15 @@
           <if type="legal_commentary">
             <text macro="author-short"/>
             <choose>
-              <if variable="container-title-short">
+              <if variable="original-title">
                 <text term="in"/>
-                <text macro="container-title-short"/>
+                <text variable="original-title"/>
               </if>
               <else-if variable="editor">
                 <text term="in"/>
                 <group delimiter=", ">
                   <text macro="editor-short"/>
-                  <text macro="container-title"/>
+                  <text macro="container-title-short"/>
                 </group>
               </else-if>
               <else>
