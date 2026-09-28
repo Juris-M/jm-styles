@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.1mlz1" default-locale="de-CH">
+ <info>
+  <title>JM Onlinekommentar Schweiz (Deutsch)</title>
+  <id>https://juris-m.github.io/styles/jm-onlinekommentar-schweiz-de</id>
+  <link href="https://juris-m.github.io/styles/jm-onlinekommentar-schweiz-de" rel="self"/>
+  <link href="http://www.zotero.org/styles/juristische-zitierweise-schweizer" rel="template"/>
+  <link href="https://onlinekommentar.ch/storage/documents/zitierrichtlinie-februar-2025-deutsch.pdf" rel="documentation"/>
+  <author>
+   <name>Noam Schank</name>
+   <email>schank.noam@gmail.com</email>
+  </author>
+  <!-- Stephan Schlegel is the author of "Juristische Zitierweise Schweizer (Ryser Büschi et al.)
+       (Deutsch - Schweiz)", which served as the template for this style (see the template link). -->
+  <contributor>
+   <name>Stephan Schlegel</name>
+   <email>stephan.schlegel@unibas.ch</email>
+  </contributor>
+  <category citation-format="note"/>
+  <category field="law"/>
+  <summary>This style is based on the citation guidelines of Onlinekommentar (German edition). Swiss court decisions are formatted by the juris-ch-de style module.</summary>
+  <updated>2026-09-28T00:00:00+00:00</updated>
+  <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  <!-- For this style, the author (Noam Schank) has written a manual (in German) which can be requested by e-mail. -->
+ </info>
+ <locale xml:lang="de">
+  <style-options jurisdiction-preference="de"/>
+  <terms>
+   <term name="volume">Band</term>
+   <term name="accessed">besucht am</term>
+   <term name="available at">abrufbar unter</term>
+   <term name="editor">Hrsg.</term>
+   <term name="et-al">et al.</term>
+   <term name="page">S.</term>
+   <term name="page" form="short">S.</term>
+   <term name="note">N.</term>
+   <term name="note" form="short">N.</term>
+   <term name="paragraph">§</term>
+   <term name="paragraph" form="short">§</term>
+   <term name="section">E.</term>
+   <term name="section" form="short">E.</term>
+  </terms>
+ </locale>
+ <macro name="author">
+  <names variable="author">
+   <name delimiter="/" name-as-sort-order="all" sort-separator=" " form="long" font-style="normal"/>
+   <label form="short" prefix=" (" suffix=")"/>
+   <substitute>
+    <names variable="editor"/>
+   </substitute>
+  </names>
+ </macro>
+ <macro name="editor-author">
+  <names variable="editor">
+   <name delimiter="/" name-as-sort-order="all" sort-separator=" " form="long" font-style="normal"/>
+   <label form="short" prefix=" (" suffix=")"/>
+   <substitute>
+    <names variable="author"/>
+   </substitute>
+  </names>
+ </macro>
+ <macro name="author-note">
+  <names variable="author">
+   <name form="short" delimiter="/" et-al-min="5" et-al-use-first="1" name-as-sort-order="all" font-style="normal"/>
+  </names>
+ </macro>
+ <macro name="autor-editor-note">
+  <names variable="author">
+   <name form="short" delimiter="/" et-al-min="5" et-al-use-first="1" sort-separator="" font-style="normal"/>
+   <substitute>
+    <names variable="editor"/>
+   </substitute>
+  </names>
+ </macro>
+ <macro name="issued-date">
+  <date variable="issued" prefix="vom ">
+   <date-part name="day" suffix="."/>
+   <date-part name="month" form="numeric" suffix="."/>
+   <date-part name="year"/>
+  </date>
+ </macro>
+ <macro name="issued-date-international-courts">
+  <date variable="issued">
+   <date-part name="day" suffix="."/>
+   <date-part name="month" form="numeric" suffix="."/>
+   <date-part name="year"/>
+  </date>
+ </macro>
+ <macro name="issued-date-document">
+  <date variable="issued">
+   <date-part name="year"/>
+  </date>
+ </macro>
+ <macro name="issued-date-hearing">
+  <date variable="issued">
+   <date-part name="year"/>
+  </date>
+ </macro>
+ <macro name="accessed-date">
+  <date variable="accessed">
+   <date-part name="day" suffix="."/>
+   <date-part name="month" form="numeric" suffix="."/>
+   <date-part name="year"/>
+  </date>
+ </macro>
+ <macro name="locator">
+  <group delimiter=" ">
+   <label variable="locator" form="short"/>
+   <text variable="locator"/>
+  </group>
+ </macro>
+ <macro name="sort-by-category">
+  <choose>
+   <if type="document">
+    <text value="1"/>
+   </if>
+   <else-if type="hearing">
+    <text value="2"/>
+   </else-if>
+   <else-if type="legal_case">
+    <text value="3"/>
+   </else-if>
+   <else>
+    <text value="4"/>
+   </else>
+  </choose>
+ </macro>
+ <macro name="sort-courts">
+  <choose>
+   <if country="coe.int">
+    <text value="01"/>
+   </if>
+   <else-if country="eu.int">
+    <text value="02"/>
+   </else-if>
+   <else-if country="un.int">
+    <text value="03"/>
+   </else-if>
+   <else-if country="ch">
+    <choose>
+     <if court-class="b0" match="any">
+      <text value="10"/>
+     </if>
+     <else-if court-class="b1 bpat" match="any">
+      <text value="20"/>
+     </else-if>
+     <else-if court-class="k1" match="any">
+      <text value="30"/>
+     </else-if>
+     <else-if court-class="k2" match="any">
+      <text value="40"/>
+     </else-if>
+     <else>
+      <text value="50"/>
+     </else>
+    </choose>
+   </else-if>
+  </choose>
+ </macro>
+ <macro name="collection-title">
+  <choose>
+   <if variable="collection-title">
+    <group delimiter=" ">
+     <text variable="collection-title"/>
+     <group delimiter=" ">
+      <text term="volume"/>
+      <number variable="collection-number"/>
+     </group>
+    </group>
+   </if>
+  </choose>
+ </macro>
+ <macro name="juris-pretitle">
+  <text value=""/>
+ </macro>
+ <macro name="juris-title">
+  <text value=""/>
+ </macro>
+ <macro name="juris-main">
+  <text value=""/>
+ </macro>
+ <macro name="juris-tail">
+  <text value=""/>
+ </macro>
+ <macro name="juris-pretitle-short">
+  <text value=""/>
+ </macro>
+ <macro name="juris-title-short">
+  <text value=""/>
+ </macro>
+ <macro name="juris-main-short">
+  <text value=""/>
+ </macro>
+ <macro name="juris-tail-short">
+  <text value=""/>
+ </macro>
+ <macro name="juris-locator">
+  <text value=""/>
+ </macro>
+ <citation>
+  <layout delimiter="; ">
+   <group suffix=".">
+    <choose>
+     <if type="article-journal">
+      <group delimiter=", ">
+       <text macro="author-note"/>
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </if>
+     <else-if type="book">
+      <group delimiter=", ">
+       <text macro="autor-editor-note"/>
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </else-if>
+     <else-if type="chapter">
+      <group delimiter=", ">
+       <text macro="author-note"/>
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </else-if>
+     <else-if type="legal_commentary">
+      <group delimiter=" ">
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </else-if>
+     <else-if type="legal_case" match="any">
+      <choose>
+       <!-- Switzerland: rendered by juris-ch-de.csl, which is also what makes
+            <if court-class="..."> work at all. -->
+       <if country="ch">
+        <!-- Keyword after the pinpoint is house style, so it lives here. -->
+        <group delimiter=" &#8211; ">
+         <group delimiter=", ">
+          <text macro="juris-main"/>
+          <text macro="juris-locator"/>
+         </group>
+         <text variable="title-short" font-style="italic"/>
+        </group>
+       </if>
+       <else-if country="eu.int">
+        <group delimiter=", ">
+         <group delimiter=" ">
+          <names variable="authority">
+           <institution institution-parts="short">
+            <institution-part name="short"/>
+           </institution>
+          </names>
+          <number variable="division" prefix="(" suffix=")"/>
+         </group>
+         <text variable="title" font-style="italic"/>
+         <!-- Case number verbatim: "C-" does not belong to pre-1989 numbers and the
+              General Court takes "T-", so the prefix is part of the docket number. -->
+         <number variable="number"/>
+         <text variable="container-title"/>
+         <text macro="issued-date-international-courts"/>
+         <text macro="locator"/>
+        </group>
+       </else-if>
+       <else-if country="coe.int">
+        <group delimiter=", ">
+         <group delimiter=" ">
+          <names variable="authority">
+           <institution institution-parts="short">
+            <institution-part name="short"/>
+           </institution>
+          </names>
+          <number variable="division" prefix="(" suffix=")"/>
+         </group>
+         <group delimiter=" ">
+          <text variable="title" font-style="italic"/>
+          <text variable="note" prefix="(" suffix=")"/>
+         </group>
+         <number variable="number" prefix="Nr. "/>
+         <text macro="issued-date-international-courts"/>
+         <text macro="locator"/>
+        </group>
+       </else-if>
+       <else-if country="un.int">
+        <group delimiter=", ">
+         <names variable="authority">
+          <institution institution-parts="short">
+           <institution-part name="short"/>
+          </institution>
+         </names>
+         <group delimiter=" ">
+          <text variable="title" font-style="italic"/>
+          <text variable="title-short" prefix="(" suffix=")"/>
+         </group>
+         <text variable="genre"/>
+         <text macro="issued-date-international-courts"/>
+         <text variable="container-title"/>
+         <text macro="locator" prefix="(" suffix=")"/>
+        </group>
+       </else-if>
+       <else>
+        <!-- The keyword joins with an en dash instead of a comma, as in the Swiss branch. -->
+        <group delimiter=", ">
+         <group delimiter=" &#8211; ">
+          <group delimiter=", ">
+           <text variable="title"/>
+           <group delimiter=" ">
+            <names variable="authority"/>
+            <group delimiter=", ">
+             <number variable="number"/>
+             <text variable="abstract"/>
+            </group>
+            <text macro="issued-date"/>
+           </group>
+           <text variable="note"/>
+          </group>
+          <text variable="title-short" font-style="italic"/>
+         </group>
+         <text macro="locator"/>
+        </group>
+       </else>
+      </choose>
+     </else-if>
+     <else-if type="document">
+      <group delimiter=", ">
+       <text variable="title-short"/>
+       <text macro="issued-date-document"/>
+       <text macro="locator"/>
+      </group>
+     </else-if>
+     <else-if type="hearing">
+      <group delimiter=", ">
+       <text variable="title"/>
+       <group delimiter=" ">
+        <text variable="publisher"/>
+        <text macro="issued-date-hearing"/>
+        <names variable="authority"/>
+        <text macro="locator"/>
+       </group>
+      </group>
+     </else-if>
+     <else-if type="report">
+      <group delimiter=", ">
+       <text macro="author-note"/>
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </else-if>
+     <else>
+      <group delimiter=", ">
+       <text macro="author-note"/>
+       <text variable="title-short"/>
+       <text macro="locator"/>
+      </group>
+     </else>
+    </choose>
+   </group>
+  </layout>
+ </citation>
+ <bibliography subsequent-author-substitute="ders." line-spacing="1" hanging-indent="true">
+  <sort>
+   <key macro="sort-by-category"/>
+   <key macro="sort-courts"/>
+   <key macro="author"/>
+   <key variable="issued"/>
+  </sort>
+  <layout suffix=".">
+   <choose>
+    <if type="article-journal">
+     <group delimiter=" ">
+      <group>
+       <group delimiter=", ">
+        <text macro="author"/>
+        <text variable="title"/>
+        <group delimiter=" ">
+         <text variable="container-title-short"/>
+         <choose>
+          <if match="any" variable="volume">
+           <group delimiter=", ">
+            <group delimiter=" ">
+             <number variable="volume"/>
+             <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
+            </group>
+            <group delimiter=" ">
+             <label variable="page" form="short"/>
+             <number variable="page"/>
+            </group>
+           </group>
+          </if>
+          <else-if match="any" variable="issue">
+           <group>
+            <number variable="issue"/>
+            <date date-parts="year" form="text" variable="issued" prefix="/"/>
+            <number variable="page" prefix=", "/>
+           </group>
+          </else-if>
+          <else>
+           <group>
+            <date date-parts="year" form="text" variable="issued"/>
+            <number variable="page" prefix=", "/>
+           </group>
+          </else>
+         </choose>
+        </group>
+       </group>
+       <choose>
+        <if variable="DOI">
+         <text variable="DOI" prefix=", DOI: "/>
+        </if>
+        <else>
+         <group delimiter=", " prefix=", ">
+          <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+          <group delimiter=" ">
+           <text term="accessed"/>
+           <text macro="accessed-date"/>
+          </group>
+         </group>
+        </else>
+       </choose>
+      </group>
+      <choose>
+       <if match="any" variable="title-short">
+        <group delimiter=", " prefix="(zit.: " suffix=")">
+         <text macro="autor-editor-note"/>
+         <text variable="title-short"/>
+        </group>
+       </if>
+      </choose>
+     </group>
+    </if>
+    <else-if type="book">
+     <group delimiter=" ">
+      <group delimiter=", ">
+       <text macro="author"/>
+       <text variable="title"/>
+       <group delimiter=" ">
+        <text term="volume"/>
+        <number variable="volume"/>
+       </group>
+       <text macro="collection-title"/>
+       <group delimiter=" ">
+        <number variable="edition" form="ordinal"/>
+        <label variable="edition" form="short"/>
+       </group>
+       <group delimiter=" ">
+        <text variable="publisher-place"/>
+        <date date-parts="year" form="text" variable="issued"/>
+       </group>
+      </group>
+      <choose>
+       <if match="any" variable="title-short">
+        <group delimiter=", " prefix="(zit.: " suffix=")">
+         <text macro="autor-editor-note"/>
+         <text variable="title-short"/>
+        </group>
+       </if>
+      </choose>
+     </group>
+    </else-if>
+    <else-if type="chapter">
+     <group delimiter=" ">
+      <group delimiter=", ">
+       <text macro="author"/>
+       <text variable="title"/>
+       <group delimiter=": ">
+        <text term="in"/>
+        <group delimiter=", ">
+         <names variable="editor">
+          <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="long"/>
+          <label form="short" prefix=" (" suffix=")"/>
+         </names>
+         <text variable="container-title"/>
+        </group>
+       </group>
+       <group delimiter=" ">
+        <text term="volume"/>
+        <number variable="volume"/>
+       </group>
+       <group delimiter=" ">
+        <number variable="edition" form="ordinal"/>
+        <label variable="edition" form="short"/>
+       </group>
+       <group delimiter=" ">
+        <text variable="publisher-place"/>
+        <date date-parts="year" form="text" variable="issued"/>
+       </group>
+       <group delimiter=" ">
+        <label variable="page" form="short"/>
+        <number variable="page"/>
+       </group>
+      </group>
+      <choose>
+       <if match="any" variable="title-short">
+        <group delimiter=", " prefix="(zit.: " suffix=")">
+         <text macro="autor-editor-note"/>
+         <text variable="title-short"/>
+        </group>
+       </if>
+      </choose>
+     </group>
+    </else-if>
+    <else-if type="legal_commentary">
+     <group delimiter=", ">
+      <text macro="author"/>
+      <choose>
+       <if variable="title" match="all">
+        <text variable="title" prefix="Kommentierung zu "/>
+        <group delimiter=": ">
+         <text term="in"/>
+         <text macro="editor-author"/>
+        </group>
+       </if>
+      </choose>
+      <text variable="container-title"/>
+      <group delimiter=" ">
+       <text term="volume"/>
+       <number variable="volume"/>
+      </group>
+      <group delimiter=" ">
+       <number variable="edition" form="ordinal"/>
+       <label variable="edition" form="short"/>
+      </group>
+      <group delimiter=" ">
+       <text variable="publisher-place"/>
+       <date variable="issued">
+        <date-part name="year" form="long"/>
+       </date>
+      </group>
+     </group>
+    </else-if>
+    <else-if type="legal_case" match="any">
+     <!-- Empty names node, deliberately. It occupies the "author position" so
+          subsequent-author-substitute ("ders.") is consumed here instead of
+          replacing the court abbreviation: citeproc compares the UNABBREVIATED
+          court key, so BGE and BGer both look like "fsc" and consecutive
+          Bundesgericht entries would render as "ders. 139 I 16". Court
+          decisions carry no author, so this prints nothing. -->
+     <names variable="author"/>
+     <choose>
+      <if country="ch">
+       <group delimiter=" &#8211; ">
+        <group delimiter=", ">
+         <text macro="juris-main"/>
+         <text macro="juris-locator"/>
+        </group>
+        <text variable="title-short" font-style="italic"/>
+       </group>
+      </if>
+      <else-if country="eu.int">
+       <group delimiter=", ">
+        <group delimiter=" ">
+         <names variable="authority">
+          <institution institution-parts="short">
+           <institution-part name="short"/>
+          </institution>
+         </names>
+         <number variable="division" prefix="(" suffix=")"/>
+        </group>
+        <text variable="title" font-style="italic"/>
+        <!-- Case number verbatim: "C-" does not belong to pre-1989 numbers and the
+             General Court takes "T-", so the prefix is part of the docket number. -->
+        <number variable="number"/>
+        <text variable="container-title"/>
+        <text macro="issued-date-international-courts"/>
+        <text macro="locator"/>
+       </group>
+      </else-if>
+      <else-if country="coe.int">
+       <group delimiter=", ">
+        <group delimiter=" ">
+         <names variable="authority">
+          <institution institution-parts="short">
+           <institution-part name="short"/>
+          </institution>
+         </names>
+         <number variable="division" prefix="(" suffix=")"/>
+        </group>
+        <group delimiter=" ">
+         <text variable="title" font-style="italic"/>
+         <text variable="note" prefix="(" suffix=")"/>
+        </group>
+        <number variable="number" prefix="Nr. "/>
+        <text macro="issued-date-international-courts"/>
+        <text macro="locator"/>
+       </group>
+      </else-if>
+      <else-if country="un.int">
+       <group delimiter=", ">
+        <names variable="authority">
+         <institution institution-parts="short">
+          <institution-part name="short"/>
+         </institution>
+        </names>
+        <group delimiter=" ">
+         <text variable="title" font-style="italic"/>
+         <text variable="title-short" prefix="(" suffix=")"/>
+        </group>
+        <text variable="genre"/>
+        <text macro="issued-date-international-courts"/>
+        <text variable="container-title"/>
+        <text macro="locator" prefix="(" suffix=")"/>
+       </group>
+      </else-if>
+      <else>
+       <group delimiter=" &#8211; ">
+        <group delimiter=", ">
+         <!-- "vom" joins with a space to whatever precedes it: title or court. -->
+         <group delimiter=" ">
+          <group delimiter=", ">
+           <names variable="authority"/>
+           <text variable="title"/>
+          </group>
+          <text macro="issued-date"/>
+         </group>
+         <text variable="note"/>
+        </group>
+        <text variable="title-short" font-style="italic"/>
+       </group>
+      </else>
+     </choose>
+    </else-if>
+    <else-if type="document">
+     <group delimiter=", ">
+      <group delimiter=" ">
+       <text variable="title"/>
+       <text macro="issued-date"/>
+      </group>
+      <text variable="publisher"/>
+      <group delimiter=" ">
+       <text term="available at"/>
+       <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+      </group>
+      <group delimiter=" ">
+       <text term="accessed"/>
+       <text macro="accessed-date"/>
+      </group>
+     </group>
+    </else-if>
+    <else-if type="hearing">
+     <group delimiter=", ">
+      <text variable="title"/>
+      <group delimiter=" ">
+       <text variable="publisher"/>
+       <text macro="issued-date-hearing"/>
+       <names variable="authority"/>
+       <number variable="page"/>
+      </group>
+     </group>
+    </else-if>
+    <else-if type="report">
+     <group delimiter=", ">
+      <text macro="author"/>
+      <text variable="title"/>
+      <date variable="issued">
+       <date-part name="year" form="long"/>
+      </date>
+      <number variable="page"/>
+     </group>
+    </else-if>
+    <else>
+     <group delimiter=", ">
+      <text macro="author"/>
+      <text variable="title"/>
+      <group delimiter=" ">
+       <text variable="URL" prefix="&lt;" suffix="&gt;"/>
+       <group delimiter=" " prefix="(" suffix=")">
+        <text term="accessed"/>
+        <text macro="accessed-date"/>
+       </group>
+       <number variable="page"/>
+       <text variable="title-short" prefix="(zit.: " suffix=")"/>
+      </group>
+     </group>
+    </else>
+   </choose>
+  </layout>
+ </bibliography>
+</style>
